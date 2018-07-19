@@ -4,8 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minHeight="184dp"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="25dp">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="548dp"
+        android:layout_height="525dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="206dp"
+        android:layout_height="222dp"
+        android:layout_marginBottom="276dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/imageAvatar"
+        app:layout_constraintBottom_toBottomOf="@+id/idtxtHello"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/mgsr" />
 
     <TextView
         android:id="@+id/idtxtHello"
@@ -23,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button"
@@ -36,5 +66,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/Gfy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Go_fuck_yourself"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/idtxtHello"
+        app:layout_constraintEnd_toEndOf="@+id/idtxtHello"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/idtxtHello"
+        app:layout_constraintTop_toTopOf="@+id/idtxtHello"
+        app:layout_constraintVertical_bias="0.665" />
 
 </android.support.constraint.ConstraintLayout>
