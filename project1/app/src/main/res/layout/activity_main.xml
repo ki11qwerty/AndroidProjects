@@ -65,13 +65,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Go_fuck_yourself"
+        android:textColor="#ff0000"
         android:textSize="30sp"
-        android:textColor="@color/colorText1"
         app:layout_constraintBottom_toBottomOf="@+id/idtxtHello"
         app:layout_constraintEnd_toEndOf="@+id/idtxtHello"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/idtxtHello"
         app:layout_constraintTop_toTopOf="@+id/idtxtHello"
-        app:layout_constraintVertical_bias="0.665" />
+        app:layout_constraintVertical_bias="0.611" />
 
 </android.support.constraint.ConstraintLayout>

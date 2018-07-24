@@ -19,6 +19,6 @@ public class MainActivity extends AppCompatActivity {
  //       textView =  findViewById(R.id.idtxtHello);
 //        textView2 = findViewById(R.id.Gfy);
 //    //    imageView = findViewById(R.id.imageView);
-//        button = findViewById(R.id.button);
+        button = findViewById(R.id.button);
     }
 }
