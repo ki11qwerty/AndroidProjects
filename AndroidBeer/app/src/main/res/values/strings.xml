@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android Beer</string>
+    <string name="buttonName">Лена, нажми кнопку</string>
+    <string name="toasting">Такс, ну короче я сегодня пивка попью! =)</string>
+</resources>
