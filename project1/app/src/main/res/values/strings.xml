@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Project1</string>
-    <string name="here_green_text">тут должен быть зеленый текст</string>
-    <string name="button">button</string>
-    <string name="and_here_red">а тут красный</string>
-    <string name="imageAvatar">image Avatar</string>
-    <string name="back">back</string>
-
-</resources>
