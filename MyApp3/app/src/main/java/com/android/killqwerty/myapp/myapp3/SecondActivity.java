@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class SecondActivity extends Activity {
-    Button but2;
+    Button but1, but2;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,8 +16,8 @@ public class SecondActivity extends Activity {
         setButtons();
     }
     public void setButtons(){
-        but2 = findViewById(R.id.button2);
-        but2.setOnClickListener(new View.OnClickListener() {
+        but1 = findViewById(R.id.button2);
+        but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SecondActivity.this, MainActivity.class);
