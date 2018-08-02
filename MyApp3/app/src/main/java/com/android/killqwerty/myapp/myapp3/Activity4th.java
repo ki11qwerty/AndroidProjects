@@ -9,26 +9,19 @@ import android.view.View;
 import android.widget.Button;
 
 public class Activity4th extends AppCompatActivity {
-    Button buttPre, buttNext;
+    Button buttPrev;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout4th);
+        setMyButtons();
     }
     public void setMyButtons() {
-        buttPrev = findViewById(R.id.button_backward_1);
+        buttPrev = findViewById(R.id.button_backward_4);
         buttPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity1st.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        buttNext = findViewById(R.id.button_forward_1);
-        buttNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Activity1st.class);
+                Intent intent = new Intent(Activity4th.this, Activity3th.class);
                 startActivity(intent);
             }
         });

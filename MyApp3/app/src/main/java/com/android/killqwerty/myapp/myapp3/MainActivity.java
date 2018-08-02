@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setMyButtons();
     }
     public void setMyButtons(){
-        buttNext = findViewById(R.id.button_forward_1);
+        buttNext = findViewById(R.id.button_forward_main);
         buttNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -21,6 +21,21 @@
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Activity2nd">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity3th">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity4th">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

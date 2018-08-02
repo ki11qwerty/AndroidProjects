@@ -33,7 +33,7 @@ public class Activity1st extends AppCompatActivity {
         buttNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Activity1st.class);
+                Intent intent = new Intent(Activity1st.this, Activity2nd.class);
                 startActivity(intent);
             }
         });
