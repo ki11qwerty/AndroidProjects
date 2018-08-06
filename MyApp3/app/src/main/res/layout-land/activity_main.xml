@@ -18,12 +18,13 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
-        android:layout_width="385dp"
+        android:layout_width="594dp"
         android:layout_height="164dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -42,8 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorOfButtonLesson5"
             android:text="@string/lesson_5_button"
+            android:background="@color/colorOfButtonLesson5"
             android:visibility="visible" />
     </LinearLayout>
 
