@@ -17,4 +17,12 @@
         android:text="@string/previous_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_lesson_alert"
+        android:layout_width="86dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lesson_4_alert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
