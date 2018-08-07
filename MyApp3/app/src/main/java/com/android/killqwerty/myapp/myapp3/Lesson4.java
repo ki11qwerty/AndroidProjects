@@ -13,7 +13,6 @@ public class Lesson4 extends AppCompatActivity {
     Button buttPrev, buttLesson4Alert;
     AlertDialog alertDialog;
     AlertDialog.Builder alertDB;
-   // Toast toast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,7 +23,7 @@ public class Lesson4 extends AppCompatActivity {
     }
 
     public void setMyButtons() {
-        buttPrev = findViewById(R.id.button_lesson_prev);
+        buttPrev = findViewById(R.id.button_lesson4_prev);
         buttPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +31,7 @@ public class Lesson4 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        buttLesson4Alert = findViewById(R.id.button_lesson_alert);
+        buttLesson4Alert = findViewById(R.id.button_lesson4_alert);
         buttLesson4Alert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,30 +43,41 @@ public class Lesson4 extends AppCompatActivity {
     public void createAlertDialog() {
         alertDB =  new AlertDialog.Builder(this);
         alertDB.setTitle("AlertDialog")
-                .setMessage("Мой первый алерт)")
+                .setMessage("Мой первый алерт")
                 .setCancelable(false)
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Lesson4.this.finish();
-                    }
-                })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                })
-                .setNeutralButton("ваще похуй!", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast toast = new Toast(getApplicationContext());
                         if (toast != null)
                             toast.cancel();
                         toast.makeText(getApplicationContext(),
-                                "ваще похуй значит", Toast.LENGTH_LONG).show();
+                                "Okay, lesson finished", Toast.LENGTH_LONG).show();
+                        Lesson4.this.finish();
                     }
-                });
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast toast = new Toast(getApplicationContext());
+                        if (toast != null)
+                            toast.cancel();
+                        toast.makeText(getApplicationContext(),
+                                "Cancel", Toast.LENGTH_LONG).show();
+                        dialogInterface.cancel();
+                    }
+                })
+                .setNeutralButton("напомнить позже", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast toast = new Toast(getApplicationContext());
+                        if (toast != null)
+                            toast.cancel();
+                        toast.makeText(getApplicationContext(),
+                                "ой да все вы так говорите...", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setIcon(R.drawable.iconki11);
       alertDialog = alertDB.create();
     }
 }

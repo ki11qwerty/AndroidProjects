@@ -1,5 +1,7 @@
 <resources>
+    <!-->main<-->
     <string name="app_name">Ki11QwertyApp</string>
+    <!-->Layout1<-->
     <string name="image_avatar_mgsr">image_avatar_mgsr</string>
     <string name="android_developer">Junior Android Developer</string>
     <string name="First_last_name">Antonov A.A.</string>
@@ -8,10 +10,16 @@
     Android studio, Intellij IDEA, Php , css, html. имею базовые навыки работы с
     базами данных, владею навыками ООП, Многопоточности, Junit , TestNg и основными
     патернами проектирования! (но это не точно)</string>
+    <!-->buttons<-->
     <string name="some_text">Some Text</string>
     <string name="previous_button">previous Page</string>
     <string name="next_button">next Page</string>
-    <string name="lesson_4_button">урок №4</string>
-    <string name="lesson_5_button">Урок №5</string>
-    <string name="lesson_4_alert">Push Me</string>
+    <!-->MainLayout<-->
+    <string name="main_lesson_4_button">урок №4</string>
+    <string name="main_lesson_5_button">Урок №5</string>
+    <!--> lesson4 <-->
+    <string name="lesson_4_alert">Alert</string>
+    <string name="lesson_4_alert_Single">SingleChoice Alert</string>
+    <string name="lesson_4_alert_Multi">MultiChoice Alert</string>
+    <string name="lesson_4_alert_manual_view">ManualView Alert</string>
 </resources>

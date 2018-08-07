@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorOfButtonLesson4"
-            android:text="@string/lesson_4_button" />
+            android:text="@string/main_lesson_4_button" />
 
         <Button
             android:id="@+id/button_lesson_5_main"
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/lesson_5_button"
+            android:text="@string/main_lesson_5_button"
             android:background="@color/colorOfButtonLesson5"
             android:visibility="visible" />
     </LinearLayout>
