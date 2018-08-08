@@ -18,8 +18,8 @@
     <string name="main_lesson_4_button">урок №4</string>
     <string name="main_lesson_5_button">Урок №5</string>
     <!--> lesson4 <-->
-    <string name="lesson_4_alert">Alert</string>
-    <string name="lesson_4_alert_Single">SingleChoice Alert</string>
-    <string name="lesson_4_alert_Multi">MultiChoice Alert</string>
+    <string name="lesson_4_alert">Закрыть Activity  \n(Alert)</string>
+    <string name="lesson_4_alert_Single">Выбрать напиток \n (SingleChoice Alert)</string>
+    <string name="lesson_4_alert_Multi">Выбрать услугу \n (MultiChoice Alert)</string>
     <string name="lesson_4_alert_manual_view">ManualView Alert</string>
 </resources>
