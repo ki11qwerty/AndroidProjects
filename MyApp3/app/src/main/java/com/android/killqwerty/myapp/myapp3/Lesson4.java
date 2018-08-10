@@ -9,12 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class Lesson4 extends AppCompatActivity {
     Button buttPrev, buttLesson4Alert, buttLesson4Single, buttLesson4Multi, buttLesson4Manual;
-    AlertDialog alertDialog, alertSingle, alertMulti;
-    AlertDialog.Builder alertDB, singleDB, multiDB;
+    AlertDialog alertDialog, alertSingle, alertMulti, alertManual;
+    AlertDialog.Builder alertDB, singleDB, multiDB, manualDB;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,13 @@ public class Lesson4 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 alertMulti.show();
+            }
+        });
+        buttLesson4Manual = findViewById(R.id.button_lesson4_Manual);
+        buttLesson4Manual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertManual.show();
             }
         });
     }
@@ -135,5 +144,29 @@ public class Lesson4 extends AppCompatActivity {
                     }
                 });
         alertMulti = multiDB.create();
-    }
+        manualDB = new AlertDialog.Builder(this);
+        manualDB.setPositiveButton("exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Lesson4.this.finish();
+            }
+        })
+                .setTitle("созданный из кода Layout");
+        LinearLayout lt = new LinearLayout(this);
+        lt.addView(new CheckBox(this));
+        for(int i = 0; i < 5; i++){
+            final Button b = new Button(this);
+            b.setText(Integer.toString(i));
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(b.getContext(), b.getText(),Toast.LENGTH_SHORT).show();
+                }
+            });
+            lt.addView(b);
+        }
+        lt.addView(new CheckBox(this));
+        manualDB.setView(lt);
+        alertManual = manualDB.create();
+}
 }
