@@ -116,7 +116,8 @@ public class Lesson4 extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int item) {
                         Toast toast = new Toast(getApplicationContext());
-                        toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+                        toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT)
+                                .show();
                     }
                 })
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -144,6 +145,7 @@ public class Lesson4 extends AppCompatActivity {
                     }
                 });
         alertMulti = multiDB.create();
+        //Далее происходит какая то дичь с расположением кнопок в алерте. как то надо исправить потом -------------------------------------------
         manualDB = new AlertDialog.Builder(this);
         manualDB.setPositiveButton("exit", new DialogInterface.OnClickListener() {
             @Override
@@ -154,13 +156,13 @@ public class Lesson4 extends AppCompatActivity {
                 .setTitle("созданный из кода Layout");
         LinearLayout lt = new LinearLayout(this);
         lt.addView(new CheckBox(this));
-        for(int i = 0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             final Button b = new Button(this);
             b.setText(Integer.toString(i));
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(b.getContext(), b.getText(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(b.getContext(), b.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
             lt.addView(b);
@@ -168,5 +170,5 @@ public class Lesson4 extends AppCompatActivity {
         lt.addView(new CheckBox(this));
         manualDB.setView(lt);
         alertManual = manualDB.create();
-}
+    }
 }
