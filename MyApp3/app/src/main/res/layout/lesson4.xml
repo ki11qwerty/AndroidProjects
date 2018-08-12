@@ -10,10 +10,10 @@
 
     <Button
         android:id="@+id/button_lesson4_prev"
-        android:layout_width="102dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="32dp"
         android:layout_weight="1"
         android:background="@color/colorPrimary"
         android:text="@string/previous_button"
@@ -23,84 +23,96 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button_lesson4_prev"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/button_lesson4_alert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_weight="2"
-            android:text="@string/lesson_4_alert"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="203dp" />
-
-        <Button
-            android:id="@+id/button_lesson4_Single"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/lesson_4_alert_Single"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="111dp" />
-
-        <Button
-            android:id="@+id/button_lesson4_Manual"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/lesson_4_alert_manual_view"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="214dp" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button"
-            android:visibility="invisible" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
-        <Button
-            android:id="@+id/button_lesson4_Multi"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
             android:layout_weight="1"
-            android:text="@string/lesson_4_alert_Multi"
-            tools:layout_editor_absoluteX="206dp"
-            tools:layout_editor_absoluteY="446dp" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            <Button
+                android:id="@+id/button_lesson4_alert"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/lesson_4_alert"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="203dp" />
+
+            <Button
+                android:id="@+id/button_lesson4_Single"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/lesson_4_alert_Single"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="111dp" />
+
+            <Button
+                android:id="@+id/button_lesson4_Manual"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/lesson_4_alert_manual_view"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="214dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Button"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="297dp" />
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <Button
+                android:id="@+id/button_lesson4_Multi"
+                style="@android:style/Widget.DeviceDefault.Light.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="@string/lesson_4_alert_Multi"
+                tools:layout_editor_absoluteX="206dp"
+                tools:layout_editor_absoluteY="446dp" />
+
+            <Button
+                android:id="@+id/button4"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="Button"
+                android:visibility="invisible"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="297dp" />
+
+            <Button
+                android:id="@+id/button"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Button"
+                android:visibility="invisible" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
