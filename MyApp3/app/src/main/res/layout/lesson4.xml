@@ -33,7 +33,7 @@
                 android:id="@+id/button_lesson4_alert"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="wrap_content"
-                android:layout_height="136dp"
+                android:layout_height="125dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@color/colorOfButtonsInActivityLesson4"
@@ -43,7 +43,7 @@
                 android:id="@+id/button_lesson4_Manual"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="wrap_content"
-                android:layout_height="136dp"
+                android:layout_height="125dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@color/colorOfButtonsInActivityLesson4"
@@ -79,13 +79,13 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="120dp">
 
             <Button
                 android:id="@+id/button"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="125dp"
                 android:layout_weight="1"
                 android:text="Button"
                 android:visibility="invisible" />
@@ -94,7 +94,7 @@
                 android:id="@+id/button4"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="125dp"
                 android:layout_weight="1"
                 android:text="Button"
                 android:visibility="invisible" />
