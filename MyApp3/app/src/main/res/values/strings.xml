@@ -22,4 +22,7 @@
     <string name="lesson_4_alert_Single">Выбрать напиток \n (SingleChoice Alert)</string>
     <string name="lesson_4_alert_Multi">Выбрать услугу \n (MultiChoice Alert)</string>
     <string name="lesson_4_alert_manual_view">ManualView Alert</string>
+    <string name="lesson4_4_alert_data_picker">Выбрать дату \n (DataPickerDialog)</string>
+    <string name="lesson4_4_alert_time_picker">Выбрать время \n (TimePickerDialog)</string>
+
 </resources>

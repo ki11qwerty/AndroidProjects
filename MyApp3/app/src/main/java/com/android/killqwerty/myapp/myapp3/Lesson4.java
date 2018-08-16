@@ -10,13 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class Lesson4 extends AppCompatActivity {
-    Button buttPrev, buttLesson4Alert, buttLesson4Single, buttLesson4Multi, buttLesson4Manual;
+    Button buttPrev, buttLesson4Alert, buttLesson4Single, buttLesson4Multi, buttLesson4Manual,
+            buttLesson4Data, buttLesoon4Time;
     AlertDialog alertDialog, alertSingle, alertMulti, alertManual;
     AlertDialog.Builder alertDB, singleDB, multiDB, manualDB;
+    DatePicker dt;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -156,7 +159,7 @@ public class Lesson4 extends AppCompatActivity {
                 .setTitle("созданный из кода Layout");
         LinearLayout lt = new LinearLayout(this);
         lt.addView(new CheckBox(this));
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             final Button b = new Button(this);
             b.setText(Integer.toString(i));
             b.setOnClickListener(new View.OnClickListener() {
@@ -166,9 +169,10 @@ public class Lesson4 extends AppCompatActivity {
                 }
             });
             lt.addView(b);
+            lt.addView(new CheckBox(this));
         }
-        lt.addView(new CheckBox(this));
         manualDB.setView(lt);
         alertManual = manualDB.create();
+        //dt = new DatePicker(getApplicationContext(), new ------ сюда надо засунуть методы время дата
     }
 }
