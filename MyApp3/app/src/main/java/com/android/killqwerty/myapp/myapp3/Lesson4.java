@@ -1,6 +1,8 @@
 package com.android.killqwerty.myapp.myapp3;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class Lesson4 extends AppCompatActivity {
@@ -19,7 +22,8 @@ public class Lesson4 extends AppCompatActivity {
             buttLesson4Data, buttLesoon4Time;
     AlertDialog alertDialog, alertSingle, alertMulti, alertManual;
     AlertDialog.Builder alertDB, singleDB, multiDB, manualDB;
-    DatePicker dt;
+    DatePickerDialog dp;
+    TimePickerDialog tp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +68,20 @@ public class Lesson4 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 alertManual.show();
+            }
+        });
+        buttLesson4Data = findViewById(R.id.button_lesson4_data);
+        buttLesson4Data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dp.show();
+            }
+        });
+        buttLesoon4Time = findViewById(R.id.button_lesson4_time);
+        buttLesoon4Time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tp.show();
             }
         });
     }
@@ -173,6 +191,21 @@ public class Lesson4 extends AppCompatActivity {
         }
         manualDB.setView(lt);
         alertManual = manualDB.create();
-        //dt = new DatePicker(getApplicationContext(), new ------ сюда надо засунуть методы время дата
+        dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+               Log.d("TAG",""+year+"."+month+"."+day);
+               Toast.makeText(getApplicationContext(),
+                       "вы выбрали дату - "+day+","+month+","+year,Toast.LENGTH_LONG).show();
+            }
+        },2018,01,17);
+        tp = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                Log.d("TAG",i+":"+i1);
+                Toast.makeText(getApplicationContext(),
+                        "вы выбрали время - "+i+":"+i1,Toast.LENGTH_LONG).show();
+            }
+        },10,20,true);
     }
 }
