@@ -90,7 +90,8 @@ public class Lesson4 extends AppCompatActivity {
         final CharSequence[] items = {"Jameson", "Chivas 12y.o.", "Chivas 18y.o.", "Glenmorangie",
                 "Olmeca silver", "Olmeca gold", "Beefeater", "Hennessy VS", "Hennessey VSOP",
                 "Hennessey X.O.", "Havana Club", "Mojito", "Pina Colada", "B52"};
-        final CharSequence[] itemsForMulti = {"Ебатся со стеной", "погрузка пизды", "лизать яйца"};
+        final CharSequence[] itemsForMulti = {"безналичная оплата", "вызов курьера",
+                "связь с оператором"};
         boolean defaultAnswers[] = {false, false, false};
         alertDB = new AlertDialog.Builder(this);
         alertDB.setTitle("AlertDialog")
