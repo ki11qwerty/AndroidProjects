@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 public class Lesson4 extends AppCompatActivity {
     Button buttPrev, buttLesson4Alert, buttLesson4Single, buttLesson4Multi, buttLesson4Manual,
-            buttLesson4Data, buttLesoon4Time;
+            buttLesson4Data, buttLesson4Time;
     AlertDialog alertDialog, alertSingle, alertMulti, alertManual;
     AlertDialog.Builder alertDB, singleDB, multiDB, manualDB;
     DatePickerDialog dp;
@@ -77,8 +77,8 @@ public class Lesson4 extends AppCompatActivity {
                 dp.show();
             }
         });
-        buttLesoon4Time = findViewById(R.id.button_lesson4_time);
-        buttLesoon4Time.setOnClickListener(new View.OnClickListener() {
+        buttLesson4Time = findViewById(R.id.button_lesson4_time);
+        buttLesson4Time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tp.show();
