@@ -17,6 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+//best pracice
+//посмотреть как советуют делать диалоги Андройд
+//работа с меню
+//главное меню
+//контекстное меню
+//и дз
+
 public class Lesson4 extends AppCompatActivity {
     Button buttPrev, buttLesson4Alert, buttLesson4Single, buttLesson4Multi, buttLesson4Manual,
             buttLesson4Data, buttLesson4Time;
