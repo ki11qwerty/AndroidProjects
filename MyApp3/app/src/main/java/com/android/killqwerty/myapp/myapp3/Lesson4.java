@@ -98,8 +98,8 @@ public class Lesson4 extends AppCompatActivity {
                 "Olmeca silver", "Olmeca gold", "Beefeater", "Hennessy VS", "Hennessey VSOP",
                 "Hennessey X.O.", "Havana Club", "Mojito", "Pina Colada", "B52"};
         final CharSequence[] itemsForMulti = {"безналичная оплата", "вызов курьера",
-                "связь с оператором"};
-        boolean defaultAnswers[] = {false, false, false};
+                "связатся с оператором после заказа"};
+        boolean defaultAnswers[] = {false, false, true};
         alertDB = new AlertDialog.Builder(this);
         alertDB.setTitle("AlertDialog")
                 .setMessage("Нажмите \"OK\" чтобы выйти ")
@@ -202,9 +202,10 @@ public class Lesson4 extends AppCompatActivity {
         dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-               Log.d("TAG",""+year+"."+month+"."+day);
+                //какого хрена отчет месяца начинается с 0 мне пока не понятно)
+               Log.d("TAG",""+year+"."+(month+1)+"."+day);
                Toast.makeText(getApplicationContext(),
-                       "вы выбрали дату - "+day+","+month+","+year,Toast.LENGTH_LONG).show();
+                       "вы выбрали дату - "+day+","+(month + 1)+","+year,Toast.LENGTH_LONG).show();
             }
         },2018,01,17);
         tp = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
