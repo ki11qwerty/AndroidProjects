@@ -3,7 +3,17 @@
     <color name="colorPrimary">#54b054</color>
     <color name="colorPrimaryDark">#1d701d</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorOfButtonLesson4">#8db09e</color>
+    <color name="colorLesson4">#8db09e</color>
     <color name="colorOfButtonsInActivityLesson4">#58b082</color>
     <color name="colorOfButtonLesson5">#c8b09e</color>
+
+
+    <!--><for changing background color  in lesson4 -->
+    <color name="colorGreen">#54b054</color>
+    <color name="colorRed">#b05454</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGray">#636363</color>
+    <color name="colorBlue">#5460b0</color>
+    <color name="colorYellow">#b0b054</color>
 </resources>

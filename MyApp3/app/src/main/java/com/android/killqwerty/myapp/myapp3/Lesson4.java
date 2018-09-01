@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,8 +23,6 @@ import android.widget.Toast;
 
 //best pracice
 //посмотреть как советуют делать диалоги Андройд
-//работа с меню
-//главное меню
 //контекстное меню
 //и дз
 
@@ -32,11 +33,14 @@ public class Lesson4 extends AppCompatActivity {
     AlertDialog.Builder alertDB, singleDB, multiDB, manualDB;
     DatePickerDialog dp;
     TimePickerDialog tp;
+    View cl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lesson4);
+        //setContentView(R.layout.lesson4);
+        cl = getLayoutInflater().inflate(R.layout.lesson4, null, false);
+        setContentView(cl);
         createAlertDialogs();
         setMyButtons();
     }
@@ -45,6 +49,38 @@ public class Lesson4 extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.my_toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.submenuBlack: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorBlack));
+                break;
+            }
+            case R.id.submenuBlue: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+            }
+            case R.id.submenuRed: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorRed));
+            }
+            case R.id.submenuWhite: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+            }
+            case R.id.submenuGreen: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+            }
+            case R.id.submenuGray: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorGray));
+            }
+            case R.id.submenuYellow: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorYellow));
+            }
+            case R.id.submenuDefault: {
+                cl.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+            }
+        }
+            return super.onOptionsItemSelected(item);
     }
 
     public void setMyButtons() {
