@@ -18,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="594dp"
         android:layout_height="164dp"
         android:layout_marginEnd="8dp"
@@ -43,9 +44,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/main_lesson_5_button"
             android:background="@color/colorOfButtonLesson5"
+            android:text="@string/main_lesson_5_button"
             android:visibility="visible" />
     </LinearLayout>
+
+    <Button
+        android:id="@id/buttonExit"
+        android:layout_width="98dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

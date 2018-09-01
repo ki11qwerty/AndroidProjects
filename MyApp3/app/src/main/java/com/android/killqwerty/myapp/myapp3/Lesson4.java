@@ -7,9 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -79,9 +77,7 @@ public class Lesson4 extends AppCompatActivity {
                 break;
             }
             case R.id.submenuDefault: {
-                //cl.setBackgroundColor(getResources().getColor(R.color.colorLesson4));
-                cl = getLayoutInflater().inflate(R.layout.activity_main, null , true);
-                setContentView(cl);
+                cl.setBackgroundColor(getResources().getColor(R.color.colorLesson4));
                 break;
             }
         }
@@ -233,7 +229,7 @@ public class Lesson4 extends AppCompatActivity {
                 .setTitle("созданный из кода Layout");
         LinearLayout lt = new LinearLayout(this);
         lt.addView(new CheckBox(this));
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             final Button b = new Button(this);
             b.setText(Integer.toString(i));
             b.setOnClickListener(new View.OnClickListener() {

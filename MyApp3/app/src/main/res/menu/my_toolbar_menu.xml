@@ -11,6 +11,11 @@
         android:title="Menu 2"
         app:showAsAction="never"/> <-->
     <item
+        android:id="@+id/justText"
+        android:enabled="false"
+        android:title="colors ->"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/changeColor"
         android:title="Change color of Background"
         app:showAsAction="never">
@@ -18,7 +23,7 @@
             <item
                 android:id="@+id/submenuGreen"
                 android:title="Green"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/submenuRed"
                 android:title="Red"
@@ -26,27 +31,27 @@
             <item
                 android:id="@+id/submenuBlue"
                 android:title="Blue"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/submenuBlack"
                 android:title="Black"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/submenuWhite"
                 android:title="White"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/submenuYellow"
                 android:title="Yellow"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/submenuGray"
                 android:title="Gray"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/submenuDefault"
                 android:title="Default"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
         </menu>
     </item>
 </menu>

@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Button buttNext, buttLesson4, buttLesson5;
+    Button buttNext, buttLesson4, buttLesson5, buttExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
                     toast.cancel();
                 toast.makeText(getApplicationContext(),"да ты ебать 4ый еще не сделал =)",
                         Toast.LENGTH_LONG).show();
+            }
+        });
+        buttExit = findViewById(R.id.buttonExit);
+        buttExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
