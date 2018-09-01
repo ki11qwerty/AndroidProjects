@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
+   <!--> <item
     android:id="@+id/menu1"
     android:title="Menu"
     app:showAsAction="never"
@@ -9,7 +9,7 @@
     <item
         android:id="@+id/menu2"
         android:title="Menu 2"
-        app:showAsAction="never"/>
+        app:showAsAction="never"/> <-->
     <item
         android:id="@+id/changeColor"
         android:title="Change color of Background"
@@ -22,7 +22,7 @@
             <item
                 android:id="@+id/submenuRed"
                 android:title="Red"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
             <item
                 android:id="@+id/submenuBlue"
                 android:title="Blue"

@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorOfButtonLesson4"
+            android:background="@color/colorLesson4"
             android:text="@string/main_lesson_4_button" />
 
         <Button

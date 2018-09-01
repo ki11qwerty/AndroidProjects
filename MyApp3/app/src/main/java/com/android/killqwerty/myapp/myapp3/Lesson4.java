@@ -21,10 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-//best pracice
-//посмотреть как советуют делать диалоги Андройд
 //контекстное меню
-//и дз
 
 public class Lesson4 extends AppCompatActivity {
     Button buttPrev, buttLesson4Alert, buttLesson4Single, buttLesson4Multi, buttLesson4Manual,
@@ -38,7 +35,6 @@ public class Lesson4 extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.lesson4);
         cl = getLayoutInflater().inflate(R.layout.lesson4, null, false);
         setContentView(cl);
         createAlertDialogs();
@@ -60,24 +56,33 @@ public class Lesson4 extends AppCompatActivity {
             }
             case R.id.submenuBlue: {
                 cl.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                break;
             }
             case R.id.submenuRed: {
                 cl.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                break;
             }
             case R.id.submenuWhite: {
                 cl.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+                break;
             }
             case R.id.submenuGreen: {
                 cl.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                break;
             }
             case R.id.submenuGray: {
                 cl.setBackgroundColor(getResources().getColor(R.color.colorGray));
+                break;
             }
             case R.id.submenuYellow: {
                 cl.setBackgroundColor(getResources().getColor(R.color.colorYellow));
+                break;
             }
             case R.id.submenuDefault: {
-                cl.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+                //cl.setBackgroundColor(getResources().getColor(R.color.colorLesson4));
+                cl = getLayoutInflater().inflate(R.layout.activity_main, null , true);
+                setContentView(cl);
+                break;
             }
         }
             return super.onOptionsItemSelected(item);
