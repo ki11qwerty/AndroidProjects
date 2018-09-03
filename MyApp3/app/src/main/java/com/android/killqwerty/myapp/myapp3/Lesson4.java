@@ -19,8 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-//контекстное меню
-
 public class Lesson4 extends AppCompatActivity {
     Button buttPrev, buttLesson4Alert, buttLesson4Single, buttLesson4Multi, buttLesson4Manual,
             buttLesson4Data, buttLesson4Time;
@@ -218,7 +216,7 @@ public class Lesson4 extends AppCompatActivity {
                     }
                 });
         alertMulti = multiDB.create();
-        //Далее происходит какая то дичь с расположением кнопок в алерте. как то надо исправить потом -------------------------------------------
+        //Далее происходит какая то дичь с расположением кнопок в алерте
         manualDB = new AlertDialog.Builder(this);
         manualDB.setPositiveButton("exit", new DialogInterface.OnClickListener() {
             @Override
