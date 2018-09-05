@@ -87,8 +87,7 @@ public class Lesson4 extends AppCompatActivity {
         buttPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Lesson4.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         buttLesson4Alert = findViewById(R.id.button_lesson4_alert);

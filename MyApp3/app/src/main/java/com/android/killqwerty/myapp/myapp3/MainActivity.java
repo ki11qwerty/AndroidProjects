@@ -37,11 +37,8 @@ public class MainActivity extends AppCompatActivity {
         buttLesson5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = new Toast(getApplicationContext());
-                if (toast !=null)
-                    toast.cancel();
-                toast.makeText(getApplicationContext(),"да ты ебать 4ый еще не сделал =)",
-                        Toast.LENGTH_LONG).show();
+               Intent intent = new Intent(MainActivity.this , Lesson5.class);
+               startActivity(intent);
             }
         });
         buttExit = findViewById(R.id.buttonExit);
