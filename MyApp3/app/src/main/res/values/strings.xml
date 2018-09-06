@@ -25,6 +25,9 @@
     <string name="lesson4_4_alert_data_picker">Выбрать дату \n (DataPickerDialog)</string>
     <string name="lesson4_4_alert_time_picker">Выбрать время \n (TimePickerDialog)</string>
     <!--> lesson5 <-->
+    <string name="lesson_5_listview">список контактов \n(ListView)</string>
+    <string name="lesson_5_gridview">показать сетку \n(GridView)</string>
+    <string name="lesson_5_tasks">список дел \n(ДЗ)</string>
 
 
 </resources>
