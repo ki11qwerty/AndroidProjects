@@ -37,7 +37,7 @@
             android:layout_height="125dp">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_lesson5_listview"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
@@ -50,7 +50,7 @@
                 tools:layout_editor_absoluteX="1dp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_lesson5_gridview"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="125dp"
@@ -76,7 +76,7 @@
                 android:visibility="invisible" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/button_lesson5_tasks"
                 android:layout_width="wrap_content"
                 android:layout_height="125dp"
                 android:layout_margin="10dp"

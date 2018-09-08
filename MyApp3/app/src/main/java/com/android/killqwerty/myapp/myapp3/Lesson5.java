@@ -9,13 +9,15 @@ import android.widget.Button;
 
 public class Lesson5 extends AppCompatActivity {
     Button buttPrev;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.lesson5);
         super.onCreate(savedInstanceState);
         setMyButtons();
     }
-    public void setMyButtons(){
+
+    public void setMyButtons() {
         buttPrev = findViewById(R.id.button_lesson5_prev);
         buttPrev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,5 +25,46 @@ public class Lesson5 extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public class Person {
+        private String name;
+        private String telephone;
+        private String email;
+        private boolean avatarExist;
+        public Person(){
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getTelephone() {
+            return telephone;
+        }
+
+        public void setTelephone(String telephone) {
+            this.telephone = telephone;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public boolean isAvatarExist() {
+            return avatarExist;
+        }
+
+        public void setAvatarExist(boolean avatarExist) {
+            this.avatarExist = avatarExist;
+        }
     }
 }
