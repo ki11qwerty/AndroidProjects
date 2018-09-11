@@ -39,7 +39,7 @@
             <Button
                 android:id="@+id/button_lesson5_listview"
                 style="@style/Widget.AppCompat.Button.Small"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="125dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -67,7 +67,8 @@
             <!--> опять какая то дичь с рассположением кнопок во втором ряду че за хня?<-->
             <Button
                 android:id="@+id/button5"
-                android:layout_width="160dp"
+                style="@style/Widget.AppCompat.Button.Small"
+                android:layout_width="wrap_content"
                 android:layout_height="116dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -77,6 +78,7 @@
 
             <Button
                 android:id="@+id/button_lesson5_tasks"
+                style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="125dp"
                 android:layout_margin="10dp"

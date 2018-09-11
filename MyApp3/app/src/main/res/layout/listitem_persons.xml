@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/listitem_background">
+
+        <ImageView
+            android:id="@+id/imAvatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/friend1" />
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imAvatar"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imAvatar"
+            android:text="Kill qwe rty"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tvContacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvName"
+            android:layout_below="@+id/tvName"
+            android:text="+7968 983 4443, killer@mail.ru"
+            android:layout_marginTop="2dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </RelativeLayout>
+</RelativeLayout>
