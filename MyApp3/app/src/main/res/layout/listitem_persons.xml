@@ -13,6 +13,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/friend1" />
+
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
@@ -21,16 +22,19 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/imAvatar"
             android:text="Kill qwe rty"
-            android:textStyle="bold"
-            />
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+
         <TextView
             android:id="@+id/tvContacts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tvName"
             android:layout_below="@+id/tvName"
-            android:text="+7968 983 4443, killer@mail.ru"
             android:layout_marginTop="2dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:text="+7968 983 4443, killer@mail.ru"
+            android:textAlignment="viewStart"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="18sp" />
     </RelativeLayout>
 </RelativeLayout>

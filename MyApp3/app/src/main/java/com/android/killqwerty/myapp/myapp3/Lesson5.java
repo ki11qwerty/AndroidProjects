@@ -1,14 +1,18 @@
 package com.android.killqwerty.myapp.myapp3;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,14 +22,19 @@ import java.util.Random;
 public class Lesson5 extends AppCompatActivity {
     private ArrayList<Person> persons;
     private LinearLayout allPersons;
-    View ll;
-    Button buttPrev,buttList,buttGrid,buttTusk;
+    ListView listView;
+    View ListLayout;
+    View ListLayoutWithListView;
+    Button buttPrev, buttList, buttListAdapter, buttGrid, buttTusk;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.lesson5);
         super.onCreate(savedInstanceState);
-        ll = getLayoutInflater().inflate(R.layout.lesson5_persons_view,null,false);
+        ListLayout = getLayoutInflater().inflate(R.layout.lesson5_persons_view,
+                null, false);
+        ListLayoutWithListView = getLayoutInflater().inflate(R.layout.lesson5_person_listview,
+                null, false);
         setMyButtons();
     }
 
@@ -41,26 +50,39 @@ public class Lesson5 extends AppCompatActivity {
         buttList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(ll);
-                allPersons = (LinearLayout) findViewById(R.id.all_persons);
-                createPersonList();
+                setContentView(ListLayout);
+                allPersons = findViewById(R.id.all_persons);
+                createPersonList(100);
                 fillList();
 
             }
         });
+        buttListAdapter = findViewById(R.id.button_lesson5_listview_with_adapter);
+        buttListAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(ListLayoutWithListView);
+                listView = findViewById(R.id.lv_persons_listview);
+                createPersonList(5000);
+                fillListWithAdaptor();
+            }
+        });
     }
-    private void createPersonList() {
-        persons = new ArrayList<Person>();
-        for (int i = 0; i < 10; i++) {
+
+    private void createPersonList(int size) {
+        Random random = new Random();
+        persons = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
             Person p = new Person();
-            p.setName("Qwerty"+i);
-            p.setEmail("Qwerty"+i+"@gmail.com");
-            p.setTelephone("8-555-"+i+"55-55-55");
-            p.setAvatarExist(i%2==0);
+            p.setName("Qwerty" + i);
+            p.setEmail("Qwerty" + i + "@gmail.com");
+            p.setTelephone("8-555-" + (1000000 + random.nextInt(8999999)));
+            p.setAvatar(getResources().getDrawable(R.drawable.friend1));
             persons.add(p);
         }
     }
-    private void fillList(){
+
+    private void fillList() {
         allPersons.removeAllViews();
         for (Person p : persons) {
             View personElementView = createPersonElementView(p);
@@ -68,66 +90,118 @@ public class Lesson5 extends AppCompatActivity {
 
         }
     }
-    private View createPersonElementView(final Person p){
-        View v = getLayoutInflater().inflate(R.layout.listitem_persons,null);
+
+    public void fillListWithAdaptor() {
+        PersonAdapter personAdapter = new PersonAdapter(persons, this);
+        listView.setAdapter(personAdapter);
+    }
+
+    private View createPersonElementView(final Person p) {
+        View v = getLayoutInflater().inflate(R.layout.listitem_persons, null);
         TextView tvName = v.findViewById(R.id.tvName);
         tvName.setText(p.getName());
         String email = p.getEmail();
-        if(email==null)
+        if (email == null)
             email = "";
         String telephone = p.getTelephone();
-        if(telephone==null)
+        if (telephone == null)
             telephone = "";
-        String separator = (p.getEmail()!=null &&
-                p.getTelephone()!=null) ? "," : "";
-        TextView tvContacts = (TextView)
-                v.findViewById(R.id.tvContacts);
-        tvContacts.setText(email+separator+telephone);
+        String separator = (p.getEmail() != null &&
+                p.getTelephone() != null) ? "," : "";
+        TextView tvContacts = v.findViewById(R.id.tvContacts);
+        tvContacts.setText(email + separator + telephone);
         ImageView imAvatar = v.findViewById(R.id.imAvatar);
         createRandomAvatar(imAvatar);
-        //imAvatar.setImageResource();
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),p.getName(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), p.getName(), Toast.LENGTH_SHORT).show();
             }
         });
         return v;
     }
-    private void  createRandomAvatar(ImageView imAvatar){
+
+    private void createRandomAvatar(ImageView imAvatar) {
         Random random = new Random();
-        int num = 1 + random.nextInt(11);
-        switch (num){
-            case 1:imAvatar.setImageResource(R.drawable.friend1);
+        int num = 1 + random.nextInt(23);
+        switch (num) {            // надо как то укоротить эту столбень потом =) этож пздц-----------
+            case 1:
+                imAvatar.setImageResource(R.drawable.friend1);
                 break;
-            case 2:imAvatar.setImageResource(R.drawable.friend2);
+            case 2:
+                imAvatar.setImageResource(R.drawable.friend2);
                 break;
-            case 3:imAvatar.setImageResource(R.drawable.friend3);
+            case 3:
+                imAvatar.setImageResource(R.drawable.friend3);
                 break;
-            case 4:imAvatar.setImageResource(R.drawable.friend4);
+            case 4:
+                imAvatar.setImageResource(R.drawable.friend4);
                 break;
-            case 5:imAvatar.setImageResource(R.drawable.friend5);
+            case 5:
+                imAvatar.setImageResource(R.drawable.friend5);
                 break;
-            case 6:imAvatar.setImageResource(R.drawable.friend6);
+            case 6:
+                imAvatar.setImageResource(R.drawable.friend6);
                 break;
-            case 7:imAvatar.setImageResource(R.drawable.friend7);
+            case 7:
+                imAvatar.setImageResource(R.drawable.friend7);
                 break;
-            case 8:imAvatar.setImageResource(R.drawable.friend8);
+            case 8:
+                imAvatar.setImageResource(R.drawable.friend8);
                 break;
-            case 9:imAvatar.setImageResource(R.drawable.friend9);
+            case 9:
+                imAvatar.setImageResource(R.drawable.friend9);
                 break;
-            case 10:imAvatar.setImageResource(R.drawable.friend10);
+            case 10:
+                imAvatar.setImageResource(R.drawable.friend10);
                 break;
-            case 11:imAvatar.setImageResource(R.drawable.friend11);
+            case 11:
+                imAvatar.setImageResource(R.drawable.friend11);
+                break;
+            case 12:
+                imAvatar.setImageResource(R.drawable.friend12);
+                break;
+            case 13:
+                imAvatar.setImageResource(R.drawable.friend13);
+                break;
+            case 14:
+                imAvatar.setImageResource(R.drawable.friend14);
+                break;
+            case 15:
+                imAvatar.setImageResource(R.drawable.friend15);
+                break;
+            case 16:
+                imAvatar.setImageResource(R.drawable.friend16);
+                break;
+            case 17:
+                imAvatar.setImageResource(R.drawable.friend17);
+                break;
+            case 18:
+                imAvatar.setImageResource(R.drawable.friend18);
+                break;
+            case 19:
+                imAvatar.setImageResource(R.drawable.friend19);
+                break;
+            case 20:
+                imAvatar.setImageResource(R.drawable.friend20);
+                break;
+            case 21:
+                imAvatar.setImageResource(R.drawable.friend21);
+                break;
+            case 22:
+                imAvatar.setImageResource(R.drawable.friend22);
+                break;
+            case 23:
+                imAvatar.setImageResource(R.drawable.friend23);
                 break;
         }
     }
 
-     class Person {
+    class Person {
         private String name;
         private String telephone;
         private String email;
-        private boolean avatarExist;
+        private Drawable avatar;
 
         public String getName() {
             return name;
@@ -153,12 +227,64 @@ public class Lesson5 extends AppCompatActivity {
             this.email = email;
         }
 
-        public boolean isAvatarExist() {
-            return avatarExist;
+        public void setAvatar(Drawable avatar) {
+            this.avatar = avatar;
+        }
+    }
+
+    public class PersonAdapter extends BaseAdapter {
+        ArrayList<Person> persons;
+        Context c;
+        public PersonAdapter(ArrayList<Person> persons, Context c) {
+            this.persons = persons;
+            this.c = c;
         }
 
-        public void setAvatarExist(boolean avatarExist) {
-            this.avatarExist = avatarExist;
+        @Override
+        public int getCount() {
+            return persons.size();
         }
+
+        @Override
+        public Person getItem(int position) {
+            return persons.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView == null)
+                convertView = LayoutInflater.from(c).inflate(R.layout.listitem_persons,null);
+                fillView(convertView,position);
+            return convertView;
+        }
+        private void fillView(View v, int position){
+            final Person p = getItem(position);
+            TextView tvName = v.findViewById(R.id.tvName);
+            tvName.setText(p.getName());
+            String email = p.getEmail();
+            if (email == null)
+                email = "";
+            String telephone = p.getTelephone();
+            if (telephone == null)
+                telephone = "";
+            String separator = (p.getEmail() != null &&
+                    p.getTelephone() != null) ? "," : "";
+            TextView tvContacts = v.findViewById(R.id.tvContacts);
+            tvContacts.setText(email + separator + telephone);
+            ImageView imAvatar = v.findViewById(R.id.imAvatar);
+            createRandomAvatar(imAvatar);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), p.getName(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
     }
 }
