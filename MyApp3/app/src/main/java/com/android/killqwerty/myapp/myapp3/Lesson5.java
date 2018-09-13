@@ -77,7 +77,7 @@ public class Lesson5 extends AppCompatActivity {
             p.setName("Qwerty" + i);
             p.setEmail("Qwerty" + i + "@gmail.com");
             p.setTelephone("8-555-" + (1000000 + random.nextInt(8999999)));
-            p.setAvatar(getResources().getDrawable(R.drawable.friend1));
+            p.setAvatar(R.drawable.friend1);
             persons.add(p);
         }
     }
@@ -111,7 +111,8 @@ public class Lesson5 extends AppCompatActivity {
         TextView tvContacts = v.findViewById(R.id.tvContacts);
         tvContacts.setText(email + separator + telephone);
         ImageView imAvatar = v.findViewById(R.id.imAvatar);
-        createRandomAvatar(imAvatar);
+        imAvatar.setImageResource(createRandomAvatar());
+        createRandomAvatar();
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,87 +122,86 @@ public class Lesson5 extends AppCompatActivity {
         return v;
     }
 
-    private void createRandomAvatar(ImageView imAvatar) {
+    private int createRandomAvatar() {
         Random random = new Random();
-        int num = 1 + random.nextInt(23);
+        int num = 1 + random.nextInt(2);
         switch (num) {            // надо как то укоротить эту столбень потом =) этож пздц-----------
             case 1:
-                imAvatar.setImageResource(R.drawable.friend1);
-                break;
+               return R.drawable.friend1;
             case 2:
-                imAvatar.setImageResource(R.drawable.friend2);
-                break;
-            case 3:
-                imAvatar.setImageResource(R.drawable.friend3);
-                break;
-            case 4:
-                imAvatar.setImageResource(R.drawable.friend4);
-                break;
-            case 5:
-                imAvatar.setImageResource(R.drawable.friend5);
-                break;
-            case 6:
-                imAvatar.setImageResource(R.drawable.friend6);
-                break;
-            case 7:
-                imAvatar.setImageResource(R.drawable.friend7);
-                break;
-            case 8:
-                imAvatar.setImageResource(R.drawable.friend8);
-                break;
-            case 9:
-                imAvatar.setImageResource(R.drawable.friend9);
-                break;
-            case 10:
-                imAvatar.setImageResource(R.drawable.friend10);
-                break;
-            case 11:
-                imAvatar.setImageResource(R.drawable.friend11);
-                break;
-            case 12:
-                imAvatar.setImageResource(R.drawable.friend12);
-                break;
-            case 13:
-                imAvatar.setImageResource(R.drawable.friend13);
-                break;
-            case 14:
-                imAvatar.setImageResource(R.drawable.friend14);
-                break;
-            case 15:
-                imAvatar.setImageResource(R.drawable.friend15);
-                break;
-            case 16:
-                imAvatar.setImageResource(R.drawable.friend16);
-                break;
-            case 17:
-                imAvatar.setImageResource(R.drawable.friend17);
-                break;
-            case 18:
-                imAvatar.setImageResource(R.drawable.friend18);
-                break;
-            case 19:
-                imAvatar.setImageResource(R.drawable.friend19);
-                break;
-            case 20:
-                imAvatar.setImageResource(R.drawable.friend20);
-                break;
-            case 21:
-                imAvatar.setImageResource(R.drawable.friend21);
-                break;
-            case 22:
-                imAvatar.setImageResource(R.drawable.friend22);
-                break;
-            case 23:
-                imAvatar.setImageResource(R.drawable.friend23);
-                break;
+                return R.drawable.friend2;
+//            case 3:
+//                imAvatar.setImageResource(R.drawable.friend3);
+//                break;
+//            case 4:
+//                imAvatar.setImageResource(R.drawable.friend4);
+//                break;
+//            case 5:
+//                imAvatar.setImageResource(R.drawable.friend5);
+//                break;
+//            case 6:
+//                imAvatar.setImageResource(R.drawable.friend6);
+//                break;
+//            case 7:
+//                imAvatar.setImageResource(R.drawable.friend7);
+//                break;
+//            case 8:
+//                imAvatar.setImageResource(R.drawable.friend8);
+//                break;
+//            case 9:
+//                imAvatar.setImageResource(R.drawable.friend9);
+//                break;
+//            case 10:
+//                imAvatar.setImageResource(R.drawable.friend10);
+//                break;
+//            case 11:
+//                imAvatar.setImageResource(R.drawable.friend11);
+//                break;
+//            case 12:
+//                imAvatar.setImageResource(R.drawable.friend12);
+//                break;
+//            case 13:
+//                imAvatar.setImageResource(R.drawable.friend13);
+//                break;
+//            case 14:
+//                imAvatar.setImageResource(R.drawable.friend14);
+//                break;
+//            case 15:
+//                imAvatar.setImageResource(R.drawable.friend15);
+//                break;
+//            case 16:
+//                imAvatar.setImageResource(R.drawable.friend16);
+//                break;
+//            case 17:
+//                imAvatar.setImageResource(R.drawable.friend17);
+//                break;
+//            case 18:
+//                imAvatar.setImageResource(R.drawable.friend18);
+//                break;
+//            case 19:
+//                imAvatar.setImageResource(R.drawable.friend19);
+//                break;
+//            case 20:
+//                imAvatar.setImageResource(R.drawable.friend20);
+//                break;
+//            case 21:
+//                imAvatar.setImageResource(R.drawable.friend21);
+//                break;
+//            case 22:
+//                imAvatar.setImageResource(R.drawable.friend22);
+//                break;
+//            case 23:
+//                imAvatar.setImageResource(R.drawable.friend23);
+//                break;
         }
+        return 0;
     }
 
     class Person {
         private String name;
         private String telephone;
         private String email;
-        private Drawable avatar;
+        private ImageView avatar;
 
         public String getName() {
             return name;
@@ -227,8 +227,12 @@ public class Lesson5 extends AppCompatActivity {
             this.email = email;
         }
 
-        public void setAvatar(Drawable avatar) {
-            this.avatar = avatar;
+        public void setAvatar(int id) {
+            this.avatar.setImageResource(id);
+        }
+
+        public ImageView getAvatar() {
+            return avatar;
         }
     }
 
@@ -277,7 +281,7 @@ public class Lesson5 extends AppCompatActivity {
             TextView tvContacts = v.findViewById(R.id.tvContacts);
             tvContacts.setText(email + separator + telephone);
             ImageView imAvatar = v.findViewById(R.id.imAvatar);
-            createRandomAvatar(imAvatar);
+            imAvatar.setImageResource(createRandomAvatar());
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
