@@ -28,7 +28,6 @@ public class Lesson5 extends AppCompatActivity {
     View ListLayout;
     View ListLayoutWithListView;
     Button buttPrev, buttList, buttListAdapter, buttGrid, buttTusk;
-    static long time;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,11 +54,8 @@ public class Lesson5 extends AppCompatActivity {
             public void onClick(View view) {
                 setContentView(ListLayout);
                 allPersons = findViewById(R.id.all_persons);
-                time = System.currentTimeMillis();
                 createPersonList(100);
                 fillList();
-                Toast.makeText(getApplicationContext(),""+(System.currentTimeMillis()-time)
-                        +"ms",Toast.LENGTH_LONG).show();
 
             }
         });
@@ -69,11 +65,8 @@ public class Lesson5 extends AppCompatActivity {
             public void onClick(View view) {
                 setContentView(ListLayoutWithListView);
                 listView = findViewById(R.id.lv_persons_listview);
-                time = System.currentTimeMillis();
                 createPersonList(5000);
                 fillListWithAdaptor();
-                Toast.makeText(getApplicationContext(),""+(System.currentTimeMillis()-time)
-                        +"ms",Toast.LENGTH_LONG).show();
             }
         });
     }

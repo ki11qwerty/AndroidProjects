@@ -26,8 +26,7 @@
     <string name="lesson4_4_alert_time_picker">Выбрать время \n (TimePickerDialog)</string>
     <!--> lesson5 <-->
     <string name="lesson_5_listview">список контактов \n 100шт \n(ScrollView)</string>
-    <string name="lesson_5_listview_with_adapter">список контактов\n2000шт
-        \n(ListView)</string>
+    <string name="lesson_5_listview_with_adapter">список контактов\n2000шт \n(ListView)</string>
     <string name="lesson_5_gridview">показать сетку \n(GridView)</string>
     <string name="lesson_5_tasks">список дел \n(ДЗ)</string>
 
