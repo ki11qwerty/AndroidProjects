@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -21,12 +22,13 @@ import java.util.Random;
 
 public class Lesson5 extends AppCompatActivity {
     static final short LENGTH_IDS_ARRAY = 23;
+    static String typeOfView;
     private ArrayList<Person> persons;
     private LinearLayout allPersons;
     public int[] idForDrawable;
     ListView listView;
-    View ListLayout;
-    View ListLayoutWithListView;
+    GridView gridView;
+    View ListLayout, ListLayoutWithListView, ListLayoutWithGridViev;
     Button buttPrev, buttList, buttListAdapter, buttGrid, buttTusk;
 
     @Override
@@ -37,7 +39,10 @@ public class Lesson5 extends AppCompatActivity {
                 null, false);
         ListLayoutWithListView = getLayoutInflater().inflate(R.layout.lesson5_person_listview,
                 null, false);
+        ListLayoutWithGridViev = getLayoutInflater().inflate(R.layout.lesson5_person_grid_view,
+                null,false);
         setMyButtons();
+
     }
 
     public void setMyButtons() {
@@ -63,10 +68,23 @@ public class Lesson5 extends AppCompatActivity {
         buttListAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                typeOfView = "List";
                 setContentView(ListLayoutWithListView);
                 listView = findViewById(R.id.lv_persons_listview);
                 createPersonList(5000);
                 fillListWithAdaptor();
+            }
+        });
+        buttGrid = findViewById(R.id.button_lesson5_gridview);
+        buttGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                typeOfView = "Grid";
+                setContentView(ListLayoutWithGridViev);
+                gridView = findViewById(R.id.grid_view1);
+                createPersonList(5000);
+                fillGridViewWithAdaptor();
+
             }
         });
     }
@@ -94,7 +112,10 @@ public class Lesson5 extends AppCompatActivity {
 
         }
     }
-
+    public void fillGridViewWithAdaptor(){
+        PersonAdapter personAdapter = new PersonAdapter(persons, this);
+        gridView.setAdapter(personAdapter);
+    }
     public void fillListWithAdaptor() {
         PersonAdapter personAdapter = new PersonAdapter(persons, this);
         listView.setAdapter(personAdapter);
@@ -249,7 +270,6 @@ public class Lesson5 extends AppCompatActivity {
             this.persons = persons;
             this.c = c;
         }
-
         @Override
         public int getCount() {
             return persons.size();
@@ -268,7 +288,12 @@ public class Lesson5 extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if(convertView == null)
-                convertView = LayoutInflater.from(c).inflate(R.layout.listitem_persons,null);
+                if(typeOfView.equals("List")) {
+                    convertView = LayoutInflater.from(c).inflate(R.layout.listitem_persons, null);
+                }
+                else
+                    convertView = LayoutInflater.from(c).
+                            inflate(R.layout.lesson5_person_view_grid_item,null);
                 fillView(convertView,position);
             return convertView;
         }
