@@ -29,7 +29,7 @@ public class Lesson5 extends AppCompatActivity {
     ListView listView;
     GridView gridView;
     View ListLayout, ListLayoutWithListView, ListLayoutWithGridViev;
-    Button buttPrev, buttList, buttListAdapter, buttGrid, buttTusk;
+    Button buttPrev, buttList, buttListAdapter, buttGrid, buttTask;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
