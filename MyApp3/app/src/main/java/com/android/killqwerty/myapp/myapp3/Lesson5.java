@@ -1,15 +1,19 @@
 package com.android.killqwerty.myapp.myapp3;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,18 +22,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 
 public class Lesson5 extends AppCompatActivity {
+    static String task_date;
     static final short LENGTH_IDS_ARRAY = 23;
     static String typeOfView;
     private ArrayList<Person> persons;
+    private ArrayList<Lesson5Task> tasks;
     private LinearLayout allPersons;
     public int[] idForDrawable;
     ListView listView;
     GridView gridView;
-    View ListLayout, ListLayoutWithListView, ListLayoutWithGridViev;
-    Button buttPrev, buttList, buttListAdapter, buttGrid, buttTask;
+    ListView listViewTasks;
+    View ListLayout, ListLayoutWithListView, ListLayoutWithGridView, MyTasks;
+    Button buttPrev, buttList, buttListAdapter, buttGrid, buttTask, buttNewTask;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +47,9 @@ public class Lesson5 extends AppCompatActivity {
                 null, false);
         ListLayoutWithListView = getLayoutInflater().inflate(R.layout.lesson5_person_listview,
                 null, false);
-        ListLayoutWithGridViev = getLayoutInflater().inflate(R.layout.lesson5_person_grid_view,
+        ListLayoutWithGridView = getLayoutInflater().inflate(R.layout.lesson5_person_grid_view,
+                null,false);
+        MyTasks = getLayoutInflater().inflate(R.layout.lesson5_task_list_view,
                 null,false);
         setMyButtons();
 
@@ -80,13 +90,22 @@ public class Lesson5 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 typeOfView = "Grid";
-                setContentView(ListLayoutWithGridViev);
+                setContentView(ListLayoutWithGridView);
                 gridView = findViewById(R.id.grid_view1);
                 createPersonList(5000);
                 fillGridViewWithAdaptor();
 
             }
         });
+        buttTask = findViewById(R.id.button_lesson5_tasks);
+        buttTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(MyTasks);
+            }
+        });
+        buttNewTask = findViewById(R.id.lesson5_new_task_button);
+
     }
 
     private void createPersonList(int size) {
@@ -321,5 +340,43 @@ public class Lesson5 extends AppCompatActivity {
             });
         }
 
+    }
+    public void showDateDialog(View view){
+        DialogFragment dialogFragment = new DatePickerFragment();
+        dialogFragment.show(getSupportFragmentManager(),"datepicker");
+    }
+    public static  class DatePickerFragment extends DialogFragment implements
+            DatePickerDialog.OnDateSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+           task_date = day+"."+(month+1)+"."+year;
+           Toast.makeText(getContext(),""+task_date,Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void createTask(ArrayList<Lesson5Task> listOfTasks){
+        Lesson5Task lt = new Lesson5Task("тут будет имя",task_date);
+        listOfTasks.add(lt);
+
+    }
+    public class Lesson5Task{
+        private String name;
+        private String date;
+        boolean isDone = false;
+        Lesson5Task(String name, String date){
+            this.date = date;
+            this.name = name;
+        }
+        public void done(){
+            isDone = true;
+        }
     }
 }
