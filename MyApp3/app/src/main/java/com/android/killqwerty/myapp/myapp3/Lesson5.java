@@ -1,8 +1,12 @@
 package com.android.killqwerty.myapp.myapp3;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +32,7 @@ import java.util.Random;
 
 public class Lesson5 extends AppCompatActivity {
     static String task_date;
+    static String task_name;
     static final short LENGTH_IDS_ARRAY = 23;
     static String typeOfView;
     private ArrayList<Person> persons;
@@ -51,8 +57,8 @@ public class Lesson5 extends AppCompatActivity {
                 null,false);
         MyTasks = getLayoutInflater().inflate(R.layout.lesson5_task_list_view,
                 null,false);
+        tasks = new ArrayList<>();
         setMyButtons();
-
     }
 
     public void setMyButtons() {
@@ -102,10 +108,16 @@ public class Lesson5 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setContentView(MyTasks);
+                buttNewTask = findViewById(R.id.lesson5_new_task_button);
+                buttNewTask.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        createNewTask();
+                        printInfo();
+                    }
+                });
             }
         });
-        buttNewTask = findViewById(R.id.lesson5_new_task_button);
-
     }
 
     private void createPersonList(int size) {
@@ -341,10 +353,11 @@ public class Lesson5 extends AppCompatActivity {
         }
 
     }
-    public void showDateDialog(View view){
+    public void showDateDialog(){
         DialogFragment dialogFragment = new DatePickerFragment();
         dialogFragment.show(getSupportFragmentManager(),"datepicker");
     }
+
     public static  class DatePickerFragment extends DialogFragment implements
             DatePickerDialog.OnDateSetListener {
         @Override
@@ -358,14 +371,29 @@ public class Lesson5 extends AppCompatActivity {
 
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-           task_date = day+"."+(month+1)+"."+year;
-           Toast.makeText(getContext(),""+task_date,Toast.LENGTH_SHORT).show();
+            task_date = day+"."+(month+1)+"."+year;
         }
     }
-    public void createTask(ArrayList<Lesson5Task> listOfTasks){
-        Lesson5Task lt = new Lesson5Task("тут будет имя",task_date);
-        listOfTasks.add(lt);
-
+//\
+    public void createNewTask(){          // чет нифига у меня не получилось... выводит все разом сука такая
+        final EditText et = new EditText(this);
+        AlertDialog alert = new AlertDialog.Builder(this)
+                .setTitle("введите название")
+                .setView(et)
+                .setPositiveButton("add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        task_name = et.getText().toString();
+                    }
+                }).create();
+        alert.show();
+        showDateDialog();
+        final Lesson5Task lt = new Lesson5Task(task_name,task_date);
+        tasks.add(lt);
+        //printInfo();
+    }
+    public void printInfo(){
+        Toast.makeText(this,tasks.get(0).getName()+","+tasks.get(0).getDate(),Toast.LENGTH_LONG).show();
     }
     public class Lesson5Task{
         private String name;
@@ -375,6 +403,15 @@ public class Lesson5 extends AppCompatActivity {
             this.date = date;
             this.name = name;
         }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
         public void done(){
             isDone = true;
         }
