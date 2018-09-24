@@ -57,7 +57,7 @@ public class Lesson5 extends AppCompatActivity {
                 null,false);
         MyTasks = getLayoutInflater().inflate(R.layout.lesson5_task_list_view,
                 null,false);
-        tasks = new ArrayList<>();
+        tasks = new ArrayList<>(); // это перенести в метод заполнения листа
         setMyButtons();
     }
 
@@ -108,12 +108,13 @@ public class Lesson5 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setContentView(MyTasks);
+                listViewTasks = findViewById(R.id.lesson5_list_task);
+                fillTasksList();                                           //--------------перерыв..надо сделать метод для заполнения листа из коллекции, отображение, адаптер и всю хуйню   ----------------
                 buttNewTask = findViewById(R.id.lesson5_new_task_button);
                 buttNewTask.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         createNewTask();
-                        printInfo();
                     }
                 });
             }
@@ -372,10 +373,14 @@ public class Lesson5 extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
             task_date = day+"."+(month+1)+"."+year;
+            ((Lesson5)getActivity()).fillTasks();
+            // ((YourActivityClassName)getActivity()).yourPublicMethod(); на поиске этой панацеи
+            // было убито 12 часов с пробой других костылей
+
         }
     }
 //\
-    public void createNewTask(){          // чет нифига у меня не получилось... выводит все разом сука такая
+    public void createNewTask(){
         final EditText et = new EditText(this);
         AlertDialog alert = new AlertDialog.Builder(this)
                 .setTitle("введите название")
@@ -384,16 +389,23 @@ public class Lesson5 extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         task_name = et.getText().toString();
+                        showDateDialog();
                     }
                 }).create();
         alert.show();
-        showDateDialog();
-        final Lesson5Task lt = new Lesson5Task(task_name,task_date);
-        tasks.add(lt);
-        //printInfo();
     }
-    public void printInfo(){
-        Toast.makeText(this,tasks.get(0).getName()+","+tasks.get(0).getDate(),Toast.LENGTH_LONG).show();
+    public void fillTasks(){
+        if(task_name != null && task_date != null){
+            String name = task_name;
+            String date = task_date;
+            final Lesson5Task lt = new Lesson5Task(name,date);
+            tasks.add(lt);
+            task_name = null;
+            task_date = null;
+        }
+        Toast.makeText(this,tasks.get(0).getName()+","+tasks.get(0).getDate(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,task_name+","+task_date,Toast.LENGTH_SHORT).show();
+
     }
     public class Lesson5Task{
         private String name;
