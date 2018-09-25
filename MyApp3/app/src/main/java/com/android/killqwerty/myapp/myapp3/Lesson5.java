@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,6 +108,7 @@ public class Lesson5 extends AppCompatActivity {
             public void onClick(View view) {
                 setContentView(MyTasks);
                 listViewTasks = findViewById(R.id.lesson5_list_task);
+                registerForContextMenu(listViewTasks);                        //я хз это вообще надо?
                // if(tasks.size() != 0)
                 fillTasksListWithAdapter();//--------------перерыв..надо сделать метод для заполнения листа из коллекции, отображение, адаптер и всю хуйню   ----------------
                 buttNewTask = findViewById(R.id.lesson5_new_task_button);
@@ -444,7 +446,7 @@ public class Lesson5 extends AppCompatActivity {
         public void done(){
             done = true;
         }
-        public void unDone(){                  //для теста
+        public void unDone(){                  //для теста, потом удалить-------------------------------
             done = false;
         }
         public boolean isDone(){
@@ -498,6 +500,14 @@ public class Lesson5 extends AppCompatActivity {
                 view.setBackgroundResource(R.color.colorWhite);
                 myDate.setBackgroundResource(R.color.colorWhite);
             }
+            view.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+                @Override
+                public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                    contextMenu.add(0,0,0,"пометить как выполненное");
+                    contextMenu.add(0,1,0,"удалить");
+                    contextMenu.add(0,2,0,"отмена");
+                }
+            });                                        //-----------доработать контесктное меню для каждого вью, можно сделать инфлейтер через XML и добавить логику для каждого пункта-----------------------
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
