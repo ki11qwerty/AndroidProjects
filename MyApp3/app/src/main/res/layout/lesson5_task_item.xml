@@ -7,18 +7,22 @@
 
     <TextView
         android:id="@+id/lesson5_task_name"
-        android:layout_width="wrap_content"
+        android:layout_width="192dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
+        android:background="@color/colorWhite"
+        android:paddingLeft="10dp"
         android:text="тут будет отображатся название"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/lesson5_task_date"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal"
         android:text="а тут дата"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:background="@color/colorWhite"/>
 
 </LinearLayout>

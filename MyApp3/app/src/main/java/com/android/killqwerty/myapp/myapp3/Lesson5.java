@@ -1,8 +1,6 @@
 package com.android.killqwerty.myapp.myapp3;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -54,9 +52,9 @@ public class Lesson5 extends AppCompatActivity {
         ListLayoutWithListView = getLayoutInflater().inflate(R.layout.lesson5_person_listview,
                 null, false);
         ListLayoutWithGridView = getLayoutInflater().inflate(R.layout.lesson5_person_grid_view,
-                null,false);
+                null, false);
         MyTasks = getLayoutInflater().inflate(R.layout.lesson5_task_list_view,
-                null,false);
+                null, false);
         tasks = new ArrayList<>(); // это перенести в метод заполнения листа
         setMyButtons();
     }
@@ -109,7 +107,8 @@ public class Lesson5 extends AppCompatActivity {
             public void onClick(View view) {
                 setContentView(MyTasks);
                 listViewTasks = findViewById(R.id.lesson5_list_task);
-                fillTasksList();                                           //--------------перерыв..надо сделать метод для заполнения листа из коллекции, отображение, адаптер и всю хуйню   ----------------
+               // if(tasks.size() != 0)
+                fillTasksListWithAdapter();//--------------перерыв..надо сделать метод для заполнения листа из коллекции, отображение, адаптер и всю хуйню   ----------------
                 buttNewTask = findViewById(R.id.lesson5_new_task_button);
                 buttNewTask.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -141,17 +140,25 @@ public class Lesson5 extends AppCompatActivity {
         for (Person p : persons) {
             View personElementView = createPersonElementView(p);
             allPersons.addView(personElementView);
-
         }
     }
-    public void fillGridViewWithAdaptor(){
+
+    public void fillGridViewWithAdaptor() {
         PersonAdapter personAdapter = new PersonAdapter(persons, this);
         gridView.setAdapter(personAdapter);
     }
+
     public void fillListWithAdaptor() {
         PersonAdapter personAdapter = new PersonAdapter(persons, this);
         listView.setAdapter(personAdapter);
     }
+
+    public void fillTasksListWithAdapter() {
+        TasksAdapter tasksAdapter = new TasksAdapter(tasks, this);
+        listViewTasks.setAdapter(tasksAdapter);
+
+    }
+
 
     private View createPersonElementView(final Person p) {
         View v = getLayoutInflater().inflate(R.layout.listitem_persons, null);
@@ -180,7 +187,7 @@ public class Lesson5 extends AppCompatActivity {
     }
 
     private Drawable createRandomAvatar() {
-        if(idForDrawable == null)
+        if (idForDrawable == null)
             fillIdForDrawable();
         Random random = new Random();
         int num = random.nextInt(LENGTH_IDS_ARRAY);
@@ -247,12 +254,13 @@ public class Lesson5 extends AppCompatActivity {
 //        }
 //        return getResources().getDrawable(R.drawable.friend1);
     }
-    public void fillIdForDrawable(){
+
+    public void fillIdForDrawable() {
         idForDrawable = new int[LENGTH_IDS_ARRAY];
         String nameRes = "friend";
-        for (int i = 0;i<idForDrawable.length; i++){
+        for (int i = 0; i < idForDrawable.length; i++) {
             idForDrawable[i] = getResources().getIdentifier(nameRes + i,
-                    "drawable",getPackageName());
+                    "drawable", getPackageName());
         }
     }
 
@@ -298,10 +306,12 @@ public class Lesson5 extends AppCompatActivity {
     public class PersonAdapter extends BaseAdapter {
         ArrayList<Person> persons;
         Context c;
+
         private PersonAdapter(ArrayList<Person> persons, Context c) {
             this.persons = persons;
             this.c = c;
         }
+
         @Override
         public int getCount() {
             return persons.size();
@@ -319,17 +329,17 @@ public class Lesson5 extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if(convertView == null)
-                if(typeOfView.equals("List")) {
+            if (convertView == null)
+                if (typeOfView.equals("List")) {
                     convertView = LayoutInflater.from(c).inflate(R.layout.listitem_persons, null);
-                }
-                else
+                } else
                     convertView = LayoutInflater.from(c).
-                            inflate(R.layout.lesson5_person_view_grid_item,null);
-                fillView(convertView,position);
+                            inflate(R.layout.lesson5_person_view_grid_item, null);
+            fillView(convertView, position);
             return convertView;
         }
-        private void fillView(View v, int position){
+
+        private void fillView(View v, int position) {
             final Person p = getItem(position);
             TextView tvName = v.findViewById(R.id.tvName);
             tvName.setText(p.getName());
@@ -354,12 +364,13 @@ public class Lesson5 extends AppCompatActivity {
         }
 
     }
-    public void showDateDialog(){
+
+    public void showDateDialog() {
         DialogFragment dialogFragment = new DatePickerFragment();
-        dialogFragment.show(getSupportFragmentManager(),"datepicker");
+        dialogFragment.show(getSupportFragmentManager(), "datepicker");
     }
 
-    public static  class DatePickerFragment extends DialogFragment implements
+    public static class DatePickerFragment extends DialogFragment implements
             DatePickerDialog.OnDateSetListener {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -372,15 +383,16 @@ public class Lesson5 extends AppCompatActivity {
 
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            task_date = day+"."+(month+1)+"."+year;
-            ((Lesson5)getActivity()).fillTasks();
+            task_date = day + "." + (month + 1) + "." + year;
+            ((Lesson5) getActivity()).addNewTasks();
             // ((YourActivityClassName)getActivity()).yourPublicMethod(); на поиске этой панацеи
             // было убито 12 часов с пробой других костылей
 
         }
     }
-//\
-    public void createNewTask(){
+
+    //\
+    public void createNewTask() {
         final EditText et = new EditText(this);
         AlertDialog alert = new AlertDialog.Builder(this)
                 .setTitle("введите название")
@@ -394,26 +406,31 @@ public class Lesson5 extends AppCompatActivity {
                 }).create();
         alert.show();
     }
-    public void fillTasks(){
-        if(task_name != null && task_date != null){
+
+    public void addNewTasks() {
+        if (task_name != null && task_date != null) {
             String name = task_name;
             String date = task_date;
-            final Lesson5Task lt = new Lesson5Task(name,date);
+            final Lesson5Task lt = new Lesson5Task();
+            lt.setName(name);
+            lt.setDate(date);
             tasks.add(lt);
             task_name = null;
             task_date = null;
+            ((BaseAdapter)listViewTasks.getAdapter()).notifyDataSetChanged();
         }
-        Toast.makeText(this,tasks.get(0).getName()+","+tasks.get(0).getDate(),Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,task_name+","+task_date,Toast.LENGTH_SHORT).show();
-
     }
-    public class Lesson5Task{
+    class Lesson5Task{
         private String name;
         private String date;
-        boolean isDone = false;
-        Lesson5Task(String name, String date){
-            this.date = date;
+        boolean done = false;
+
+        public void setName(String name) {
             this.name = name;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
         }
 
         public String getName() {
@@ -425,7 +442,73 @@ public class Lesson5 extends AppCompatActivity {
         }
 
         public void done(){
-            isDone = true;
+            done = true;
+        }
+        public void unDone(){                  //для теста
+            done = false;
+        }
+        public boolean isDone(){
+            return done;
         }
     }
+    public class TasksAdapter extends BaseAdapter {
+        ArrayList<Lesson5Task> tasks;
+        Context c;
+
+        TasksAdapter(ArrayList<Lesson5Task> tasks, Context c) {
+            this.tasks = tasks;
+            this.c = c;
+        }
+
+        @Override
+        public Lesson5Task getItem(int position) {
+            return tasks.get(position);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public int getCount() {
+            return tasks.size();
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup viewGroup) {
+            if (view == null)
+                view = LayoutInflater.from(c).inflate(R.layout.lesson5_task_item, null);
+            fillView(view, position);
+            return view;
+        }
+        private void fillView(View view, int position){
+            final Lesson5Task l = getItem(position);
+            TextView myName = view.findViewById(R.id.lesson5_task_name);
+            myName.setText(l.getName());
+            TextView myDate = view.findViewById(R.id.lesson5_task_date);
+            myDate.setText(l.getDate());
+            if(l.isDone() == true) {
+                myName.setBackgroundResource(R.color.colorGreen);
+                view.setBackgroundResource(R.color.colorGreen);
+                myDate.setBackgroundResource(R.color.colorGreen);
+            }
+            else {
+                myName.setBackgroundResource(R.color.colorWhite);
+                view.setBackgroundResource(R.color.colorWhite);
+                myDate.setBackgroundResource(R.color.colorWhite);
+            }
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(l.isDone() == true)
+                        l.unDone();
+                    else{
+                        l.done();
+                    }
+                    ((BaseAdapter)listViewTasks.getAdapter()).notifyDataSetChanged();
+                }
+            });
+        }
+        }
 }

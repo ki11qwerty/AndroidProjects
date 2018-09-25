@@ -2,17 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Список дел:"
-        android:paddingBottom="5dp"/>
+        android:paddingBottom="5dp"
+        android:text="Список дел:" />
+
     <ListView
         android:id="@+id/lesson5_list_task"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp">
+        android:layout_height="425dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="42dp"
+        android:paddingEnd="0dp"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingTop="0dp">
 
     </ListView>
 
@@ -23,9 +33,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="33dp"
         android:background="@color/colorLesson5"
-        android:text="Добавить заметкку"/>
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="новая заметка" />
 
 </RelativeLayout>
