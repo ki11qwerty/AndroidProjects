@@ -110,7 +110,7 @@ public class Lesson5 extends AppCompatActivity {
                 listViewTasks = findViewById(R.id.lesson5_list_task);
                 registerForContextMenu(listViewTasks);                        //я хз это вообще надо?
                // if(tasks.size() != 0)
-                fillTasksListWithAdapter();//--------------перерыв..надо сделать метод для заполнения листа из коллекции, отображение, адаптер и всю хуйню   ----------------
+                fillTasksListWithAdapter();
                 buttNewTask = findViewById(R.id.lesson5_new_task_button);
                 buttNewTask.setOnClickListener(new View.OnClickListener() {
                     @Override
