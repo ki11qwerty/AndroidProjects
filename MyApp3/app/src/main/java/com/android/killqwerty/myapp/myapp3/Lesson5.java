@@ -12,8 +12,10 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -30,9 +32,14 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class Lesson5 extends AppCompatActivity {
+    static final int LENGTH_IDS_ARRAY = 23;
+    static final int SWITCH_TO_DONE = 1;
+    static final int SWITCH_TO_UNDONE = 2;
+    static final int DELETE_ITEM = 3;
+
+
     static String task_date;
     static String task_name;
-    static final short LENGTH_IDS_ARRAY = 23;
     static String typeOfView;
     private ArrayList<Person> persons;
     private ArrayList<Lesson5Task> tasks;
@@ -108,8 +115,8 @@ public class Lesson5 extends AppCompatActivity {
             public void onClick(View view) {
                 setContentView(MyTasks);
                 listViewTasks = findViewById(R.id.lesson5_list_task);
-                registerForContextMenu(listViewTasks);                        //я хз это вообще надо?
-               // if(tasks.size() != 0)
+                registerForContextMenu(listViewTasks);
+                createExampleTasks(10);
                 fillTasksListWithAdapter();
                 buttNewTask = findViewById(R.id.lesson5_new_task_button);
                 buttNewTask.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +129,15 @@ public class Lesson5 extends AppCompatActivity {
         });
     }
 
+    public void createExampleTasks(int count){     //для теста
+        for(int i = 0; i< count; i++){
+            Lesson5Task l = new Lesson5Task();
+            l.setName("Новая заметка "+(i+1));
+            l.setDate("1.1.1990");
+            tasks.add(l);
+        }
+    }
+
     private void createPersonList(int size) {
         Random random = new Random();
         persons = new ArrayList<>();
@@ -130,9 +146,7 @@ public class Lesson5 extends AppCompatActivity {
             p.setName("Qwerty" + i);
             p.setEmail("Qwerty" + i + "@gmail.com");
             p.setTelephone("8-555-" + (1000000 + random.nextInt(8999999)));
-
             p.setAvatar(createRandomAvatar());
-
             persons.add(p);
         }
     }
@@ -393,7 +407,6 @@ public class Lesson5 extends AppCompatActivity {
         }
     }
 
-    //\
     public void createNewTask() {
         final EditText et = new EditText(this);
         AlertDialog alert = new AlertDialog.Builder(this)
@@ -484,18 +497,18 @@ public class Lesson5 extends AppCompatActivity {
             fillView(view, position);
             return view;
         }
-        private void fillView(View view, int position){
+
+        private void fillView(View view, int position) {
             final Lesson5Task l = getItem(position);
             TextView myName = view.findViewById(R.id.lesson5_task_name);
             myName.setText(l.getName());
             TextView myDate = view.findViewById(R.id.lesson5_task_date);
             myDate.setText(l.getDate());
-            if(l.isDone() == true) {
+            if (l.isDone() == true) {
                 myName.setBackgroundResource(R.color.colorGreen);
                 view.setBackgroundResource(R.color.colorGreen);
                 myDate.setBackgroundResource(R.color.colorGreen);
-            }
-            else {
+            } else {
                 myName.setBackgroundResource(R.color.colorWhite);
                 view.setBackgroundResource(R.color.colorWhite);
                 myDate.setBackgroundResource(R.color.colorWhite);
@@ -503,22 +516,50 @@ public class Lesson5 extends AppCompatActivity {
             view.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
                 @Override
                 public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-                    contextMenu.add(0,0,0,"пометить как выполненное");
-                    contextMenu.add(0,1,0,"удалить");
-                    contextMenu.add(0,2,0,"отмена");
                 }
             });                                        //-----------доработать контесктное меню для каждого вью, можно сделать инфлейтер через XML и добавить логику для каждого пункта-----------------------
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(l.isDone() == true)
-                        l.unDone();
-                    else{
-                        l.done();
-                    }
-                    ((BaseAdapter)listViewTasks.getAdapter()).notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(),""+l.getName(),Toast.LENGTH_SHORT).show();
                 }
             });
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, SWITCH_TO_DONE, 0, "Пометить как выполненное");
+        menu.add(0, DELETE_ITEM, 0, "Удалить");
+        menu.add(0, SWITCH_TO_UNDONE, 0, "Пометить как невыполненное");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()){
+            case SWITCH_TO_DONE:
+                tasks.get(info.position).done();
+                Toast.makeText(this,"Помечено как выполненное",
+                        Toast.LENGTH_SHORT).show();
+                ((BaseAdapter) listViewTasks.getAdapter()).notifyDataSetChanged();
+                return true;
+            case DELETE_ITEM:
+                tasks.remove(info.position);
+                Toast.makeText(this,"Заметка удалена",
+                        Toast.LENGTH_SHORT).show();
+                ((BaseAdapter) listViewTasks.getAdapter()).notifyDataSetChanged();
+                return true;
+            case SWITCH_TO_UNDONE:
+                tasks.get(info.position).unDone();
+                Toast.makeText(this,"Помечено как невыполненное",
+                        Toast.LENGTH_SHORT).show();
+                ((BaseAdapter) listViewTasks.getAdapter()).notifyDataSetChanged();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
         }
+    }
 }

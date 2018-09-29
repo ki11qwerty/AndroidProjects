@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLesson6">
+
+    <Button
+        android:id="@+id/button_lesson6_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="32dp"
+        android:background="@color/colorOfButtonLesson6"
+        android:text="@string/previous_button" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-138dp"
+        android:layout_marginTop="74dp"
+        android:layout_toEndOf="@+id/button_lesson6_prev"
+        android:text="Ну тут типо хуяк хуяк и готово"
+        android:textSize="30sp" />
+</RelativeLayout>

@@ -17,6 +17,7 @@
     <!-->MainLayout<-->
     <string name="main_lesson_4_button">урок №4</string>
     <string name="main_lesson_5_button">Урок №5</string>
+    <string name="main_lesson_6_button">Урок №6</string>
     <!--> lesson4 <-->
     <string name="lesson_4_alert">Закрыть Activity  \n(Alert)</string>
     <string name="lesson_4_alert_Single">Выбрать напиток \n (SingleChoice Alert)</string>
