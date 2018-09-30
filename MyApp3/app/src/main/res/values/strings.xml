@@ -30,6 +30,9 @@
     <string name="lesson_5_listview_with_adapter">список контактов\n2000шт \n(ListView)</string>
     <string name="lesson_5_gridview">показать сетку \n(GridView)</string>
     <string name="lesson_5_tasks">список дел \n(ДЗ)</string>
+    <!--> lesson6 <-->
+    <string name="lesson_6_edittext_text">введите текст который следует
+        отправить в новое Activity и нажмите кнопку</string>
 
 
 </resources>

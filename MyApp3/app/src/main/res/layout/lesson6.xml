@@ -17,38 +17,30 @@
         android:background="@color/colorOfButtonLesson6"
         android:text="@string/previous_button" />
 
-    <TextView
-        android:id="@+id/tvLesoon6_intent"
-        android:layout_width="190dp"
-        android:layout_height="32dp"
+    <EditText
+        android:id="@+id/lesson6_edit_text_1"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorWhite"
-        android:text="TextView"
-        android:textAlignment="center" />
+        android:hint="@string/lesson_6_edittext_text"
+        android:inputType="text|textMultiLine" />
 
     <Button
         android:id="@+id/lesson6_button_new_activity"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvLesoon6_intent"
-        android:layout_marginStart="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="116dp"
         android:background="@color/colorOfButtonLesson6"
         android:padding="10dp"
         android:text="Отправить" />
-
-    <TextView
-        android:id="@+id/textViewInfo"
-        android:layout_width="191dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/tvLesoon6_intent"
-        android:layout_marginTop="15dp"
-        android:text="введите текст который следует отправить в новое Activity и нажмите кнопку"
-        android:textSize="14sp" />
 
 </RelativeLayout>
