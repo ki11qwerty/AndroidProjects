@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button buttNext, buttLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit;
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         buttNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Activity1st.class);
+                Intent intent = new Intent(MainActivity.this, AboutMe.class);
                 startActivity(intent);
             }
         });

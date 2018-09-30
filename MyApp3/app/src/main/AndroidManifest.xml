@@ -16,22 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity1st">
+        <activity android:name=".AboutMe">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activity2nd">
-            <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".Activity3th">
-            <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".Activity4th">
+        <activity android:name=".Lesson6SecondActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
