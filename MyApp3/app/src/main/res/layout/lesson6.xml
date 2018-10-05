@@ -20,27 +20,132 @@
     <EditText
         android:id="@+id/lesson6_edit_text_1"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="123dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="13dp"
         android:layout_marginTop="20dp"
-        android:background="@color/colorWhite"
+        android:background="@color/colorLesson6"
         android:hint="@string/lesson_6_edittext_text"
         android:inputType="text|textMultiLine" />
 
     <Button
         android:id="@+id/lesson6_button_new_activity"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="116dp"
+        android:layout_alignStart="@+id/lesson6_edit_text_1"
+        android:layout_below="@+id/lesson6_edit_text_1"
+        android:layout_marginRight="5dp"
         android:background="@color/colorOfButtonLesson6"
         android:padding="10dp"
         android:text="Отправить" />
+
+    <ImageView
+        android:id="@+id/lesson6_photo_view"
+        android:layout_width="150dp"
+        android:layout_height="124dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/lesson6_edit_text_1"
+        android:layout_marginEnd="14dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/colorLesson6" />
+
+    <Button
+        android:id="@+id/button_lesson6_camera"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/lesson6_photo_view"
+        android:layout_below="@+id/lesson6_edit_text_1"
+        android:layout_weight="1"
+        android:background="@color/colorOfButtonLesson6"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Сделать фото" />
+
+    <LinearLayout
+        android:id="@+id/lesson6_linear1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="227dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_lesson6_call"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson6"
+            android:text="набрать номер" />
+
+        <Button
+            android:id="@+id/button_lesson6_browser"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson6"
+            android:text="браузер" />
+
+        <Button
+            android:id="@+id/button_lesson6_contacts"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson6"
+            android:text="список контактов" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lesson5_linear2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lesson6_linear1"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson6"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson6"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson6"
+            android:text="Button" />
+    </LinearLayout>
 
 </RelativeLayout>

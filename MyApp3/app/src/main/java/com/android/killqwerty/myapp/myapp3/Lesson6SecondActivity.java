@@ -30,7 +30,7 @@ public class Lesson6SecondActivity extends AppCompatActivity {
     public void setTextInActivity(){
         String someText = getIntent().getExtras().getString("KEY1");
         txtFromIntent = findViewById(R.id.lesson6_text_from_intent);
-        txtFromIntent.setTextSize(18);
+        txtFromIntent.setTextSize(24);
         txtFromIntent.setText(someText);
 
     }
