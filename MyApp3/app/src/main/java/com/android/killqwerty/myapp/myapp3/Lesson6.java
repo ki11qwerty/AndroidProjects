@@ -39,7 +39,7 @@ public class Lesson6 extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 if (textToIntent.getText().toString().isEmpty())
-                    Toast.makeText(getApplicationContext(),"поле не может быть пустым",
+                    Toast.makeText(getApplicationContext(),"отправленное поле оказалось пустым",
                             Toast.LENGTH_SHORT).show();
                 String thisText = textToIntent.getText().toString();
                 Intent intent = new Intent(Lesson6.this,Lesson6SecondActivity.class);
