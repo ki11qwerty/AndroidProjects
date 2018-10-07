@@ -135,7 +135,7 @@
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:background="@color/colorOfButtonLesson6"
-            android:text="Button" />
+            android:text="открыть этот код на github" />
 
         <Button
             android:id="@+id/button3"
@@ -145,7 +145,7 @@
             android:layout_marginLeft="2dp"
             android:layout_weight="1"
             android:background="@color/colorOfButtonLesson6"
-            android:text="Button" />
+            android:text="отправить  \n E-mail" />
     </LinearLayout>
 
 </RelativeLayout>
