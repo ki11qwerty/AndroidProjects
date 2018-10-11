@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 public class Lesson6 extends Activity implements View.OnClickListener {
     static final int CAMERA_RESULT = 1;
-    Button btnPrev, btnIntentNewActivity, btnCamera, btnCall, btnContacts, btnBrowser;
+
+    Button btnPrev, btnIntentNewActivity, btnCamera, btnCall, btnContacts, btnBrowser, btnGithub,
+    btnMaps, btnEmail;
     EditText textToIntent;
     ImageView imageView;
     @Override
@@ -52,11 +54,17 @@ public class Lesson6 extends Activity implements View.OnClickListener {
         btnCall = findViewById(R.id.button_lesson6_call);
         btnCamera = findViewById(R.id.button_lesson6_camera);
         btnContacts = findViewById(R.id.button_lesson6_contacts);
+        btnGithub = findViewById(R.id.btn_lesson6_github);
+        btnMaps = findViewById(R.id.btn_lesson6_geo);
+        btnEmail = findViewById(R.id.btn_lesson6_email);
 
         btnContacts.setOnClickListener(this);
         btnCamera.setOnClickListener(this);
         btnCall.setOnClickListener(this);
         btnBrowser.setOnClickListener(this);
+        btnEmail.setOnClickListener(this);
+        btnMaps.setOnClickListener(this);
+        btnGithub.setOnClickListener(this);
     }
     @Override
     public void onClick(View view){
@@ -78,6 +86,26 @@ public class Lesson6 extends Activity implements View.OnClickListener {
             case R.id.button_lesson6_camera:
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,CAMERA_RESULT);
+                break;
+            case R.id.btn_lesson6_email:
+                intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:tasuke34@gmail.com"));
+                //intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, "tasuke34@gmail.com");
+                intent.putExtra(Intent.EXTRA_STREAM,"tasuke34@gmail.com");
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Lesson6");
+                intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.text_in_email));
+                if(intent.resolveActivity(getPackageManager()) != null){
+                    startActivity(Intent.createChooser(intent,"отправление письма..."));
+                }
+                break;
+            case R.id.btn_lesson6_geo:
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:48.759023,44.505723?z=16"));
+                startActivity(intent);
+                break;
+            case R.id.btn_lesson6_github:
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github)));
+                startActivity(intent);
                 break;
         }
     }

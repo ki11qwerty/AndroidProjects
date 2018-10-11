@@ -33,6 +33,9 @@
     <!--> lesson6 <-->
     <string name="lesson_6_edittext_text">введите текст который следует
         отправить в новое Activity и нажмите кнопку</string>
+    <string name="github">
+        https://github.com/ki11qwerty/AndroidProjects/tree/master/MyApp3/app/src/main</string>
+    <string name="text_in_email">Hello World! текст отправленный из приложения</string>
 
 
 </resources>

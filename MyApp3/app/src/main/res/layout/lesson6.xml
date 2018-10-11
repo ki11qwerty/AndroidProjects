@@ -124,10 +124,10 @@
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:background="@color/colorOfButtonLesson6"
-            android:text="Показать кординаты на карте" />
+            android:text="Показать кординаты" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_lesson6_github"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="110dp"
             android:layout_height="match_parent"
@@ -135,10 +135,10 @@
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:background="@color/colorOfButtonLesson6"
-            android:text="открыть этот код на github" />
+            android:text="код на github" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btn_lesson6_email"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="110dp"
             android:layout_height="match_parent"
