@@ -36,6 +36,9 @@
     <string name="github">
         https://github.com/ki11qwerty/AndroidProjects/tree/master/MyApp3/app/src/main</string>
     <string name="text_in_email">Hello World! текст отправленный из приложения</string>
+    <!--> Lesson7 <-->
+    <string name="plan">Handler \n AsyncTask \n serialize \n parsable \n instance \n
+    покодить это все дело и плюс дз</string>
 
 
 </resources>

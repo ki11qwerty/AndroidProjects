@@ -48,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        buttLesson7 = findViewById(R.id.button_lesson7_main);
+        buttLesson7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Lesson7.class);
+                startActivity(intent);
+            }
+        });
         buttExit = findViewById(R.id.buttonExit);
         buttExit.setOnClickListener(new View.OnClickListener() {
             @Override
