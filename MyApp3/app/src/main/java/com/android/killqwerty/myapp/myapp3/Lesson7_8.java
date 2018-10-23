@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**************************************************************************************************
  * План:
@@ -21,7 +23,7 @@ import android.widget.Button;
  *
  *************************************************************************************************/
 public class Lesson7_8 extends Activity implements View.OnClickListener {
-    Button btnPrev;
+    Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,20 @@ public class Lesson7_8 extends Activity implements View.OnClickListener {
 
     private void setMyButtons() {
         btnPrev = findViewById(R.id.lesson7_btn_prev_page);
+        btnHandler = findViewById(R.id.lesson8_btn_handler_asynctask);
+        btnLoadSave = findViewById(R.id.lesson8_btn_save_load);
+        btnJson = findViewById(R.id.lesson8_btn_json);
+        btnWebView = findViewById(R.id.lesson8_btn_webview);
+        btnFragments = findViewById(R.id.lesson8_btn_fragments);
+        btnDB = findViewById(R.id.lesson8_btn_database);
+
         btnPrev.setOnClickListener(this);
+        btnHandler.setOnClickListener(this);
+        btnLoadSave.setOnClickListener(this);
+        btnJson.setOnClickListener(this);
+        btnWebView.setOnClickListener(this);
+        btnFragments.setOnClickListener(this);
+        btnDB.setOnClickListener(this);
     }
 
     @Override
@@ -40,7 +55,47 @@ public class Lesson7_8 extends Activity implements View.OnClickListener {
             case R.id.lesson7_btn_prev_page:
                 finish();
                 break;
+            case R.id.lesson8_btn_handler_asynctask:
+                break;
+            case R.id.lesson8_btn_save_load:
+                break;
+            case R.id.lesson8_btn_json:
+                break;
+            case R.id.lesson8_btn_webview:
+                myWebView();
+                break;
+            case R.id.lesson8_btn_fragments:
+                break;
+            case R.id.lesson8_btn_database:
+                break;
         }
+    }
+    void myWebView(){
+        setContentView(R.layout.lesson8_webview);
+        final EditText editText;
+        editText = findViewById(R.id.lesson8_webview_edittext);
+        Button btnSearch;
+        final WebView webGoogle;
+        final WebView webYandex;
+        webGoogle = findViewById(R.id.lesson8_webview_google);
+        webYandex = findViewById(R.id.lesson8_webview_yandex);
+        webGoogle.getSettings().setJavaScriptEnabled(true);
+        webYandex.getSettings().setJavaScriptEnabled(true);
+        btnSearch = findViewById(R.id.lesson8_webview_search);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(editText.getText() != null){
+                    webGoogle.loadUrl("https://www.google.ru/search?q="+editText.getText());
+                   // webYandex.loadUrl("https://www.google.ru/search?q="+editText.getText());
+                   // webYandex.loadUrl("https://www.yandex.ru/search/?text="+editText.getText()+"&lr=1"); чет не хочет вторым окном открывать
+                }
+                else{
+
+                }
+            }
+        });
+
     }
     // serialise - пустой интерфейс, флаг, для разрешения сохранения класса в файл
     // parsable - интерфейс, с методами для сохранения и загрузки класса из файла, быстрее

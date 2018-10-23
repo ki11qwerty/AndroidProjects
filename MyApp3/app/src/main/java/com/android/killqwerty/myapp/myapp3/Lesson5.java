@@ -401,7 +401,7 @@ public class Lesson5 extends AppCompatActivity {
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
             task_date = day + "." + (month + 1) + "." + year;
             ((Lesson5) getActivity()).addNewTasks();
-            // ((YourActivityClassName)getActivity()).yourPublicMethod(); на поиске этой панацеи
+            // ((YourActivityClassName)getActivity()).yourPublicMethod(); на поиски этой панацеи
             // было убито 12 часов с пробой других костылей
 
         }
