@@ -6,12 +6,26 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 
-public class Lesson7 extends Activity implements View.OnClickListener {
+/**************************************************************************************************
+ * План:
+ * 1 кнопка переход в layout с БД, два поля - имя, фамилия. 3 кнопки - записать, читать, стереть
+ * 2 кнопка переход в layout с фрагментами, три кнопки для переключения фрагментов
+ * 3 кнопка переход в layout или новое активити с какой нибудь приколюхой JSON
+ * 4 кнопка webView
+ * 5 кнопка сохранение в файл
+ * 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
+ *     для приостановки потока на короткое время и итерацию в TextView
+ *
+ *                                                                    дата начала : 23.10
+ *                                                                     закончить бы до : 1.11
+ *
+ *************************************************************************************************/
+public class Lesson7_8 extends Activity implements View.OnClickListener {
     Button btnPrev;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lesson7);
+        setContentView(R.layout.lesson7_8);
         setMyButtons();
     }
 
@@ -33,11 +47,5 @@ public class Lesson7 extends Activity implements View.OnClickListener {
     // handler - класс, для передачи сообщений между потоками
     // AsyncTask - класс для фоновой работы отдельно от gui потока и больших работ в фоне
     // Нет дз, нихуя не понятно, все сделать вместе с уроком №8 в одной кнопке
-
-    //ЭТО БЫЛ ПОСЛЕДНИЙ ДЕНЬ КОГДА Я ЛЕНЮСЬ, ЭТО БЫЛ ПОСЛЕДНИЙ ДЕНЬ КОГДА Я ЛЕНЮСЬ, ЭТО БЫЛ ПОСЛЕДНИЙ
-    //ДЕНЬ КОГДА Я ЛЕНЮСЬ, ЭТО БЫЛ ПОСЛЕДНИЙ ДЕНЬ КОГДА Я ЛЕНЮСЬ , ЭТО БЫЛ ПОСЛЕДНИЙ ДЕНЬ КОГДА Я
-    //ЛЕНЮСЬ, ЭТО БЫЛ ПОСЛЕДНИЙ ДЕНЬ КОГДА Я ЛЕНЮСЬ, ЭТО БЫЛ ПОСЛЕДНИЙ ДЕНЬ КОГДА Я ЛЕНЮСЬ, ЭТО
-    //БЫЛ ПОСЛЕДНИЙ ДЕНЬ КОГДА Я ЛЕНЮСЬ, ЭТО БЫЛ ПОСЛЕДНИЙ ДЕНЬ
-
 
 }
