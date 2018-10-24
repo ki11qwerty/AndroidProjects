@@ -65,6 +65,7 @@ public class Lesson7_8 extends Activity implements View.OnClickListener {
                 myWebView();
                 break;
             case R.id.lesson8_btn_fragments:
+                // отвести на уроке 10 минут фрагментам, когда только один разбор доков занял пол дня такой себе сука пранк, ебаный ГБ
                 break;
             case R.id.lesson8_btn_database:
                 break;
@@ -76,22 +77,14 @@ public class Lesson7_8 extends Activity implements View.OnClickListener {
         editText = findViewById(R.id.lesson8_webview_edittext);
         Button btnSearch;
         final WebView webGoogle;
-        final WebView webYandex;
         webGoogle = findViewById(R.id.lesson8_webview_google);
-        webYandex = findViewById(R.id.lesson8_webview_yandex);
         webGoogle.getSettings().setJavaScriptEnabled(true);
-        webYandex.getSettings().setJavaScriptEnabled(true);
         btnSearch = findViewById(R.id.lesson8_webview_search);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(editText.getText() != null){
                     webGoogle.loadUrl("https://www.google.ru/search?q="+editText.getText());
-                   // webYandex.loadUrl("https://www.google.ru/search?q="+editText.getText());
-                   // webYandex.loadUrl("https://www.yandex.ru/search/?text="+editText.getText()+"&lr=1"); чет не хочет вторым окном открывать
-                }
-                else{
-
                 }
             }
         });
