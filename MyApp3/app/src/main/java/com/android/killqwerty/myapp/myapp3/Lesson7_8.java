@@ -65,7 +65,6 @@ public class Lesson7_8 extends Activity implements View.OnClickListener {
                 myWebView();
                 break;
             case R.id.lesson8_btn_fragments:
-                // отвести на уроке 10 минут фрагментам, когда только один разбор доков занял пол дня такой себе сука пранк, ебаный ГБ
                 break;
             case R.id.lesson8_btn_database:
                 break;
@@ -89,6 +88,9 @@ public class Lesson7_8 extends Activity implements View.OnClickListener {
             }
         });
 
+    }
+    void createMyFragments(){
+       // TODO: установить вью, прикрепить два фрагмента ... как это сделать пока непонятно
     }
     // serialise - пустой интерфейс, флаг, для разрешения сохранения класса в файл
     // parsable - интерфейс, с методами для сохранения и загрузки класса из файла, быстрее
