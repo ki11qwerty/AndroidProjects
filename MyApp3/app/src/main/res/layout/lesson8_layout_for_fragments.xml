@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/lesson8_add" />
+                android:text="@string/add1" />
 
             <Button
                 android:id="@+id/lesson8_1fragment_remove"
@@ -46,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:text="@string/lesson8_add" />
+                android:text="@string/add2" />
 
             <Button
                 android:id="@+id/lesson8_2fragment_remove"

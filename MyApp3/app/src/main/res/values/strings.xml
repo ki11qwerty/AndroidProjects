@@ -39,7 +39,8 @@
     <!--> Lesson7 - 8  <-->
     <string name="lesson8_asynctask_handler">AsyncTask\nHandler</string>
     <string name="lesson8_save_load">Запись и чтение \n из файла</string>
-    <string name="lesson8_add">add</string>
     <string name="lesson8_remove">remove</string>
     <string name="lesson8_swap">swap</string>
+    <string name="add1">add frag1</string>
+    <string name="add2">add frag2</string>
 </resources>

@@ -2,7 +2,6 @@ package com.android.killqwerty.myapp.myapp3;
 
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -14,31 +13,29 @@ import android.widget.EditText;
 
 /**************************************************************************************************
  * План:
- * 1 кнопка переход в layout с БД, два поля - имя, фамилия. 3 кнопки - записать, читать, стереть
- * 2 кнопка переход в layout с фрагментами, три кнопки для переключения фрагментов
- * 3 кнопка переход в layout или новое активити с какой нибудь приколюхой JSON
- * 4 кнопка webView
- * 5 кнопка сохранение в файл
- * 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
+ * TODO: 1 кнопка переход в layout с БД, два поля - имя, фамилия. 3 кнопки - записать, читать, стереть
+ * -есть 2 кнопка переход в layout с фрагментами, три кнопки для переключения фрагментов
+ * TODO: 3 кнопка переход в layout или новое активити с какой нибудь приколюхой JSON
+ * -есть 4 кнопка webView
+ * TODO: 5 кнопка сохранение в файл
+ * TODO: 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
  *     для приостановки потока на короткое время и итерацию в TextView
  *
  *                                                                    дата начала : 23.10
  *                                                                     закончить бы до : 1.11
- *
+ * TODO: https://www.youtube.com/watch?v=DsVAP2F9c1U, допилить завтра фрагменты, и занятся пунктом номер 5------------------------------------30.10! горит уже все нахуй
  *************************************************************************************************/
 public class Lesson7_8 extends Activity implements View.OnClickListener{
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
     btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2;
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
-    FragmentTransaction transaction;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lesson7_8);
         setMyButtons();
-        fragment1 = new Lesson8_fragment1();
-        fragment2 = new Lesson8_fragment2();
     }
 
     private void setMyButtons() {
@@ -97,41 +94,27 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
                 break;
                 /*        lesson8_fragments           */
             case R.id.lesson8_1fragment_add:
-                setFragments(fragment1);
-                // TODO: переписать весь код, запилить три метода, удаление добавление перемешивание,
-                // и как то продумать логику чутка
-                
-//                transaction = getFragmentManager().beginTransaction();
-//                transaction.add(R.id.lesson8_frame1,fragment1);
-//                transaction.commit();
+                setFragment(fragment1 = new Lesson8_fragment1(), R.id.lesson8_frame1);
                 break;
             case R.id.lesson8_2fragment_add:
-                transaction = getFragmentManager().beginTransaction();
-                transaction.add(R.id.lesson8_frame2,fragment2);
-                transaction.commit();
+                setFragment(fragment2 = new Lesson8_fragment2(), R.id.lesson8_frame2);
                 break;
             case R.id.lesson8_1fragment_remove:
-                transaction = getFragmentManager().beginTransaction();
-                transaction.remove(fragment1);
-                transaction.commit();
+                removeFragment(getFragmentManager().findFragmentById(R.id.lesson8_frame1));
                 break;
             case R.id.lesson8_2fragment_remove:
-                transaction = getFragmentManager().beginTransaction();
-                transaction.remove(fragment2);
-                transaction.commit();
+                removeFragment(getFragmentManager().findFragmentById(R.id.lesson8_frame2));
                 break;
             case R.id.lesson8_1fragment_swap:
-                transaction = getFragmentManager().beginTransaction();
-                transaction.replace()
-                transaction.commit();
+                swapFragment();
                 break;
             case R.id.lesson8_2fragment_swap:
-                transaction = getFragmentManager().beginTransaction();
-                transaction.commit();
+                swapFragment();
                 break;
         }
     }
-    void myWebView(){
+
+    void myWebView() {
         setContentView(R.layout.lesson8_webview);
         final EditText editText;
         editText = findViewById(R.id.lesson8_webview_edittext);
@@ -143,22 +126,55 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(editText.getText() != null){
-                    webGoogle.loadUrl("https://www.google.ru/search?q="+editText.getText());
+                if (editText.getText() != null) {
+                    webGoogle.loadUrl("https://www.google.ru/search?q=" + editText.getText());
                 }
             }
         });
 
     }
-    void setFragments(Fragment fragment){
-            FragmentManager fragmentManager = getFragmentManager();
-            if (fragment != null && fragmentManager.findFragmentById(fragment.getId()) == null) {
+
+    void setFragment(Fragment fragment, int id) {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragment != null && fragmentManager.findFragmentById(fragment.getId()) == null) {
+            fragmentManager.beginTransaction()
+                    .add(id, fragment)
+                    .commit();
+        }
+    }
+
+    void removeFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragment != null && fragmentManager.findFragmentById(fragment.getId()) != null) {
+            fragmentManager.beginTransaction()
+                    .remove(fragment)
+                    .commit();
+        }
+    }
+
+    void swapFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (checkingTrue()) {
+            if (getFragmentManager().findFragmentById(R.id.lesson8_frame1).equals(fragment1)) {
                 fragmentManager.beginTransaction()
-                        .replace(R.id.lesson8_framelayout_fragment1, fragment)
+                        .replace(R.id.lesson8_frame1, fragment2 = new Lesson8_fragment2())
+                        .replace(R.id.lesson8_frame2, fragment1 = new Lesson8_fragment1())
+                        .commit();
+            } else {
+                fragmentManager.beginTransaction()
+                        .replace(R.id.lesson8_frame1, fragment1 = new Lesson8_fragment1())
+                        .replace(R.id.lesson8_frame2, fragment2 = new Lesson8_fragment2())
                         .commit();
             }
+        }
+    }
 
-            // TODO: установить вью, прикрепить два фрагмента ... как это сделать пока непонятно
+    boolean checkingTrue() {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager.findFragmentById(R.id.lesson8_frame1) != null &&
+                fragmentManager.findFragmentById(R.id.lesson8_frame2) != null)
+            return true;
+        return false;
     }
     // serialise - пустой интерфейс, флаг, для разрешения сохранения класса в файл
     // parsable - интерфейс, с методами для сохранения и загрузки класса из файла, быстрее
