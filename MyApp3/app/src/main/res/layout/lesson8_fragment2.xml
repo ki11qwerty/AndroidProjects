@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/lesson8_framelayout_fragment1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Lesson8_fragment1">
+    tools:context=".Lesson8_fragment2">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorOfButtonLesson7"
+        android:background="@color/colorOfButtonLesson6"
         android:gravity="center"
-        android:text="Fragment 1"
+        android:text="Fragment 2"
         android:textSize="30sp" />
 
 </FrameLayout>

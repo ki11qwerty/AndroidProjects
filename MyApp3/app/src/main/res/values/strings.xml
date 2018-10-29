@@ -39,9 +39,7 @@
     <!--> Lesson7 - 8  <-->
     <string name="lesson8_asynctask_handler">AsyncTask\nHandler</string>
     <string name="lesson8_save_load">Запись и чтение \n из файла</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
+    <string name="lesson8_add">add</string>
+    <string name="lesson8_remove">remove</string>
+    <string name="lesson8_swap">swap</string>
 </resources>
