@@ -1,15 +1,15 @@
 package com.android.killqwerty.myapp.myapp3;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**************************************************************************************************
  * План:
@@ -23,13 +23,22 @@ import android.widget.EditText;
  *
  *                                                                    дата начала : 23.10
  *                                                                     закончить бы до : 1.11
+ *                                    список прилетевших нежданчиков:
+ * Fragments оказалось куда больше материала чем на уроке дали =(
+ * Support Library
+ * FragmentManager и Fragment переехали в сапорт, пришлось додумывать самому) все прошло успешно
+ *
+ *
  * TODO: https://www.youtube.com/watch?v=DsVAP2F9c1U, допилить завтра фрагменты, и занятся пунктом номер 5------------------------------------30.10! горит уже все нахуй
  *************************************************************************************************/
-public class Lesson7_8 extends Activity implements View.OnClickListener{
+public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
-    btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2;
+            btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
+            btnDelete;
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
+   View.OnClickListener onClickLoadSave;
+   View.OnClickListener onClickFragments;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,8 +63,11 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
         btnWebView.setOnClickListener(this);
         btnFragments.setOnClickListener(this);
         btnDB.setOnClickListener(this);
+
     }
-    void setMyButtonsForFragments(){
+
+    void setMyButtonsForFragments() {
+        setOnClickForFragments();
         btnAddFr1 = findViewById(R.id.lesson8_1fragment_add);
         btnAddFr2 = findViewById(R.id.lesson8_2fragment_add);
         btnRemoveFr1 = findViewById(R.id.lesson8_1fragment_remove);
@@ -63,23 +75,36 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
         btnSwapFr1 = findViewById(R.id.lesson8_1fragment_swap);
         btnSwapFr2 = findViewById(R.id.lesson8_2fragment_swap);
 
-        btnAddFr1.setOnClickListener(this);
-        btnAddFr2.setOnClickListener(this);
-        btnRemoveFr1.setOnClickListener(this);
-        btnRemoveFr2.setOnClickListener(this);
-        btnSwapFr1.setOnClickListener(this);
-        btnSwapFr2.setOnClickListener(this);
+        btnAddFr1.setOnClickListener(onClickFragments);
+        btnAddFr2.setOnClickListener(onClickFragments);
+        btnRemoveFr1.setOnClickListener(onClickFragments);
+        btnRemoveFr2.setOnClickListener(onClickFragments);
+        btnSwapFr1.setOnClickListener(onClickFragments);
+        btnSwapFr2.setOnClickListener(onClickFragments);
+    }
+    void setMyButtonsForLoadAndSave(){
+        setOnClickForLoadAndSave();
+        btnSave = findViewById(R.id.lesson8_btnSave);
+        btnLoad = findViewById(R.id.lesson8_btnLoad);
+        btnDelete = findViewById(R.id.lesson8_btnDelete);
+
+        btnSave.setOnClickListener(onClickLoadSave);
+        btnLoad.setOnClickListener(onClickLoadSave);
+        btnDelete.setOnClickListener(onClickLoadSave);
+
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.lesson7_btn_prev_page:
                 finish();
                 break;
             case R.id.lesson8_btn_handler_asynctask:
                 break;
             case R.id.lesson8_btn_save_load:
+                setContentView(R.layout.lesson8_load_and_save);
+                setMyButtonsForLoadAndSave();
                 break;
             case R.id.lesson8_btn_json:
                 break;
@@ -92,26 +117,56 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
                 break;
             case R.id.lesson8_btn_database:
                 break;
-                /*        lesson8_fragments           */
-            case R.id.lesson8_1fragment_add:
-                setFragment(fragment1 = new Lesson8_fragment1(), R.id.lesson8_frame1);
-                break;
-            case R.id.lesson8_2fragment_add:
-                setFragment(fragment2 = new Lesson8_fragment2(), R.id.lesson8_frame2);
-                break;
-            case R.id.lesson8_1fragment_remove:
-                removeFragment(getFragmentManager().findFragmentById(R.id.lesson8_frame1));
-                break;
-            case R.id.lesson8_2fragment_remove:
-                removeFragment(getFragmentManager().findFragmentById(R.id.lesson8_frame2));
-                break;
-            case R.id.lesson8_1fragment_swap:
-                swapFragment();
-                break;
-            case R.id.lesson8_2fragment_swap:
-                swapFragment();
-                break;
         }
+    }
+    void setOnClickForFragments(){
+        onClickFragments = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    /*        lesson8_fragments           */
+                    case R.id.lesson8_1fragment_add:
+                        setFragment(fragment1 = new Lesson8_fragment1(), R.id.lesson8_frame1);
+                        break;
+                    case R.id.lesson8_2fragment_add:
+                        setFragment(fragment2 = new Lesson8_fragment2(), R.id.lesson8_frame2);
+                        break;
+                    case R.id.lesson8_1fragment_remove:
+                        removeFragment(getSupportFragmentManager().findFragmentById(R.id.lesson8_frame1));
+                        break;
+                    case R.id.lesson8_2fragment_remove:
+                        removeFragment(getSupportFragmentManager().findFragmentById(R.id.lesson8_frame2));
+                        break;
+                    case R.id.lesson8_1fragment_swap:
+                        swapFragment();
+                        break;
+                    case R.id.lesson8_2fragment_swap:
+                        swapFragment();
+                        break;
+                }
+            }
+        };
+    }
+    void setOnClickForLoadAndSave(){
+        onClickLoadSave = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.lesson8_btnSave:
+                        Toast.makeText(getApplicationContext(),"Save ему блять",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.lesson8_btnLoad:
+                        Toast.makeText(getApplicationContext(),"Load ему блять",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.lesson8_btnDelete:
+                        Toast.makeText(getApplicationContext(),"Delete ему блять",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
     }
 
     void myWebView() {
@@ -135,7 +190,8 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
     }
 
     void setFragment(Fragment fragment, int id) {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
         if (fragment != null && fragmentManager.findFragmentById(fragment.getId()) == null) {
             fragmentManager.beginTransaction()
                     .add(id, fragment)
@@ -144,7 +200,7 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
     }
 
     void removeFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragment != null && fragmentManager.findFragmentById(fragment.getId()) != null) {
             fragmentManager.beginTransaction()
                     .remove(fragment)
@@ -153,9 +209,9 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
     }
 
     void swapFragment() {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         if (checkingTrue()) {
-            if (getFragmentManager().findFragmentById(R.id.lesson8_frame1).equals(fragment1)) {
+            if (getSupportFragmentManager().findFragmentById(R.id.lesson8_frame1).equals(fragment1)) {
                 fragmentManager.beginTransaction()
                         .replace(R.id.lesson8_frame1, fragment2 = new Lesson8_fragment2())
                         .replace(R.id.lesson8_frame2, fragment1 = new Lesson8_fragment1())
@@ -170,12 +226,13 @@ public class Lesson7_8 extends Activity implements View.OnClickListener{
     }
 
     boolean checkingTrue() {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.findFragmentById(R.id.lesson8_frame1) != null &&
                 fragmentManager.findFragmentById(R.id.lesson8_frame2) != null)
             return true;
         return false;
     }
+
     // serialise - пустой интерфейс, флаг, для разрешения сохранения класса в файл
     // parsable - интерфейс, с методами для сохранения и загрузки класса из файла, быстрее
     // handler - класс, для передачи сообщений между потоками
