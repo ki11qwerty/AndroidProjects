@@ -1,15 +1,24 @@
 package com.android.killqwerty.myapp.myapp3;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 
 /**************************************************************************************************
  * План:
@@ -153,9 +162,33 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.lesson8_btnSave:
-                        Toast.makeText(getApplicationContext(),"Save ему блять",
+                        String name = ((EditText) findViewById(R.id.lesson8_edit_name)).getText().toString();
+                        String secondName =((EditText) findViewById(R.id.lesson8_edit_second_name)).getText().toString();
+                        FileOutputStream fos;
+                        try {
+                            fos = openFileOutput("LoadSave.txt", Context.MODE_PRIVATE);
+                            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fos);
+                            fos.write(name.getBytes());
+//TODO:дописать, голова не варит уже
+                        }catch (IOException e){
+                            e.printStackTrace();
+                            Log.d("TAG"," " + e.getMessage());
+                        }catch (StreamCorruptedException e){
+                            e.printStackTrace();
+                        } finally {
+                            if(fos != null){
+                                try {
+                                    fos.close();
+                                }catch (IOException e){
+                                    Toast.makeText(getApplicationContext(),"не удалось закрыть поток",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }
+                        Toast.makeText(getApplicationContext(),""+name+","+secondName,
                                 Toast.LENGTH_SHORT).show();
                         break;
+
                     case R.id.lesson8_btnLoad:
                         Toast.makeText(getApplicationContext(),"Load ему блять",
                                 Toast.LENGTH_SHORT).show();
