@@ -38,7 +38,7 @@ import java.io.StreamCorruptedException;
  * FragmentManager и Fragment переехали в сапорт, пришлось додумывать самому) все прошло успешно
  *
  *
- * TODO: https://www.youtube.com/watch?v=DsVAP2F9c1U, допилить завтра фрагменты, и занятся пунктом номер 5------------------------------------30.10! горит уже все нахуй
+ * TODO: https://www.youtube.com/watch?v=DsVAP2F9c1Uе
  *************************************************************************************************/
 public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
