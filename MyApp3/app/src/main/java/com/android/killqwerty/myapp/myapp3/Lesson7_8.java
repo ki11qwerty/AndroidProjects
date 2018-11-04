@@ -1,6 +1,5 @@
 package com.android.killqwerty.myapp.myapp3;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,11 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.StreamCorruptedException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 /**************************************************************************************************
  * План:
@@ -41,9 +40,11 @@ import java.io.StreamCorruptedException;
  * TODO: https://www.youtube.com/watch?v=DsVAP2F9c1Uе
  *************************************************************************************************/
 public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
+    static final String FILE_NAME = "MyFile.txt";
+    static final String MY_TAG = "myLogs";
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
             btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
-            btnDelete;
+            btnDelete, btnSdLoad, btnSdSave, btnSdDelete;
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
    View.OnClickListener onClickLoadSave;
@@ -96,10 +97,16 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         btnSave = findViewById(R.id.lesson8_btnSave);
         btnLoad = findViewById(R.id.lesson8_btnLoad);
         btnDelete = findViewById(R.id.lesson8_btnDelete);
+        btnSdLoad = findViewById(R.id.lesson8_sd_btn_load);
+        btnSdSave = findViewById(R.id.lesson8_sd_btn_save);
+        btnSdDelete = findViewById(R.id.lesson8_sd_btn_delete);
 
         btnSave.setOnClickListener(onClickLoadSave);
         btnLoad.setOnClickListener(onClickLoadSave);
         btnDelete.setOnClickListener(onClickLoadSave);
+        btnSdLoad.setOnClickListener(onClickLoadSave);
+        btnSdSave.setOnClickListener(onClickLoadSave);
+        btnSdDelete.setOnClickListener(onClickLoadSave);
 
     }
 
@@ -133,7 +140,6 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             @Override
             public void onClick(View view) {
                 switch (view.getId()){
-                    /*        lesson8_fragments           */
                     case R.id.lesson8_1fragment_add:
                         setFragment(fragment1 = new Lesson8_fragment1(), R.id.lesson8_frame1);
                         break;
@@ -156,46 +162,80 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             }
         };
     }
-    void setOnClickForLoadAndSave(){
+
+    void setOnClickForLoadAndSave() {
         onClickLoadSave = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()){
+                String name = ((EditText) findViewById(R.id.lesson8_edit_name)).getText().toString();
+                String secondName = ((EditText) findViewById(R.id.lesson8_edit_second_name)).getText().toString();
+                switch (view.getId()) {
                     case R.id.lesson8_btnSave:
-                        String name = ((EditText) findViewById(R.id.lesson8_edit_name)).getText().toString();
-                        String secondName =((EditText) findViewById(R.id.lesson8_edit_second_name)).getText().toString();
-                        FileOutputStream fos;
+                        if (name.equals("") && secondName.equals(""))
+                            break;
                         try {
-                            fos = openFileOutput("LoadSave.txt", Context.MODE_PRIVATE);
-                            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fos);
-                            fos.write(name.getBytes());
-//TODO:дописать, голова не варит уже
-                        }catch (IOException e){
-                            e.printStackTrace();
-                            Log.d("TAG"," " + e.getMessage());
-                        }catch (StreamCorruptedException e){
-                            e.printStackTrace();
-                        } finally {
-                            if(fos != null){
-                                try {
-                                    fos.close();
-                                }catch (IOException e){
-                                    Toast.makeText(getApplicationContext(),"не удалось закрыть поток",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            }
+                            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                                    openFileOutput(FILE_NAME, MODE_APPEND)));
+                            bw.write("" + name + ", " + secondName + ".");
+                            bw.newLine();
+                            Log.d(MY_TAG, "save complete!" + name + "," + secondName);
+                            bw.flush();
+                            bw.close();
+                        } catch (IOException e) {
+                            Log.d(MY_TAG, "something wrong with save... ERROR!!!!");
                         }
-                        Toast.makeText(getApplicationContext(),""+name+","+secondName,
+                        Toast.makeText(getApplicationContext(), "" + name + "," + secondName,
                                 Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.lesson8_btnLoad:
-                        Toast.makeText(getApplicationContext(),"Load ему блять",
+                        TextView tv = findViewById(R.id.lesson8_load_save_tv);
+                        String allNames;
+                        StringBuilder sb = new StringBuilder();
+                        try {
+                            BufferedReader br = new BufferedReader(new InputStreamReader(
+                                    openFileInput(FILE_NAME)));
+                            Log.d(MY_TAG, "file open");
+                            while ((allNames = br.readLine()) != null) {
+                                sb.append(allNames);
+                                Log.d(MY_TAG, "append:" + allNames);
+                            }
+                            allNames = sb.toString();
+                            tv.setText(allNames);
+                            br.close();
+                        } catch (IOException e) {
+                            Log.e(MY_TAG, "something wrong with read... ERROR!!!!");
+                        }
+                        Toast.makeText(getApplicationContext(), "Load ему блять",
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.lesson8_btnDelete:
-                        Toast.makeText(getApplicationContext(),"Delete ему блять",
+                        deleteFile(FILE_NAME);
+                        Toast.makeText(getApplicationContext(), "записи удалены",
                                 Toast.LENGTH_SHORT).show();
+                        Log.d(MY_TAG, "файл удален");
+                        break;
+                        //TODO: допилить три кнопки, для external storage
+                    case R.id.lesson8_sd_btn_load:
+                        if (name.equals("") && secondName.equals(""))
+                            break;
+                        try {
+                            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                                    openFileOutput(FILE_NAME, MODE_APPEND)));
+                            bw.write("" + name + ", " + secondName + ".");
+                            bw.newLine();
+                            Log.d(MY_TAG, "save complete!" + name + "," + secondName);
+                            bw.flush();
+                            bw.close();
+                        } catch (IOException e) {
+                            Log.d(MY_TAG, "something wrong with save... ERROR!!!!");
+                        }
+                        Toast.makeText(getApplicationContext(), "" + name + "," + secondName,
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.lesson8_sd_btn_save:
+                        break;
+                    case R.id.lesson8_sd_btn_delete:
                         break;
                 }
             }
