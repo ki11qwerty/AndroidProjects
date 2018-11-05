@@ -1,6 +1,8 @@
 package com.android.killqwerty.myapp.myapp3;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -42,6 +44,8 @@ import java.io.OutputStreamWriter;
 public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
     static final String FILE_NAME = "MyFile.txt";
     static final String MY_TAG = "myLogs";
+    static final short EXTERNAL_STORAGE = 1;
+    static final short SD_MEMORY = 2;
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
             btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
             btnDelete, btnSdLoad, btnSdSave, btnSdDelete;
@@ -164,6 +168,9 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     }
 
     void setOnClickForLoadAndSave() {
+        TextView memorySdAvaliable = findViewById(R.id.lesson8_load_save_memory);
+        memorySdAvaliable.setText(getFreeMemory(EXTERNAL_STORAGE)+""+getFreeMemory(SD_MEMORY));
+
         onClickLoadSave = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -240,6 +247,18 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                 }
             }
         };
+    }
+    public String getFreeMemory(short type){
+        if (type == SD_MEMORY){
+       //     return "free space : " +Environment.getExternalStorageDirectory().se
+       //     return "free space : " +(int)((Environment.getExternalStorageDirectory().getTotalSpace() /1000)/1000);
+
+        }
+//        if (type == EXTERNAL_STORAGE){
+//          return "free space : "+(int)(((Environment.getExternalStorageDirectory().
+//                  getFreeSpace()) / 1024) / 1024)+"Mb";
+//        }
+        return "";
     }
 
     void myWebView() {
