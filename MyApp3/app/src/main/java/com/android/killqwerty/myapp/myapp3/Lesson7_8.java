@@ -219,7 +219,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                                 Toast.LENGTH_SHORT).show();
                         Log.d(MY_TAG, "файл удален");
                         break;
-                        //TODO: допилить три кнопки, для external storage/// пока нихуя не поменялось
+                        //TODO: допилить три кнопки, для external storage///
                     case R.id.lesson8_sd_btn_load:
                         if (name.equals("") && secondName.equals(""))
                             break;
