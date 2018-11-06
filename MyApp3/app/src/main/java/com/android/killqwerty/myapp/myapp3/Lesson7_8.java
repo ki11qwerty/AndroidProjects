@@ -168,9 +168,6 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     }
 
     void setOnClickForLoadAndSave() {
-        TextView memorySdAvaliable = findViewById(R.id.lesson8_load_save_memory);
-        memorySdAvaliable.setText(getFreeMemory(EXTERNAL_STORAGE)+""+getFreeMemory(SD_MEMORY));
-
         onClickLoadSave = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -222,7 +219,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                                 Toast.LENGTH_SHORT).show();
                         Log.d(MY_TAG, "файл удален");
                         break;
-                        //TODO: допилить три кнопки, для external storage
+                        //TODO: допилить три кнопки, для external storage/// пока нихуя не поменялось
                     case R.id.lesson8_sd_btn_load:
                         if (name.equals("") && secondName.equals(""))
                             break;
@@ -241,6 +238,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.lesson8_sd_btn_save:
+
                         break;
                     case R.id.lesson8_sd_btn_delete:
                         break;
@@ -248,19 +246,6 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             }
         };
     }
-    public String getFreeMemory(short type){
-        if (type == SD_MEMORY){
-       //     return "free space : " +Environment.getExternalStorageDirectory().se
-       //     return "free space : " +(int)((Environment.getExternalStorageDirectory().getTotalSpace() /1000)/1000);
-
-        }
-//        if (type == EXTERNAL_STORAGE){
-//          return "free space : "+(int)(((Environment.getExternalStorageDirectory().
-//                  getFreeSpace()) / 1024) / 1024)+"Mb";
-//        }
-        return "";
-    }
-
     void myWebView() {
         setContentView(R.layout.lesson8_webview);
         final EditText editText;

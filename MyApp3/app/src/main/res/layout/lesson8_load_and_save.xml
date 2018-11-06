@@ -56,13 +56,6 @@
             android:textAlignment="center"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/lesson8_load_save_memory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="center" />
-
         <LinearLayout
             android:id="@+id/l8l5"
             android:layout_width="match_parent"
