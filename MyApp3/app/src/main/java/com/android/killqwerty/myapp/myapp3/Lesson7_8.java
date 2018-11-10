@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -44,6 +48,8 @@ import java.io.OutputStreamWriter;
 public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
     static final String FILE_NAME = "MyFile.txt";
     static final String MY_TAG = "myLogs";
+    static final String FILE_NAME_IN_SD = "MyFileSd.txt";
+    static final String PATH_NAME_IN_SD = "MyFilesKillQwerty";
     static final short EXTERNAL_STORAGE = 1;
     static final short SD_MEMORY = 2;
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
@@ -173,6 +179,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             public void onClick(View view) {
                 String name = ((EditText) findViewById(R.id.lesson8_edit_name)).getText().toString();
                 String secondName = ((EditText) findViewById(R.id.lesson8_edit_second_name)).getText().toString();
+                TextView tv = findViewById(R.id.lesson8_load_save_tv);
+                String allNames;
                 switch (view.getId()) {
                     case R.id.lesson8_btnSave:
                         if (name.equals("") && secondName.equals(""))
@@ -193,8 +201,6 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                         break;
 
                     case R.id.lesson8_btnLoad:
-                        TextView tv = findViewById(R.id.lesson8_load_save_tv);
-                        String allNames;
                         StringBuilder sb = new StringBuilder();
                         try {
                             BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -220,27 +226,59 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                         Log.d(MY_TAG, "файл удален");
                         break;
                         //TODO: допилить три кнопки, для external storage///
-                    case R.id.lesson8_sd_btn_load:
+                    case R.id.lesson8_sd_btn_save:
                         if (name.equals("") && secondName.equals(""))
-                            break;
-                        try {
-                            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-                                    openFileOutput(FILE_NAME, MODE_APPEND)));
-                            bw.write("" + name + ", " + secondName + ".");
-                            bw.newLine();
-                            Log.d(MY_TAG, "save complete!" + name + "," + secondName);
-                            bw.flush();
-                            bw.close();
-                        } catch (IOException e) {
-                            Log.d(MY_TAG, "something wrong with save... ERROR!!!!");
+                            return;
+                        if (!Environment.getExternalStorageState().equals(
+                                Environment.MEDIA_MOUNTED)) {
+                            Log.d(MY_TAG, "SD-карта не доступна: " +
+                                    Environment.getExternalStorageState());
+                            return;
                         }
-                        Toast.makeText(getApplicationContext(), "" + name + "," + secondName,
+                        BufferedWriter bw;
+                        try {
+                            File pathSd = Environment.getExternalStorageDirectory();
+                            pathSd = new File(pathSd.getAbsolutePath() + "/" + PATH_NAME_IN_SD);
+                            pathSd.mkdirs();
+                            File file = new File(pathSd, FILE_NAME_IN_SD);
+                            try {
+                                bw = new BufferedWriter(new FileWriter(file));
+                                bw.append("" + name + ", " + secondName + ".");
+                                bw.close();
+                            } catch (IOException e) {
+                                Log.d(MY_TAG, "something wrong with save in sd line-249");
+                            }
+                        }catch (NullPointerException e){
+                            Toast.makeText(getApplicationContext(),"каталог не найден",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        Toast.makeText(getApplicationContext(),"saving",
                                 Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.lesson8_sd_btn_save:
+                    case R.id.lesson8_sd_btn_load:
+                        if (!Environment.getExternalStorageState().equals(
+                                Environment.MEDIA_MOUNTED)) {
+                            Log.d(MY_TAG, "SD-карта не доступна: " + Environment.getExternalStorageState());
+                            return;
+                        }
 
+                        File sdPath = Environment.getExternalStorageDirectory();
+                        sdPath = new File(sdPath.getAbsolutePath() + "/" + PATH_NAME_IN_SD);
+                        File sdFile = new File(sdPath, FILE_NAME_IN_SD);
+                        try {
+                            StringBuilder sb1 = new StringBuilder();
+                            BufferedReader br = new BufferedReader(new FileReader(sdFile));
+                            while ((allNames = br.readLine()) != null) {
+                              sb1.append(allNames);
+                            }
+                            allNames = sb1.toString();
+                            tv.setText(allNames);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case R.id.lesson8_sd_btn_delete:
+                        deleteFile(FILE_NAME_IN_SD);
                         break;
                 }
             }
