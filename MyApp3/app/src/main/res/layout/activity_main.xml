@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginEnd="50dp"
+    android:layout_marginStart="50dp"
+    android:minHeight="250dp"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/button_forward_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="40dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/next_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="385dp"
-        android:layout_height="164dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_weight="7"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_lesson_4_main"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
@@ -41,7 +32,7 @@
         <Button
             android:id="@+id/button_lesson_5_main"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
@@ -52,19 +43,16 @@
 
     <LinearLayout
         android:id="@+id/linear_layout6"
-        android:layout_width="385dp"
-        android:layout_height="164dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+        android:layout_weight="7"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_lesson6_main"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
@@ -74,25 +62,45 @@
         <Button
             android:id="@+id/button_lesson7_main"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
             android:background="@color/colorLesson7"
             android:text="Урок №7,8"
             android:visibility="visible" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonExit"
-        android:layout_width="60dp"
-        android:layout_height="86dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/exit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="1.0" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7">
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/buttonExit"
+            android:layout_width="100px"
+            android:layout_height="150px"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/exit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/button_forward_main"
+            android:layout_width="150px"
+            android:layout_height="90px"
+            android:layout_marginBottom="44dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/next_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

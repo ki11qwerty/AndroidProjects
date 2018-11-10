@@ -28,10 +28,10 @@ import java.io.OutputStreamWriter;
 /**************************************************************************************************
  * План:
  * TODO: 1 кнопка переход в layout с БД, два поля - имя, фамилия. 3 кнопки - записать, читать, стереть
- * -есть 2 кнопка переход в layout с фрагментами, три кнопки для переключения фрагментов
+ * -Выполнено 2 кнопка переход в layout с фрагментами, три кнопки для переключения фрагментов
  * TODO: 3 кнопка переход в layout или новое активити с какой нибудь приколюхой JSON
- * -есть 4 кнопка webView
- * TODO: 5 кнопка сохранение в файл
+ * -Выполнено 4 кнопка webView
+ * -Выполнено 5 кнопка сохранение в файл
  * TODO: 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
  *     для приостановки потока на короткое время и итерацию в TextView
  *
@@ -41,17 +41,14 @@ import java.io.OutputStreamWriter;
  * Fragments оказалось куда больше материала чем на уроке дали =(
  * Support Library
  * FragmentManager и Fragment переехали в сапорт, пришлось додумывать самому) все прошло успешно
- *
- *
- * TODO: https://www.youtube.com/watch?v=DsVAP2F9c1Uе
+ * FileWriter второй аргумент не MODE_APPEND а True, часов 6 тупежа, чуть не забросил андройд) ну
+ *      охуеть теперь
  *************************************************************************************************/
 public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
     static final String FILE_NAME = "MyFile.txt";
     static final String MY_TAG = "myLogs";
     static final String FILE_NAME_IN_SD = "MyFileSd.txt";
     static final String PATH_NAME_IN_SD = "MyFilesKillQwerty";
-    static final short EXTERNAL_STORAGE = 1;
-    static final short SD_MEMORY = 2;
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
             btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
             btnDelete, btnSdLoad, btnSdSave, btnSdDelete;
@@ -225,7 +222,6 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                                 Toast.LENGTH_SHORT).show();
                         Log.d(MY_TAG, "файл удален");
                         break;
-                        //TODO: допилить три кнопки, для external storage///
                     case R.id.lesson8_sd_btn_save:
                         if (name.equals("") && secondName.equals(""))
                             return;
@@ -235,16 +231,15 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                                     Environment.getExternalStorageState());
                             return;
                         }
-                        BufferedWriter bw;
                         try {
                             File pathSd = Environment.getExternalStorageDirectory();
                             pathSd = new File(pathSd.getAbsolutePath() + "/" + PATH_NAME_IN_SD);
                             pathSd.mkdirs();
                             File file = new File(pathSd, FILE_NAME_IN_SD);
                             try {
-                                bw = new BufferedWriter(new FileWriter(file));
-                                bw.append("" + name + ", " + secondName + ".");
-                                bw.close();
+                                FileWriter filewriter = new FileWriter(file,true);
+                                filewriter.append("" + name + ", " + secondName + ".");
+                                filewriter.close();
                             } catch (IOException e) {
                                 Log.d(MY_TAG, "something wrong with save in sd line-249");
                             }
@@ -278,7 +273,16 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                         }
                         break;
                     case R.id.lesson8_sd_btn_delete:
-                        deleteFile(FILE_NAME_IN_SD);
+                        File fileDelete = Environment.getExternalStorageDirectory();
+                        fileDelete = new File(fileDelete.getAbsolutePath() +"/"+ PATH_NAME_IN_SD + "/"+ FILE_NAME_IN_SD);
+                        if(fileDelete.delete()){
+                            Toast.makeText(getApplicationContext(),"fail deleted",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"fail not deleted",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                         break;
                 }
             }

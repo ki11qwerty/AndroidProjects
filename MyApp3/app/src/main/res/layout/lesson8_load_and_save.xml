@@ -8,8 +8,8 @@
         android:id="@+id/l8l3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView6"
@@ -88,19 +88,20 @@
         <EditText
             android:id="@+id/lesson8_edit_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
             android:background="@color/colorWhite"
             android:gravity="center_horizontal"
             android:hint="Имя"
+            android:singleLine="false"
             android:text="" />
 
         <EditText
             android:id="@+id/lesson8_edit_second_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
             android:background="@color/colorWhite"
@@ -110,7 +111,7 @@
         <TextView
             android:id="@+id/lesson8_load_save_tv"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="40dp"
             android:text=""
             android:textAlignment="center"
