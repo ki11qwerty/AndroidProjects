@@ -1,8 +1,8 @@
 package com.android.killqwerty.myapp.myapp3;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,18 +12,19 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.concurrent.TimeUnit;
 
 /**************************************************************************************************
  * План:
@@ -51,11 +52,15 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     static final String PATH_NAME_IN_SD = "MyFilesKillQwerty";
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
             btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
-            btnDelete, btnSdLoad, btnSdSave, btnSdDelete;
+            btnDelete, btnSdLoad, btnSdSave, btnSdDelete, btnHandlerRun;
+    ProgressBar pb;
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
-   View.OnClickListener onClickLoadSave;
-   View.OnClickListener onClickFragments;
+    View.OnClickListener onClickLoadSave;
+    View.OnClickListener onClickFragments;
+    View.OnClickListener onClickHandler;
+    TextView tvInHandler;
+    Lesson8_MyHandler handler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,6 +121,14 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         btnSdDelete.setOnClickListener(onClickLoadSave);
 
     }
+    void setMyButtonsForHandler(){
+        setOnClickHandler();
+        pb = findViewById(R.id.lesson8_progressbar);
+        btnHandlerRun = findViewById(R.id.lesson8_handler_run);
+        btnHandlerRun.setOnClickListener(onClickHandler);
+        tvInHandler = findViewById(R.id.lesson8_handler_tv);
+        handler = new Lesson8_MyHandler(this);
+    }
 
     @Override
     public void onClick(View view) {
@@ -124,6 +137,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                 finish();
                 break;
             case R.id.lesson8_btn_handler_asynctask:
+                setContentView(R.layout.lesson8_handler_asynctask);
+                setMyButtonsForHandler();
                 break;
             case R.id.lesson8_btn_save_load:
                 setContentView(R.layout.lesson8_load_and_save);
@@ -288,6 +303,32 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             }
         };
     }
+
+    void setOnClickHandler() {
+        onClickHandler = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.lesson8_handler_run:
+                        tvInHandler.setVisibility(View.VISIBLE);
+                        pb.setVisibility(View.VISIBLE);
+                        btnHandlerRun.setEnabled(false);
+                        Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (int i = 1; i < 11; i++) {
+                                    download(1);
+                                    handler.sendEmptyMessage(i);
+                                }
+                            }
+                        });
+                        t.start();
+                        break;
+                }
+            }
+        };
+    }
+
     void myWebView() {
         setContentView(R.layout.lesson8_webview);
         final EditText editText;
@@ -351,6 +392,15 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             return true;
         return false;
     }
+
+    void download(int time){
+        try{
+            TimeUnit.SECONDS.sleep(time);
+        }catch (InterruptedException e){
+            Log.d(MY_TAG,"новый поток отказывается спать");
+        }
+    }
+
 
     // serialise - пустой интерфейс, флаг, для разрешения сохранения класса в файл
     // parsable - интерфейс, с методами для сохранения и загрузки класса из файла, быстрее

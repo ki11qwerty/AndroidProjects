@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lesson8_handler_tv"
+        android:layout_width="417dp"
+        android:layout_height="169dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/lesson8_progressbar"
+        android:visibility="invisible"
+        android:layout_width="255dp"
+        android:layout_height="196dp"
+        android:layout_marginTop="44dp"
+        android:indeterminateDrawable="@drawable/loader"
+        android:indeterminateOnly="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lesson8_handler_tv" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/lesson8_handler_run"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson7"
+            android:text="Run \n (handler)" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson7"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson7"
+            android:text="Button" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

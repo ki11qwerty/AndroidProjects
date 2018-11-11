@@ -18,23 +18,25 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="164dp"
+        android:layout_width="357dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/android_developer"
+        android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="99dp"
+        android:layout_width="182dp"
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:text="@string/First_last_name"
+        android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.428"
@@ -43,11 +45,12 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="174dp"
+        android:layout_width="373dp"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:text="@string/Experience"
+        android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.444"
@@ -56,11 +59,12 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="310dp"
-        android:layout_height="144dp"
+        android:layout_width="396dp"
+        android:layout_height="319dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/about_me"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
