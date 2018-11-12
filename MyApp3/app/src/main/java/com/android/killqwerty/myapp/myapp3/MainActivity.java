@@ -1,11 +1,15 @@
 package com.android.killqwerty.myapp.myapp3;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.android.killqwerty.myapp.myapp3.Android1.Lesson4;
+import com.android.killqwerty.myapp.myapp3.Android1.Lesson5;
+import com.android.killqwerty.myapp.myapp3.Android1.Lesson6;
+import com.android.killqwerty.myapp.myapp3.Android1.Lesson7_8;
 
 public class MainActivity extends AppCompatActivity {
     Button buttNext, buttLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit;

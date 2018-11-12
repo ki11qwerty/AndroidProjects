@@ -1,4 +1,4 @@
-package com.android.killqwerty.myapp.myapp3;
+package com.android.killqwerty.myapp.myapp3.Android1;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.android.killqwerty.myapp.myapp3.R;
 
 public class Lesson6 extends Activity implements View.OnClickListener {
     static final int CAMERA_RESULT = 1;

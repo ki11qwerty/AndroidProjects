@@ -1,4 +1,4 @@
-package com.android.killqwerty.myapp.myapp3;
+package com.android.killqwerty.myapp.myapp3.Android1;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -26,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.killqwerty.myapp.myapp3.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;

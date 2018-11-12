@@ -1,8 +1,8 @@
-package com.android.killqwerty.myapp.myapp3;
+package com.android.killqwerty.myapp.myapp3.Android1;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.killqwerty.myapp.myapp3.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -33,7 +35,7 @@ import java.util.concurrent.TimeUnit;
  * TODO: 3 кнопка переход в layout или новое активити с какой нибудь приколюхой JSON
  * -Выполнено 4 кнопка webView
  * -Выполнено 5 кнопка сохранение в файл
- * TODO: 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
+ * -Выполнено 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
  *     для приостановки потока на короткое время и итерацию в TextView
  *
  *                                                                    дата начала : 23.10
@@ -44,6 +46,7 @@ import java.util.concurrent.TimeUnit;
  * FragmentManager и Fragment переехали в сапорт, пришлось додумывать самому) все прошло успешно
  * FileWriter второй аргумент не MODE_APPEND а True, часов 6 тупежа, чуть не забросил андройд) ну
  *      охуеть теперь
+ * Handler оказался куда более крутым, и плюс почему то про слабые зависимости узнал только сейчас
  *************************************************************************************************/
 public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
     static final String FILE_NAME = "MyFile.txt";
@@ -52,15 +55,16 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     static final String PATH_NAME_IN_SD = "MyFilesKillQwerty";
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
             btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
-            btnDelete, btnSdLoad, btnSdSave, btnSdDelete, btnHandlerRun;
+            btnDelete, btnSdLoad, btnSdSave, btnSdDelete, btnHandlerRun, btnAsync;
     ProgressBar pb;
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
     View.OnClickListener onClickLoadSave;
     View.OnClickListener onClickFragments;
     View.OnClickListener onClickHandler;
-    TextView tvInHandler;
+    TextView tvInHandler, asyncTv;
     Lesson8_MyHandler handler;
+    MyAsyncTask myAsyncTask;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,8 +130,12 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         pb = findViewById(R.id.lesson8_progressbar);
         btnHandlerRun = findViewById(R.id.lesson8_handler_run);
         btnHandlerRun.setOnClickListener(onClickHandler);
-        tvInHandler = findViewById(R.id.lesson8_handler_tv);
+        tvInHandler = findViewById(R.id.lesson8_handler_tv1);
+        asyncTv = findViewById(R.id.lesson8_handler_tv2);
         handler = new Lesson8_MyHandler(this);
+        btnAsync = findViewById(R.id.lesson8_btn_asynctask_run);
+        btnAsync.setOnClickListener(onClickHandler);
+        myAsyncTask = new MyAsyncTask();
     }
 
     @Override
@@ -310,23 +318,28 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.lesson8_handler_run:
-                        tvInHandler.setVisibility(View.VISIBLE);
-                        pb.setVisibility(View.VISIBLE);
-                        btnHandlerRun.setEnabled(false);
-                        Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                for (int i = 1; i < 11; i++) {
-                                    download(1);
-                                    handler.sendEmptyMessage(i);
-                                }
-                            }
-                        });
-                        t.start();
+                        handlerRun();
                         break;
+                    case R.id.lesson8_btn_asynctask_run:
+                        new MyAsyncTask().execute();
                 }
             }
         };
+    }
+    public void handlerRun(){
+        tvInHandler.setVisibility(View.VISIBLE);
+        pb.setVisibility(View.VISIBLE);
+        btnHandlerRun.setEnabled(false);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 1; i < 11; i++) {
+                    download(1);
+                    handler.sendEmptyMessage(i);
+                }
+            }
+        });
+        t.start();
     }
 
     void myWebView() {
@@ -401,11 +414,69 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         }
     }
 
+    class MyAsyncTask extends AsyncTask<Void, CharSequence, Void> {
+        CharSequence[] chars = {"a","s","y","n","c","t","a","s","k","\n",
+                "i","s","\n","r","e","a","l","\n\n","l","e","s","s","o","n","8"," ",
+                "c","o","m","p","l","e","t","e"};
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pb.setVisibility(View.VISIBLE);
+            asyncTv.setVisibility(View.VISIBLE);
+            asyncTv.setText("");
+            asyncTv.setTextColor(getResources().getColor(R.color.colorBlack));
+            asyncTv.setTextSize(30);
 
-    // serialise - пустой интерфейс, флаг, для разрешения сохранения класса в файл
-    // parsable - интерфейс, с методами для сохранения и загрузки класса из файла, быстрее
-    // handler - класс, для передачи сообщений между потоками
-    // AsyncTask - класс для фоновой работы отдельно от gui потока и больших работ в фоне
-    // Нет дз, нихуя не понятно, все сделать вместе с уроком №8 в одной кнопке
+        }
 
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                for(int i = 0; i < chars.length; i++) {
+                    TimeUnit.MILLISECONDS.sleep(300);
+                    publishProgress(chars[i]);
+                }
+                TimeUnit.MILLISECONDS.sleep(2000);
+                publishProgress("xxx");
+            }catch (InterruptedException e){
+                Log.d("MyLogs","");
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(CharSequence... values) {
+            super.onProgressUpdate(values);
+            pb.setVisibility(View.VISIBLE);
+            if (values[0] == "xxx"){
+                asyncTv.setText("=)");
+                asyncTv.setTextSize(140);
+                asyncTv.setTextColor(getResources().getColor(R.color.colorGreen));
+            }
+            else
+                asyncTv.append(values[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            pb.setVisibility(View.INVISIBLE);
+
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (handler != null){
+            handler.removeCallbacksAndMessages(null);
+        }
+        super.onDestroy();
+    }
 }
+
+
+// serialise - пустой интерфейс, флаг, для разрешения сохранения класса в файл               (java)
+// parsable - интерфейс, с методами для сохранения и загрузки класса из файла, быстрее     (android)
+// handler - класс, для передачи сообщений между потоками и для исполнения кода через промежуток времени
+// AsyncTask - класс для фоновой работы отдельно от gui потока и больших работ в фоне
+// Нет дз, нихуя не понятно, все сделать вместе с уроком №8 в одной кнопке
