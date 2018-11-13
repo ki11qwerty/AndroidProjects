@@ -421,6 +421,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            btnAsync.setEnabled(false);
             pb.setVisibility(View.VISIBLE);
             asyncTv.setVisibility(View.VISIBLE);
             asyncTv.setText("");
@@ -461,7 +462,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             pb.setVisibility(View.INVISIBLE);
-
+            btnAsync.setEnabled(true);
         }
     }
 
