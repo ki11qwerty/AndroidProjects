@@ -3,7 +3,7 @@
     android:id="@+id/lesson8_r_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLesson7">
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:id="@+id/lesson8_linearlayout"
@@ -25,7 +25,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorOfButtonLesson7"
+            android:background="@color/colorPrimaryDark"
             android:text="search" />
 
         <WebView

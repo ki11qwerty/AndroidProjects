@@ -15,51 +15,70 @@
             android:id="@+id/l8l2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             android:layout_weight="5"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/lesson8_1fragment_add"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/add1" />
 
             <Button
                 android:id="@+id/lesson8_1fragment_remove"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/lesson8_remove" />
 
             <Button
                 android:id="@+id/lesson8_1fragment_swap"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="8dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/lesson8_swap" />
 
             <Button
                 android:id="@+id/lesson8_2fragment_add"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="4dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/add2" />
 
             <Button
                 android:id="@+id/lesson8_2fragment_remove"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/lesson8_remove" />
 
             <Button
                 android:id="@+id/lesson8_2fragment_swap"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/lesson8_swap" />
 
         </LinearLayout>
