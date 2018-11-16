@@ -36,6 +36,7 @@ import java.util.concurrent.TimeUnit;
  * -Выполнено 4 кнопка webView
  * -Выполнено 5 кнопка сохранение в файл
  * -Выполнено 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
+ * TODO: 7 saveinstansestate разковырять
  *     для приостановки потока на короткое время и итерацию в TextView
  *
  *                                                                    дата начала : 23.10
@@ -48,6 +49,7 @@ import java.util.concurrent.TimeUnit;
  *      охуеть теперь
  * Handler оказался куда более крутым, и плюс почему то про слабые зависимости узнал только сейчас
  *************************************************************************************************/
+
 public class Lesson7_8 extends FragmentActivity implements View.OnClickListener {
     static final String FILE_NAME = "MyFile.txt";
     static final String MY_TAG = "myLogs";
@@ -55,13 +57,11 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     static final String PATH_NAME_IN_SD = "MyFilesKillQwerty";
     Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
             btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
-            btnDelete, btnSdLoad, btnSdSave, btnSdDelete, btnHandlerRun, btnAsync;
+            btnDelete, btnSdLoad, btnSdSave, btnSdDelete, btnHandlerRun, btnAsync, btnINJson;
     ProgressBar pb;
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
-    View.OnClickListener onClickLoadSave;
-    View.OnClickListener onClickFragments;
-    View.OnClickListener onClickHandler;
+    View.OnClickListener onClickLoadSave, onClickFragments, onClickHandler, onClickJson;
     TextView tvInHandler, asyncTv;
     Lesson8_MyHandler handler;
     MyAsyncTask myAsyncTask;
@@ -108,7 +108,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         btnSwapFr1.setOnClickListener(onClickFragments);
         btnSwapFr2.setOnClickListener(onClickFragments);
     }
-    void setMyButtonsForLoadAndSave(){
+
+    void setMyButtonsForLoadAndSave() {
         setOnClickForLoadAndSave();
         btnSave = findViewById(R.id.lesson8_btnSave);
         btnLoad = findViewById(R.id.lesson8_btnLoad);
@@ -125,7 +126,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         btnSdDelete.setOnClickListener(onClickLoadSave);
 
     }
-    void setMyButtonsForHandler(){
+
+    void setMyButtonsForHandler() {
         setOnClickHandler();
         pb = findViewById(R.id.lesson8_progressbar);
         btnHandlerRun = findViewById(R.id.lesson8_handler_run);
@@ -136,6 +138,12 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         btnAsync = findViewById(R.id.lesson8_btn_asynctask_run);
         btnAsync.setOnClickListener(onClickHandler);
         myAsyncTask = new MyAsyncTask();
+    }
+
+    void setMyButtonsForJson() {
+        setOnClickJson();
+        btnINJson = findViewById(R.id.lesson8_json_btn_just);
+        btnINJson.setOnClickListener(onClickJson);
     }
 
     @Override
@@ -153,6 +161,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                 setMyButtonsForLoadAndSave();
                 break;
             case R.id.lesson8_btn_json:
+                setContentView(R.layout.lesson8_json_layout);
+                setMyButtonsForJson();
                 break;
             case R.id.lesson8_btn_webview:
                 myWebView();
@@ -165,11 +175,12 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                 break;
         }
     }
-    void setOnClickForFragments(){
+
+    void setOnClickForFragments() {
         onClickFragments = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()){
+                switch (view.getId()) {
                     case R.id.lesson8_1fragment_add:
                         setFragment(fragment1 = new Lesson8_fragment1(), R.id.lesson8_frame1);
                         break;
@@ -260,17 +271,17 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                             pathSd.mkdirs();
                             File file = new File(pathSd, FILE_NAME_IN_SD);
                             try {
-                                FileWriter filewriter = new FileWriter(file,true);
+                                FileWriter filewriter = new FileWriter(file, true);
                                 filewriter.append("" + name + ", " + secondName + ".");
                                 filewriter.close();
                             } catch (IOException e) {
                                 Log.d(MY_TAG, "something wrong with save in sd line-249");
                             }
-                        }catch (NullPointerException e){
-                            Toast.makeText(getApplicationContext(),"каталог не найден",
+                        } catch (NullPointerException e) {
+                            Toast.makeText(getApplicationContext(), "каталог не найден",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(getApplicationContext(),"saving",
+                        Toast.makeText(getApplicationContext(), "saving",
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.lesson8_sd_btn_load:
@@ -287,7 +298,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                             StringBuilder sb1 = new StringBuilder();
                             BufferedReader br = new BufferedReader(new FileReader(sdFile));
                             while ((allNames = br.readLine()) != null) {
-                              sb1.append(allNames);
+                                sb1.append(allNames);
                             }
                             allNames = sb1.toString();
                             tv.setText(allNames);
@@ -297,13 +308,12 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                         break;
                     case R.id.lesson8_sd_btn_delete:
                         File fileDelete = Environment.getExternalStorageDirectory();
-                        fileDelete = new File(fileDelete.getAbsolutePath() +"/"+ PATH_NAME_IN_SD + "/"+ FILE_NAME_IN_SD);
-                        if(fileDelete.delete()){
-                            Toast.makeText(getApplicationContext(),"fail deleted",
+                        fileDelete = new File(fileDelete.getAbsolutePath() + "/" + PATH_NAME_IN_SD + "/" + FILE_NAME_IN_SD);
+                        if (fileDelete.delete()) {
+                            Toast.makeText(getApplicationContext(), "fail deleted",
                                     Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"fail not deleted",
+                        } else {
+                            Toast.makeText(getApplicationContext(), "fail not deleted",
                                     Toast.LENGTH_SHORT).show();
                         }
                         break;
@@ -326,7 +336,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             }
         };
     }
-    public void handlerRun(){
+
+    public void handlerRun() {
         tvInHandler.setVisibility(View.VISIBLE);
         pb.setVisibility(View.VISIBLE);
         btnHandlerRun.setEnabled(false);
@@ -340,6 +351,19 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             }
         });
         t.start();
+    }
+
+    void setOnClickJson() {
+        onClickJson = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.lesson8_json_btn_just:
+                        Toast.makeText(getApplicationContext(), "чпонь", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
     }
 
     void myWebView() {
@@ -406,18 +430,19 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         return false;
     }
 
-    void download(int time){
-        try{
+    void download(int time) {
+        try {
             TimeUnit.SECONDS.sleep(time);
-        }catch (InterruptedException e){
-            Log.d(MY_TAG,"новый поток отказывается спать");
+        } catch (InterruptedException e) {
+            Log.d(MY_TAG, "новый поток отказывается спать");
         }
     }
 
     class MyAsyncTask extends AsyncTask<Void, CharSequence, Void> {
-        CharSequence[] chars = {"a","s","y","n","c","t","a","s","k","\n",
-                "i","s","\n","r","e","a","l","\n\n","l","e","s","s","o","n","8"," ",
-                "c","o","m","p","l","e","t","e"};
+        CharSequence[] chars = {"a", "s", "y", "n", "c", "t", "a", "s", "k", "\n",
+                "i", "s", "\n", "r", "e", "a", "l", "\n\n", "l", "e", "s", "s", "o", "n", "8", " ",
+                "c", "o", "m", "p", "l", "e", "t", "e"};
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -433,14 +458,14 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                for(int i = 0; i < chars.length; i++) {
+                for (int i = 0; i < chars.length; i++) {
                     TimeUnit.MILLISECONDS.sleep(300);
                     publishProgress(chars[i]);
                 }
                 TimeUnit.MILLISECONDS.sleep(2000);
                 publishProgress("xxx");
-            }catch (InterruptedException e){
-                Log.d("MyLogs","");
+            } catch (InterruptedException e) {
+                Log.d("MyLogs", "");
             }
             return null;
         }
@@ -449,12 +474,11 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         protected void onProgressUpdate(CharSequence... values) {
             super.onProgressUpdate(values);
             pb.setVisibility(View.VISIBLE);
-            if (values[0] == "xxx"){
+            if (values[0] == "xxx") {
                 asyncTv.setText("=)");
                 asyncTv.setTextSize(140);
                 asyncTv.setTextColor(getResources().getColor(R.color.colorGreen));
-            }
-            else
+            } else
                 asyncTv.append(values[0]);
         }
 
@@ -468,7 +492,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
 
     @Override
     protected void onDestroy() {
-        if (handler != null){
+        if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
         super.onDestroy();
