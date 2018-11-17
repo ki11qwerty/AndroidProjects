@@ -62,7 +62,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
     View.OnClickListener onClickLoadSave, onClickFragments, onClickHandler, onClickJson;
-    TextView tvInHandler, asyncTv;
+    TextView tvInHandler, asyncTv, tvJsonLeftSize, tvJsonRightSize;
+    EditText etJsonName, etJsonLastName, etJsonAge;
     Lesson8_MyHandler handler;
     MyAsyncTask myAsyncTask;
 
@@ -144,6 +145,10 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         setOnClickJson();
         btnINJson = findViewById(R.id.lesson8_json_btn_just);
         btnINJson.setOnClickListener(onClickJson);
+        etJsonName = findViewById(R.id.lesson8_json__edittext_name);
+        etJsonLastName = findViewById(R.id.lesson8_json__edittext_lastname);
+        etJsonAge = findViewById(R.id.lesson8_json_edittext_age);
+        tvJsonLeftSize = findViewById(R.id.lesson8_json_personInfo_left_size);
     }
 
     @Override
@@ -359,7 +364,20 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.lesson8_json_btn_just:
-                        Toast.makeText(getApplicationContext(), "чпонь", Toast.LENGTH_SHORT).show();
+                        String name;
+                        String lastName;
+                        int age;
+                        if(etJsonName.getText().toString().equals("") ||
+                                etJsonLastName.getText().toString().equals("") ||
+                                etJsonAge.getText().toString().equals(""))
+                            Toast.makeText(getApplicationContext(), "поля не заполнены", Toast.LENGTH_SHORT).show();
+                        else {
+                            name = etJsonName.getText().toString();
+                            lastName = etJsonLastName.getText().toString();
+                            age = Integer.parseInt(etJsonAge.getText().toString());
+                            createPersonAndSetJson(name, lastName, age);
+                        }
+
                         break;
                 }
             }
@@ -436,6 +454,13 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         } catch (InterruptedException e) {
             Log.d(MY_TAG, "новый поток отказывается спать");
         }
+    }
+
+    public void createPersonAndSetJson(String name,String lastName,int age){
+        PersonTEMP person = new PersonTEMP(name, lastName, age);
+        String allInfo = "имя: "+person.getName()+"\nфамилия: "+person.getLastName()+
+                "\nвозраст: "+person.getAge()+"\ninfo: "+person.getInfo();
+        tvJsonLeftSize.setText(allInfo);
     }
 
     class MyAsyncTask extends AsyncTask<Void, CharSequence, Void> {
