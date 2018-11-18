@@ -18,6 +18,9 @@ import android.widget.Toast;
 
 import com.android.killqwerty.myapp.myapp3.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -30,14 +33,15 @@ import java.util.concurrent.TimeUnit;
 
 /**************************************************************************************************
  * План:
- * TODO: 1 кнопка переход в layout с БД, два поля - имя, фамилия. 3 кнопки - записать, читать, стереть
+ * -УДАЛЕНО (следующий урок)
+ *        кнопка переход в layout с БД, два поля - имя, фамилия. 3 кнопки - записать, читать, стереть
  * -Выполнено 2 кнопка переход в layout с фрагментами, три кнопки для переключения фрагментов
  * TODO: 3 кнопка переход в layout или новое активити с какой нибудь приколюхой JSON
  * -Выполнено 4 кнопка webView
  * -Выполнено 5 кнопка сохранение в файл
  * -Выполнено 6 кнопка AsyncTask и Handler, Layout с TextView две кнопки для handler или AsyncTask, метод
+ *        для приостановки потока на короткое время и итерацию в TextView
  * TODO: 7 saveinstansestate разковырять
- *     для приостановки потока на короткое время и итерацию в TextView
  *
  *                                                                    дата начала : 23.10
  *                                                                     закончить бы до : 1.11
@@ -55,9 +59,10 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     static final String MY_TAG = "myLogs";
     static final String FILE_NAME_IN_SD = "MyFileSd.txt";
     static final String PATH_NAME_IN_SD = "MyFilesKillQwerty";
-    Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnDB, btnAddFr1,
+    Button btnPrev, btnHandler, btnLoadSave, btnJson, btnWebView, btnFragments, btnAddFr1,
             btnAddFr2, btnRemoveFr1, btnRemoveFr2, btnSwapFr1, btnSwapFr2, btnLoad, btnSave,
-            btnDelete, btnSdLoad, btnSdSave, btnSdDelete, btnHandlerRun, btnAsync, btnINJson;
+            btnDelete, btnSdLoad, btnSdSave, btnSdDelete, btnHandlerRun, btnAsync, btnINJson,
+            btnJsonTest, btnJsonParser;
     ProgressBar pb;
     Lesson8_fragment1 fragment1;
     Lesson8_fragment2 fragment2;
@@ -81,7 +86,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         btnJson = findViewById(R.id.lesson8_btn_json);
         btnWebView = findViewById(R.id.lesson8_btn_webview);
         btnFragments = findViewById(R.id.lesson8_btn_fragments);
-        btnDB = findViewById(R.id.lesson8_btn_database);
+        btnJsonParser = findViewById(R.id.lesson8_btn_json_parser);
 
         btnPrev.setOnClickListener(this);
         btnHandler.setOnClickListener(this);
@@ -89,7 +94,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
         btnJson.setOnClickListener(this);
         btnWebView.setOnClickListener(this);
         btnFragments.setOnClickListener(this);
-        btnDB.setOnClickListener(this);
+        btnJsonParser.setOnClickListener(this);
 
     }
 
@@ -144,11 +149,16 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     void setMyButtonsForJson() {
         setOnClickJson();
         btnINJson = findViewById(R.id.lesson8_json_btn_just);
+        btnJsonTest = findViewById(R.id.lesson8_json_test_btn);
+
         btnINJson.setOnClickListener(onClickJson);
+        btnJsonTest.setOnClickListener(onClickJson);
+
         etJsonName = findViewById(R.id.lesson8_json__edittext_name);
         etJsonLastName = findViewById(R.id.lesson8_json__edittext_lastname);
         etJsonAge = findViewById(R.id.lesson8_json_edittext_age);
         tvJsonLeftSize = findViewById(R.id.lesson8_json_personInfo_left_size);
+        tvJsonRightSize = findViewById(R.id.lesson8_json_personInfo_after_Json_right_size);
     }
 
     @Override
@@ -176,7 +186,8 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                 setContentView(R.layout.lesson8_layout_for_fragments);
                 setMyButtonsForFragments();
                 break;
-            case R.id.lesson8_btn_database:
+            case R.id.lesson8_btn_json_parser:
+                setContentView(R.layout.lesson8_json_parser);
                 break;
         }
     }
@@ -379,6 +390,11 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
                         }
 
                         break;
+                    case R.id.lesson8_json_test_btn:
+                        etJsonName.setText("Android");
+                        etJsonLastName.setText("KitKat");
+                        etJsonAge.setText("2013");
+                        break;
                 }
             }
         };
@@ -457,10 +473,25 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
     }
 
     public void createPersonAndSetJson(String name,String lastName,int age){
+        JSONObject jsonObject;
         PersonTEMP person = new PersonTEMP(name, lastName, age);
         String allInfo = "имя: "+person.getName()+"\nфамилия: "+person.getLastName()+
                 "\nвозраст: "+person.getAge()+"\ninfo: "+person.getInfo();
-        tvJsonLeftSize.setText(allInfo);
+        tvJsonLeftSize.setText("Данные через Get'еры\n\n\n"+allInfo);
+        tvJsonLeftSize.setTextColor(getResources().getColor(R.color.colorBlack));
+        try {
+            jsonObject = new JSONObject();
+            jsonObject.put("name", person.getName());
+            jsonObject.put("last name",person.getLastName());
+            jsonObject.put("age",person.getAge());
+            jsonObject.put("info",person.getInfo());
+            tvJsonRightSize.setText("Данные в JsonObject\n\n\n"+jsonObject.toString());
+            tvJsonRightSize.setTextColor(getResources().getColor(R.color.colorBlack));
+        }catch (JSONException e){
+            Log.d(MY_TAG,"error in creating JSON");
+        }
+
+        
     }
 
     class MyAsyncTask extends AsyncTask<Void, CharSequence, Void> {

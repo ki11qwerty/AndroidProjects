@@ -56,16 +56,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/lesson8_btn_json"
-            style="@style/Widget.AppCompat.Button.Small"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@color/colorOfButtonLesson7"
-            android:text="JSON" />
-
-        <Button
             android:id="@+id/lesson8_btn_webview"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
@@ -74,6 +64,16 @@
             android:layout_weight="1"
             android:background="@color/colorOfButtonLesson7"
             android:text="WebView" />
+
+        <Button
+            android:id="@+id/lesson8_btn_json"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/colorOfButtonLesson7"
+            android:text="JSON" />
     </LinearLayout>
 
     <LinearLayout
@@ -95,14 +95,14 @@
             android:text="fragments" />
 
         <Button
-            android:id="@+id/lesson8_btn_database"
+            android:id="@+id/lesson8_btn_json_parser"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@color/colorOfButtonLesson7"
-            android:text="sqlite database" />
+            android:text="Json parser \n (ДЗ)" />
     </LinearLayout>
 
     <LinearLayout
