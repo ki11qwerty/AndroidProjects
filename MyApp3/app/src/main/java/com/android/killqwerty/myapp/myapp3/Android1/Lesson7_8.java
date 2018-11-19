@@ -491,7 +491,7 @@ public class Lesson7_8 extends FragmentActivity implements View.OnClickListener 
             Log.d(MY_TAG,"error in creating JSON");
         }
 
-        
+
     }
 
     class MyAsyncTask extends AsyncTask<Void, CharSequence, Void> {
