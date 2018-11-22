@@ -5,18 +5,50 @@
     android:id="@+id/activity_main_layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="50dp"
-    android:layout_marginStart="50dp"
+    android:layout_marginEnd="0dp"
+    android:layout_marginStart="0dp"
     android:minHeight="250dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1.2"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/main_android1_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="Android 1" />
+
+        <Button
+            android:id="@+id/main_android2_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="Android 2" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_weight="7"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <Button
@@ -45,8 +77,10 @@
         android:id="@+id/linear_layout6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_weight="7"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <Button
@@ -75,7 +109,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="7">
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/buttonExit"
@@ -92,15 +126,22 @@
 
         <Button
             android:id="@+id/button_forward_main"
-            android:layout_width="150px"
-            android:layout_height="90px"
-            android:layout_marginBottom="44dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
             android:text="@string/next_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@color/colorPrimaryDark" />
 
 </LinearLayout>

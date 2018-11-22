@@ -1,7 +1,7 @@
 package com.android.killqwerty.myapp.myapp3;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,26 +11,27 @@ import com.android.killqwerty.myapp.myapp3.Android1.Lesson5;
 import com.android.killqwerty.myapp.myapp3.Android1.Lesson6;
 import com.android.killqwerty.myapp.myapp3.Android1.Lesson7_8;
 
-public class MainActivity extends AppCompatActivity {
-    Button buttNext, buttLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit;
+public class MainActivity extends Activity {
+    Button btnNext, btnLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit,btnAndroid1,
+            btnAndroid2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setMyButtons();
+        setContentView(R.layout.activity_main_android1);
+        setMyButtonsAndroid1();
     }
-    public void setMyButtons(){
-        buttNext = findViewById(R.id.button_forward_main);
-        buttNext.setOnClickListener(new View.OnClickListener() {
+    public void setMyButtonsAndroid1(){
+        btnNext = findViewById(R.id.button_forward_main);
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AboutMe.class);
                 startActivity(intent);
             }
         });
-        buttLesson4 = findViewById(R.id.button_lesson_4_main);
-        buttLesson4.setOnClickListener(new View.OnClickListener() {
+        btnLesson4 = findViewById(R.id.button_lesson_4_main);
+        btnLesson4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Lesson4.class);
@@ -68,4 +69,39 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-    } }
+        btnAndroid2 = findViewById(R.id.main_android2_btn);
+        btnAndroid2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_main_android2);
+                setMyButtonsAndroid2();
+            }
+        });
+
+    }
+    public void setMyButtonsAndroid2(){
+        btnNext = findViewById(R.id.button_forward_main);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AboutMe.class);
+                startActivity(intent);
+            }
+        });
+        buttExit = findViewById(R.id.buttonExit);
+        buttExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        btnAndroid1 = findViewById(R.id.main2_android1_btn);
+        btnAndroid1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_main_android1);
+                setMyButtonsAndroid1();
+            }
+        });
+    }
+}
