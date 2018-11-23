@@ -52,15 +52,16 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_lesson_4_main"
+            android:id="@+id/btn_andr2_lesson1"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:background="@color/colorLesson4"
-            android:text="@string/main_lesson_4_button"
-            android:visibility="invisible" />
+            android:background="@color/andr2_lesson1"
+            android:text="Урок №1 \n(SQLite)"
+            android:textColor="@color/colorWhite"
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/button_lesson_5_main"
