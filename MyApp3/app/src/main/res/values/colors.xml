@@ -13,13 +13,13 @@
     <color name="colorOfButtonLesson7">#c76363</color>
     <color name="andr2_lesson1">#38367a</color>
     <color name="andr2_lesson1_background">#460e00ff</color>
-    <color name="andr2_lesson2"></color>
+ <!-->   <color name="andr2_lesson2"></color>
     <color name="andr2_lesson3"></color>
     <color name="andr2_lesson4"></color>
     <color name="andr2_lesson5"></color>
     <color name="andr2_lesson6"></color>
     <color name="andr2_lesson7"></color>
-
+ <-->
 
     <!--><for changing background color  in lesson4 -->
     <color name="colorGreen">#54b054</color>
