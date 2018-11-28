@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/a"
+            android:id="@+id/a2l1_et_f.i.o"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ф.И.О"
@@ -23,7 +23,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/textView11"
+            android:id="@+id/a2l1_et_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="возраст"
@@ -31,7 +31,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/textView12"
+            android:id="@+id/a2l1_et_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="должность"
@@ -39,7 +39,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/textView13"
+            android:id="@+id/a2l1_et_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="оклад"
@@ -58,7 +58,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_2a_l1_add"
+            android:id="@+id/btn_a2_l1_add"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
