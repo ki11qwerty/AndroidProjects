@@ -49,11 +49,10 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/gg"
+            android:id="@+id/btn_a2l1_example"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/null"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
             android:text="create example"
