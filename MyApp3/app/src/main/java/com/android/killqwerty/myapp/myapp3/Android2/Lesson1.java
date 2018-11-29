@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +15,9 @@ import com.android.killqwerty.myapp.myapp3.R;
 
 public class Lesson1 extends AppCompatActivity {
     public static final String DB_NAME = "MyDataBaseLesson1";
-    public static final String myLog = ""
+    public static final String MY_TAG = "MyLogs";
     View.OnClickListener listener;
-    Button btnAdd, btnLoad, btnDelete;
+    Button btnAdd, btnLoad, btnDelete, btnExample;
     EditText etFio, etAge, etPost, etCost;
     Lesson1DbHelper dbHelper;
 
@@ -51,17 +52,25 @@ public class Lesson1 extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.btn_a2_l1_add:
                         String fio = etFio.getText().toString();
-                        String age = etAge.getText().toString();
+                        int age = Integer.parseInt(etAge.getText().toString());
                         String post = etPost.getText().toString();
-                        String cost = etCost.getText().toString();
+                        int cost = Integer.parseInt(etCost.getText().toString());
+                        cv.put("fio",fio);
+                        cv.put("age", age);
+                        cv.put("post",post);
+                        cv.put("cost", cost);
+                        long rowID = db.insert("mytable", null, cv);
+                        Log.d(MY_TAG, "row inserted, ID = " + rowID);
                         break;
                     case R.id.btn_a2_l1_load:
                         loadDb();
                         break;
                     case R.id.btn_a2_l1_delete:
-                        deleteDb();
+                        int clearCount = db.delete("mytable", null, null);
+                        Log.d(MY_TAG, "deleted rows count = " + clearCount);
                         break;
                 }
+                dbHelper.close();
             }
         };
 

@@ -12,6 +12,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="end"
         android:orientation="vertical">
 
         <EditText
@@ -45,6 +47,19 @@
             android:hint="оклад"
             android:text=""
             android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/gg"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/null"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:text="create example"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlue" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,6 +102,7 @@
             android:background="@color/andr2_lesson1"
             android:text="delete"
             android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 </RelativeLayout>
