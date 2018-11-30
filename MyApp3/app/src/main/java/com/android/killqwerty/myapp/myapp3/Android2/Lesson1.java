@@ -87,7 +87,7 @@ public class Lesson1 extends AppCompatActivity {
                         createRandomFields();
                 }
                 dbHelper.close();
-                // TODO: допилить кнопку екзампл - в свичь, рандом генерацию персоны, и усе
+                // TODO: создать лист вью для отображения SQL и создать айтемы, чет голова не варит
             }
         };
 
