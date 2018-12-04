@@ -6,47 +6,63 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="75dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="8dp">
 
         <TextView
             android:id="@+id/a2l1_item_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="34dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="8dp"
-            android:text="id" />
+            android:text="id"
+            android:textAlignment="center"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/a2l1_item_fio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="156dp"
+            android:layout_height="34dp"
+            android:layout_alignTop="@+id/a2l1_item_id"
+            android:layout_marginStart="1dp"
             android:layout_marginEnd="8dp"
-            android:text="F.I.O" />
+            android:layout_toEndOf="@+id/a2l1_item_id"
+            android:text="F.I.O"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/a2l1_item_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="39dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="-4dp"
             android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/a2l1_item_fio"
             android:text="age" />
 
         <TextView
             android:id="@+id/a2l1_item_post"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="-1dp"
             android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/a2l1_item_age"
             android:text="post" />
 
         <TextView
             android:id="@+id/a2l1_item_cost"
-            android:layout_width="74dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="53dp"
+            android:layout_width="44dp"
+            android:layout_height="34dp"
+            android:layout_alignBottom="@+id/a2l1_item_id"
+            android:layout_marginStart="-10dp"
+            android:layout_toEndOf="@+id/a2l1_item_post"
             android:text="cost" />
     </RelativeLayout>
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.android.killqwerty.myapp.myapp3.Android2;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,8 @@ import java.util.Random;
 public class Lesson1 extends AppCompatActivity {
     public static final String DB_NAME = "MyDataBaseLesson1";
     public static final String MY_TAG = "MyLogs";
+    //TODO: запилить заполнения массив , внутри метода с проверкой, и будет счастье
+
     String[] names = {"Иванов","Петров","Сидоров","Антонов","Песков","Никульшин","Ивлеев",
             "Захаров","Марченко","Путин","Медведев","Навальный","Дробинин","Винярский","Ильченко",
             "Крюков"};
@@ -78,6 +81,27 @@ public class Lesson1 extends AppCompatActivity {
                         Log.d(MY_TAG, "row inserted, ID = " + rowID);
                         break;
                     case R.id.btn_a2_l1_load:
+                        Cursor c = db.query("mytable", null, null, null, null, null, null);
+                        if (c.moveToFirst()) {
+                            int idColIndex = c.getColumnIndex("id");
+                            int fioColIndex = c.getColumnIndex("fio");
+                            int ageColIndex = c.getColumnIndex("age");
+                            int postColIndex = c.getColumnIndex("post");
+                            int costColIndex = c.getColumnIndex("cost");
+
+                            do {
+                                //TODO: логика вывода содержимого в лист
+                                Log.d(MY_TAG,
+                                        "ID = " + c.getInt(idColIndex) +
+                                                ", name = " + c.getString(fioColIndex) +
+                                                ", age = " + c.getString(ageColIndex) +
+                                                ", post = " + c.getString(postColIndex) +
+                                                ", cost = " + c.getString(costColIndex));
+
+                            } while (c.moveToNext());
+                        } else
+                            Log.d(MY_TAG, "0 rows");
+                        c.close();
                         break;
                     case R.id.btn_a2_l1_delete:
                         int clearCount = db.delete("mytable", null, null);
