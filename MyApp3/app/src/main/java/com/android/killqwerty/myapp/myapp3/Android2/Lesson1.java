@@ -91,6 +91,9 @@ public class Lesson1 extends AppCompatActivity {
 
                             do {
                                 //TODO: логика вывода содержимого в лист
+                                //TODO: с такими темпами ты Алеша будешь еще года два тут сидеть
+                                //TODO: короче , переписать свои тетрадки сегодняшние в это вот все, все будет работать сто пудова)
+
                                 Log.d(MY_TAG,
                                         "ID = " + c.getInt(idColIndex) +
                                                 ", name = " + c.getString(fioColIndex) +
