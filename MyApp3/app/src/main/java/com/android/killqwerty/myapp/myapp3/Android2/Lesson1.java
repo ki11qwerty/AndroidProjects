@@ -10,10 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.killqwerty.myapp.myapp3.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Lesson1 extends AppCompatActivity {
@@ -34,6 +37,9 @@ public class Lesson1 extends AppCompatActivity {
     Button btnAdd, btnLoad, btnDelete, btnExample;
     EditText etFio, etAge, etPost, etCost;
     Lesson1DbHelper dbHelper;
+    LinearLayout allPersonsLayout;
+    ArrayList<Person> persons;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +47,8 @@ public class Lesson1 extends AppCompatActivity {
         setContentView(R.layout.android2_lesson1);
         setButtonsAndView();
         dbHelper = new Lesson1DbHelper(this, DB_NAME);
+        allPersonsLayout = findViewById(R.id.andr2_lesson1_linearl_in_scroll);
+        persons = new ArrayList<>();
     }
     public void setButtonsAndView(){
         setOnClick();
@@ -67,20 +75,34 @@ public class Lesson1 extends AppCompatActivity {
             public void onClick(View view) {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 ContentValues cv = new ContentValues();
+                int id;
+                String fio;
+                int age;
+                String post;
+                int cost;
                 switch (view.getId()) {
                     case R.id.btn_a2_l1_add:
-                        String fio = etFio.getText().toString();
-                        int age = Integer.parseInt(etAge.getText().toString());
-                        String post = etPost.getText().toString();
-                        int cost = Integer.parseInt(etCost.getText().toString());
-                        cv.put("fio",fio);
-                        cv.put("age", age);
-                        cv.put("post",post);
-                        cv.put("cost", cost);
-                        long rowID = db.insert("mytable", null, cv);
-                        Log.d(MY_TAG, "row inserted, ID = " + rowID);
+                        if (etAge.getText().toString().equals("") ||
+                                etCost.getText().toString().equals("") ||
+                                etPost.getText().toString().equals("") ||
+                                etFio.getText().toString().equals("")) {
+                            Toast.makeText(getApplicationContext(), "не верно заполнены поля",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            fio = etFio.getText().toString();
+                            age = Integer.parseInt(etAge.getText().toString());
+                            post = etPost.getText().toString();
+                            cost = Integer.parseInt(etCost.getText().toString());
+                            cv.put("fio", fio);
+                            cv.put("age", age);
+                            cv.put("post", post);
+                            cv.put("cost", cost);
+                            long rowID = db.insert("mytable", null, cv);
+                            Log.d(MY_TAG, "row inserted, ID = " + rowID);
+                        }
                         break;
                     case R.id.btn_a2_l1_load:
+                        persons.clear();
                         Cursor c = db.query("mytable", null, null, null, null, null, null);
                         if (c.moveToFirst()) {
                             int idColIndex = c.getColumnIndex("id");
@@ -90,31 +112,38 @@ public class Lesson1 extends AppCompatActivity {
                             int costColIndex = c.getColumnIndex("cost");
 
                             do {
-                                //TODO: логика вывода содержимого в лист
-                                //TODO: с такими темпами ты Алеша будешь еще года два тут сидеть
-                                //TODO: короче , переписать свои тетрадки сегодняшние в это вот все, все будет работать сто пудова)
+                                //впринципе меня пока и устроит вот так вот) дальше в поток запилить, если зажористо будет
+                                id = c.getInt(idColIndex);
+                                fio = c.getString(fioColIndex);
+                                age = Integer.parseInt(c.getString(ageColIndex));
+                                post = c.getString(postColIndex);
+                                cost = Integer.parseInt(c.getString(costColIndex));
 
+                               Person person = new Person(id,fio,age,post,cost);
+                               persons.add(person);
                                 Log.d(MY_TAG,
-                                        "ID = " + c.getInt(idColIndex) +
-                                                ", name = " + c.getString(fioColIndex) +
-                                                ", age = " + c.getString(ageColIndex) +
-                                                ", post = " + c.getString(postColIndex) +
-                                                ", cost = " + c.getString(costColIndex));
+                                        "ID = " + id +
+                                                ", name = " + fio +
+                                                ", age = " + age +
+                                                ", post = " + post +
+                                                ", cost = " + cost);
 
                             } while (c.moveToNext());
+                            fillScrollView(persons);
                         } else
+                            allPersonsLayout.removeAllViews();
                             Log.d(MY_TAG, "0 rows");
                         c.close();
                         break;
                     case R.id.btn_a2_l1_delete:
                         int clearCount = db.delete("mytable", null, null);
+                        persons.clear();
                         Log.d(MY_TAG, "deleted rows count = " + clearCount);
                         break;
                     case R.id.btn_a2l1_example:
                         createRandomFields();
                 }
                 dbHelper.close();
-                // TODO: создать лист вью для отображения SQL и создать айтемы, чет голова не варит
             }
         };
 
@@ -131,6 +160,59 @@ public class Lesson1 extends AppCompatActivity {
         etCost.setText(cost);
         etPost.setText(post);
 
+    }
+    public void fillScrollView(ArrayList<Person> persons){
+        allPersonsLayout.removeAllViews();
+
+        for(Person p: persons){
+            View viewItem = getLayoutInflater().inflate(R.layout.android2_lesson1_item,null);
+            TextView id = viewItem.findViewById(R.id.a2l1_item_id);
+            TextView age = viewItem.findViewById(R.id.a2l1_item_age);
+            TextView fio = viewItem.findViewById(R.id.a2l1_item_fio);
+            TextView cost = viewItem.findViewById(R.id.a2l1_item_cost);
+            TextView post = viewItem.findViewById(R.id.a2l1_item_post);
+            id.setText(""+p.getId());
+            fio.setText(p.getFio());
+            age.setText(""+p.getAge());
+            cost.setText(""+p.getCost()+"руб");
+            post.setText(p.getPost());
+            allPersonsLayout.addView(viewItem);
+        }
+
+    }
+    private class Person{
+        int id;
+        String fio;
+        int age;
+        String post;
+        int cost;
+        private Person(int id, String fio, int age, String post, int cost){
+            this.id = id;
+            this.age = age;
+            this.fio = fio;
+            this.post = post;
+            this.cost = cost;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public int getCost() {
+            return cost;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getFio() {
+            return fio;
+        }
+
+        public String getPost() {
+            return post;
+        }
     }
 
 }
