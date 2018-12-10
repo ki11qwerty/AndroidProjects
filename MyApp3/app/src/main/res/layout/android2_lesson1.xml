@@ -8,60 +8,134 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="0dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="50dp"
         android:gravity="end"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
-        <EditText
-            android:id="@+id/a2l1_et_f.i.o"
+        <LinearLayout
+            android:id="@+id/andr2_lesson1_fields_linear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ф.И.О"
-            android:textAlignment="center" />
+            android:layout_height="458dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-        <EditText
-            android:id="@+id/a2l1_et_age"
+            <EditText
+                android:id="@+id/a2l1_et_f.i.o"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ф.И.О"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/a2l1_et_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="возраст"
+                android:text=""
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/a2l1_et_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="должность"
+                android:text=""
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/a2l1_et_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="оклад"
+                android:text=""
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/a2l1_et_set_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="номер id для замены в БД"
+                android:text=""
+                android:textAlignment="center"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/andr2_lesson1_add_new"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="add +"
+                    android:textColor="@color/colorBlue" />
+
+                <Button
+                    android:id="@+id/andr2_lesson1_cancel"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:text="cancel"
+                    android:textColor="@color/colorBlue"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_a2l1_example"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1.2"
+                    android:gravity="right"
+                    android:text="create example"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorBlue" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/andr2_lesson1_linear_delete_element"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="возраст"
-            android:text=""
-            android:textAlignment="center" />
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/a2l1_et_post"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="должность"
-            android:text=""
-            android:textAlignment="center" />
+            <EditText
+                android:id="@+id/andr2_lesson1_et_delete1element"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:hint="введите id для удаления"
+                android:visibility="visible" />
 
-        <EditText
-            android:id="@+id/a2l1_et_cost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="оклад"
-            android:text=""
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/btn_a2l1_example"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:text="create example"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/colorBlue" />
+            <Button
+                android:id="@+id/andr2_lesson1_btn_delete1element_in_layout"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="delete"
+                android:textColor="@color/colorBlue" />
+        </LinearLayout>
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5">
 
             <LinearLayout
                 android:id="@+id/andr2_lesson1_linearl_in_scroll"
@@ -73,8 +147,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/something_lo"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
@@ -83,7 +158,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_a2_l1_add"
+            android:id="@+id/btn_a2_l1_open_fields"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,7 +166,20 @@
             android:layout_weight="1"
             android:background="@color/andr2_lesson1"
             android:text="add"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/andr2_lesson1_btn_update"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@color/andr2_lesson1"
+            android:text="Update"
+            android:textColor="@color/colorWhite"
+            android:textSize="8sp" />
 
         <Button
             android:id="@+id/btn_a2_l1_load"
@@ -102,7 +190,20 @@
             android:layout_weight="1"
             android:background="@color/andr2_lesson1"
             android:text="load"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/andr2_lesson1_btn_delete1element"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@color/andr2_lesson1"
+            android:text="delete 1 element"
+            android:textColor="@android:color/white"
+            android:textSize="8sp" />
 
         <Button
             android:id="@+id/btn_a2_l1_delete"
@@ -110,9 +211,49 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/andr2_lesson1"
-            android:text="delete"
-            android:textColor="@android:color/white" />
+            android:text="delete db"
+            android:textColor="@android:color/white"
+            android:textSize="8sp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/something_lo"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="4dp"
+        android:gravity="clip_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
     </LinearLayout>
 
 </RelativeLayout>
