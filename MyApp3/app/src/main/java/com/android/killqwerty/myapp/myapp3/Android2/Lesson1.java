@@ -94,99 +94,15 @@ public class Lesson1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
-                ContentValues cv = new ContentValues();
-                int id;
-                String fio;
-                int age;
-                String post;
-                int cost;
                 switch (view.getId()) {
                     case R.id.btn_a2_l1_open_fields:
-                        btnAddNew.setText("add+");
-                        etIdSet.setVisibility(View.GONE);
-                        if(fieldsLayout.getVisibility() == View.GONE){
-                            fieldsLayout.setVisibility(View.VISIBLE);
-                            break;
-                        }
+                        openFields();
                         break;
                     case R.id.andr2_lesson1_add_new:
-                        if (etAge.getText().toString().equalsIgnoreCase("") ||
-                                etCost.getText().toString().equalsIgnoreCase("") ||
-                                etPost.getText().toString().equalsIgnoreCase("") ||
-                                etFio.getText().toString().equalsIgnoreCase("")) {
-                            Toast.makeText(getApplicationContext(), "не верно заполнены поля",
-                                    Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        if(etIdSet.getVisibility() == View.GONE) {                                  // если выбран add
-                            fio = etFio.getText().toString();
-                            age = Integer.parseInt(etAge.getText().toString());
-                            post = etPost.getText().toString();
-                            cost = Integer.parseInt(etCost.getText().toString());
-                            cv.put("fio", fio);
-                            cv.put("age", age);
-                            cv.put("post", post);
-                            cv.put("cost", cost);
-                            long rowID = db.insert("mytable", null, cv);
-                            Log.d(MY_TAG, "row inserted, ID = " + rowID);
-                            fieldsLayout.setVisibility(View.GONE);
-                            break;
-                        }
-                        else if(etIdSet.getVisibility() == View.VISIBLE && etIdSet.getText().toString()
-                                .equalsIgnoreCase("")){                                  // не заполнено поле id в режиме update
-                            Toast.makeText(getApplicationContext(),"введите ID", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        else if (etIdSet.getVisibility() == View.VISIBLE){ // если выбран update
-                            String idToUpdate = etIdSet.getText().toString();
-                            fio = etFio.getText().toString();
-                            age = Integer.parseInt(etAge.getText().toString());
-                            post = etPost.getText().toString();
-                            cost = Integer.parseInt(etCost.getText().toString());
-                            cv.put("fio", fio);
-                            cv.put("age", age);
-                            cv.put("post", post);
-                            cv.put("cost", cost);
-                            int idCount = db.update("mytable",cv,"id = ?",new String[] {idToUpdate});
-                            Toast.makeText(getApplicationContext(),idCount+" запись изменена id = "+idToUpdate,Toast.LENGTH_SHORT).show();
-                            fieldsLayout.setVisibility(View.GONE);
-                            etIdSet.setVisibility(View.GONE);
-                            break;
-                        }
-
+                        addNewOrUpdate();
+                        break;
                     case R.id.btn_a2_l1_load:
-                        persons.clear();
-                        Cursor c = db.query("mytable", null, null, null, null, null, null);
-                        if (c.moveToFirst()) {
-                            int idColIndex = c.getColumnIndex("id");
-                            int fioColIndex = c.getColumnIndex("fio");
-                            int ageColIndex = c.getColumnIndex("age");
-                            int postColIndex = c.getColumnIndex("post");
-                            int costColIndex = c.getColumnIndex("cost");
-
-                            do {
-                                //впринципе меня пока и устроит вот так вот) дальше в поток запилить, если зажористо будет
-                                id = c.getInt(idColIndex);
-                                fio = c.getString(fioColIndex);
-                                age = Integer.parseInt(c.getString(ageColIndex));
-                                post = c.getString(postColIndex);
-                                cost = Integer.parseInt(c.getString(costColIndex));
-
-                               Person person = new Person(id,fio,age,post,cost);
-                               persons.add(person);
-                                Log.d(MY_TAG,
-                                        "ID = " + id +
-                                                ", name = " + fio +
-                                                ", age = " + age +
-                                                ", post = " + post +
-                                                ", cost = " + cost);
-
-                            } while (c.moveToNext());
-                            fillScrollView(persons);
-                        } else
-                            allPersonsLayout.removeAllViews();
-                            Log.d(MY_TAG, "0 rows");
-                        c.close();
+                        loadFromDb();
                         break;
                     case R.id.btn_a2_l1_delete:
                         int clearCount = db.delete("mytable", null, null);
@@ -225,45 +141,152 @@ public class Lesson1 extends AppCompatActivity {
 
     }
 
+    public void openFields() {
+        btnAddNew.setText("add+");
+        etIdSet.setVisibility(View.GONE);
+        if (fieldsLayout.getVisibility() == View.GONE) {
+            fieldsLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void loadFromDb() {
+        persons.clear();
+        int id;
+        String fio;
+        int age;
+        String post;
+        int cost;
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor c = db.query("mytable", null, null, null, null, null, null);
+        if (c.moveToFirst()) {
+            int idColIndex = c.getColumnIndex("id");
+            int fioColIndex = c.getColumnIndex("fio");
+            int ageColIndex = c.getColumnIndex("age");
+            int postColIndex = c.getColumnIndex("post");
+            int costColIndex = c.getColumnIndex("cost");
+
+            do {
+                //впринципе меня пока и устроит вот так вот) дальше в поток запилить, если зажористо будет
+                id = c.getInt(idColIndex);
+                fio = c.getString(fioColIndex);
+                age = Integer.parseInt(c.getString(ageColIndex));
+                post = c.getString(postColIndex);
+                cost = Integer.parseInt(c.getString(costColIndex));
+
+                Person person = new Person(id, fio, age, post, cost);
+                persons.add(person);
+                Log.d(MY_TAG,
+                        "ID = " + id +
+                                ", name = " + fio +
+                                ", age = " + age +
+                                ", post = " + post +
+                                ", cost = " + cost);
+
+            } while (c.moveToNext());
+            fillScrollView(persons);
+        } else
+            allPersonsLayout.removeAllViews();
+        Log.d(MY_TAG, "0 rows");
+        c.close();
+        dbHelper.close();
+    }
+
+    public void addNewOrUpdate() {
+        int id;
+        String fio;
+        int age;
+        String post;
+        int cost;
+        ContentValues cv = new ContentValues();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        if (etAge.getText().toString().equalsIgnoreCase("") ||
+                etCost.getText().toString().equalsIgnoreCase("") ||
+                etPost.getText().toString().equalsIgnoreCase("") ||
+                etFio.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(getApplicationContext(), "не верно заполнены поля",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (etIdSet.getVisibility() == View.GONE) {                                  // если выбран add
+            fio = etFio.getText().toString();
+            age = Integer.parseInt(etAge.getText().toString());
+            post = etPost.getText().toString();
+            cost = Integer.parseInt(etCost.getText().toString());
+            cv.put("fio", fio);
+            cv.put("age", age);
+            cv.put("post", post);
+            cv.put("cost", cost);
+            long rowID = db.insert("mytable", null, cv);
+            Log.d(MY_TAG, "row inserted, ID = " + rowID);
+            fieldsLayout.setVisibility(View.GONE);
+            dbHelper.close();
+            return;
+        } else if (etIdSet.getVisibility() == View.VISIBLE && etIdSet.getText().toString()
+                .equalsIgnoreCase("")) {                                  // не заполнено поле id в режиме update
+            Toast.makeText(getApplicationContext(), "введите ID", Toast.LENGTH_SHORT).show();
+            dbHelper.close();
+            return;
+        } else if (etIdSet.getVisibility() == View.VISIBLE) { // если выбран update
+            String idToUpdate = etIdSet.getText().toString();
+            fio = etFio.getText().toString();
+            age = Integer.parseInt(etAge.getText().toString());
+            post = etPost.getText().toString();
+            cost = Integer.parseInt(etCost.getText().toString());
+            cv.put("fio", fio);
+            cv.put("age", age);
+            cv.put("post", post);
+            cv.put("cost", cost);
+            int idCount = db.update("mytable", cv, "id = ?", new String[]{idToUpdate});
+            Toast.makeText(getApplicationContext(), idCount + " запись изменена id = " + idToUpdate, Toast.LENGTH_SHORT).show();
+            fieldsLayout.setVisibility(View.GONE);
+            etIdSet.setVisibility(View.GONE);
+            dbHelper.close();
+            return;
+        }
+    }
+
     public void createRandomFields() {
         Random rand = new Random();
-        String age = ""+(rand.nextInt(43) + 18);
-        String cost = ""+(((rand.nextInt(24)+1) * 1000) + 20000);
+        String age = "" + (rand.nextInt(43) + 18);
+        String cost = "" + (((rand.nextInt(24) + 1) * 1000) + 20000);
         String post = posts[rand.nextInt(posts.length)];
-        String fio = names[rand.nextInt(names.length)] +" "+ i_o[rand.nextInt(i_o.length)];
+        String fio = names[rand.nextInt(names.length)] + " " + i_o[rand.nextInt(i_o.length)];
         etAge.setText(age);
         etFio.setText(fio);
         etCost.setText(cost);
         etPost.setText(post);
 
     }
-    public void fillScrollView(ArrayList<Person> persons){
+
+    public void fillScrollView(ArrayList<Person> persons) {
         allPersonsLayout.removeAllViews();
 
-        for(Person p: persons){
-            View viewItem = getLayoutInflater().inflate(R.layout.android2_lesson1_item,null);
+        for (Person p : persons) {
+            View viewItem = getLayoutInflater().inflate(R.layout.android2_lesson1_item, null);
             TextView id = viewItem.findViewById(R.id.a2l1_item_id);
             TextView age = viewItem.findViewById(R.id.a2l1_item_age);
             TextView fio = viewItem.findViewById(R.id.a2l1_item_fio);
             TextView cost = viewItem.findViewById(R.id.a2l1_item_cost);
             TextView post = viewItem.findViewById(R.id.a2l1_item_post);
-            id.setText(""+p.getId());
+            id.setText("" + p.getId());
             fio.setText(p.getFio());
-            age.setText(""+p.getAge());
-            cost.setText(""+p.getCost()+"руб");
+            age.setText("" + p.getAge());
+            cost.setText("" + p.getCost() + "руб");
             post.setText(p.getPost());
             //TODO: на следующем уроке зафигачить сюда контекстное меню, для получения id и удаления из бд, с последующим обновлением коллекции
             allPersonsLayout.addView(viewItem);
         }
 
     }
-    private class Person{
+
+    private class Person {
         int id;
         String fio;
         int age;
         String post;
         int cost;
-        private Person(int id, String fio, int age, String post, int cost){
+
+        private Person(int id, String fio, int age, String post, int cost) {
             this.id = id;
             this.age = age;
             this.fio = fio;

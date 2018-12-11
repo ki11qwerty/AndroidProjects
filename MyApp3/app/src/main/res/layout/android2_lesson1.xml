@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ф.И.О"
+                android:inputType="text"
                 android:textAlignment="center" />
 
             <EditText
@@ -40,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="возраст"
+                android:inputType="number"
                 android:text=""
                 android:textAlignment="center" />
 
@@ -48,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="должность"
+                android:inputType="text"
                 android:text=""
                 android:textAlignment="center" />
 
@@ -56,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="оклад"
+                android:inputType="number"
                 android:text=""
                 android:textAlignment="center" />
 
@@ -64,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="номер id для замены в БД"
+                android:inputType="number"
                 android:text=""
                 android:textAlignment="center"
                 android:visibility="visible" />
@@ -120,6 +125,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:hint="введите id для удаления"
+                android:inputType="number"
                 android:visibility="visible" />
 
             <Button
