@@ -207,7 +207,7 @@ public class Lesson1 extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        if (etIdSet.getVisibility() == View.GONE) {                                  // если выбран add
+        if (etIdSet.getVisibility() == View.GONE) {
             fio = etFio.getText().toString();
             age = Integer.parseInt(etAge.getText().toString());
             post = etPost.getText().toString();
@@ -222,11 +222,11 @@ public class Lesson1 extends AppCompatActivity {
             dbHelper.close();
             return;
         } else if (etIdSet.getVisibility() == View.VISIBLE && etIdSet.getText().toString()
-                .equalsIgnoreCase("")) {                                  // не заполнено поле id в режиме update
+                .equalsIgnoreCase("")) {
             Toast.makeText(getApplicationContext(), "введите ID", Toast.LENGTH_SHORT).show();
             dbHelper.close();
             return;
-        } else if (etIdSet.getVisibility() == View.VISIBLE) { // если выбран update
+        } else if (etIdSet.getVisibility() == View.VISIBLE) {
             String idToUpdate = etIdSet.getText().toString();
             fio = etFio.getText().toString();
             age = Integer.parseInt(etAge.getText().toString());
