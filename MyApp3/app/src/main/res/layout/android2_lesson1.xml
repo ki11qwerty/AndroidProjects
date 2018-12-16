@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/andr2_lesson1_background">
@@ -251,11 +249,19 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/android2_lesson1_btn_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/andr2_lesson1_background"
+            android:text="select" />
+
         <RadioGroup
             android:id="@+id/andr2_lesson1_radiogroup1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/andr2_lesson1_layout_with_radiogroup">
+            android:layout_alignTop="@+id/andr2_lesson1_layout_with_radiogroup"
+            android:checkedButton="@+id/android2_lesson1_radio_id">
 
             <RadioButton
                 android:id="@+id/android2_lesson1_radio_id"

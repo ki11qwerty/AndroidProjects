@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,8 @@ public class Lesson1 extends AppCompatActivity {
             "директор",};
     View.OnClickListener listener;
     Button btnOpenFields, btnLoad, btnDelete, btnExample, btnAddNew, btnUpdate, btnCancel,
-            btnDelete1Element, BtnDelete1ElementInLayout, btnSort;
+            btnDelete1Element, BtnDelete1ElementInLayout, btnSort, btnSelect;
+    RadioGroup radioGroup;
     EditText etFio, etAge, etPost, etCost, etIdSet, etDelete1Element;
     Lesson1DbHelper dbHelper;
     LinearLayout allPersonsLayout, fieldsLayout, delete1ElementLayout, radioButtonsLayout;
@@ -61,6 +63,7 @@ public class Lesson1 extends AppCompatActivity {
     }
     public void setButtonsAndView(){
         setOnClick();
+        //TODO: запилить второй листенер, без использования базы данных
         btnOpenFields = findViewById(R.id.btn_a2_l1_open_fields);
         btnDelete = findViewById(R.id.btn_a2_l1_delete);
         btnLoad = findViewById(R.id.btn_a2_l1_load);
@@ -71,6 +74,8 @@ public class Lesson1 extends AppCompatActivity {
         btnDelete1Element = findViewById(R.id.andr2_lesson1_btn_delete1element);
         BtnDelete1ElementInLayout = findViewById(R.id.andr2_lesson1_btn_delete1element_in_layout);
         btnSort = findViewById(R.id.andr2_lesson1_btn_sort);
+        btnSelect = findViewById(R.id.android2_lesson1_btn_select);
+        radioGroup =findViewById(R.id.andr2_lesson1_radiogroup1);
 
         btnOpenFields.setOnClickListener(listener);
         btnDelete.setOnClickListener(listener);
@@ -82,6 +87,7 @@ public class Lesson1 extends AppCompatActivity {
         btnDelete1Element.setOnClickListener(listener);
         BtnDelete1ElementInLayout.setOnClickListener(listener);
         btnSort.setOnClickListener(listener);
+        btnSelect.setOnClickListener(listener);
 
         etFio = findViewById(R.id.a2l1_et_f_i_o);
         etAge = findViewById(R.id.a2l1_et_age);
@@ -105,7 +111,7 @@ public class Lesson1 extends AppCompatActivity {
                         addNewOrUpdate();
                         break;
                     case R.id.btn_a2_l1_load:
-                        loadFromDb();
+                        loadFromDb(null);
                         break;
                     case R.id.btn_a2_l1_delete:
                         int clearCount = db.delete("mytable", null, null);
@@ -142,6 +148,24 @@ public class Lesson1 extends AppCompatActivity {
                         else
                             radioButtonsLayout.setVisibility(View.GONE);
                         break;
+                    case R.id.android2_lesson1_btn_select:
+                        switch (radioGroup.getCheckedRadioButtonId()){
+                            case R.id.android2_lesson1_radio_id:
+                                loadFromDb("id");
+                                break;
+                            case R.id.android2_lesson1_radio_name:
+                                loadFromDb("fio");
+                                break;
+                            case R.id.android2_lesson1_radio_age:
+                                loadFromDb("age");
+                                break;
+                            case R.id.android2_lesson1_radio_cost:
+                                loadFromDb("cost");
+                                break;
+                            case R.id.android2_lesson1_radio_post:
+                                loadFromDb("post");
+                                break;
+                        }
 
                 }
                 dbHelper.close();
@@ -158,7 +182,7 @@ public class Lesson1 extends AppCompatActivity {
         }
     }
 
-    public void loadFromDb() {
+    public void loadFromDb(String orderBy) {
         persons.clear();
         int id;
         String fio;
@@ -166,7 +190,7 @@ public class Lesson1 extends AppCompatActivity {
         String post;
         int cost;
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor c = db.query("mytable", null, null, null, null, null, null);
+        Cursor c = db.query("mytable", null, null, null, null, null, orderBy);
         if (c.moveToFirst()) {
             int idColIndex = c.getColumnIndex("id");
             int fioColIndex = c.getColumnIndex("fio");
