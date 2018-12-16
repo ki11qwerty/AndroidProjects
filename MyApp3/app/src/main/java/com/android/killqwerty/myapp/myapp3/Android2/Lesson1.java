@@ -183,6 +183,7 @@ public class Lesson1 extends AppCompatActivity {
     }
 
     public void loadFromDb(String orderBy) {
+        //TODO: можно захуярить все это дело в асинк таск, с анимацией  загрузки
         persons.clear();
         int id;
         String fio;
