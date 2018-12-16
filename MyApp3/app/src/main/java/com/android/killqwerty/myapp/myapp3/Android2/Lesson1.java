@@ -22,7 +22,6 @@ import java.util.Random;
 public class Lesson1 extends AppCompatActivity {
     public static final String DB_NAME = "MyDataBaseLesson1";
     public static final String MY_TAG = "MyLogs";
-    //TODO: ДЗ подъехало - перекатить все из свитч в методы
     //TODO: Захерачить загрузку бд и заполнения колекции в асинктаск, а то чет жирно
     //TODO: запилить заполнения массив , внутри метода с проверкой, и будет счастье
     String[] names = {"Иванов","Петров","Сидоров","Антонов","Песков","Никульшин","Ивлеев",
@@ -36,10 +35,10 @@ public class Lesson1 extends AppCompatActivity {
             "директор",};
     View.OnClickListener listener;
     Button btnOpenFields, btnLoad, btnDelete, btnExample, btnAddNew, btnUpdate, btnCancel,
-            btnDelete1Element, BtnDelete1ElementInLayout;
+            btnDelete1Element, BtnDelete1ElementInLayout, btnSort;
     EditText etFio, etAge, etPost, etCost, etIdSet, etDelete1Element;
     Lesson1DbHelper dbHelper;
-    LinearLayout allPersonsLayout, fieldsLayout, delete1ElementLayout;
+    LinearLayout allPersonsLayout, fieldsLayout, delete1ElementLayout, radioButtonsLayout;
     ArrayList<Person> persons;
 
 
@@ -52,11 +51,13 @@ public class Lesson1 extends AppCompatActivity {
         allPersonsLayout = findViewById(R.id.andr2_lesson1_linearl_in_scroll);
         delete1ElementLayout = findViewById(R.id.andr2_lesson1_linear_delete_element);
         fieldsLayout = findViewById(R.id.andr2_lesson1_fields_linear);
+        radioButtonsLayout = findViewById(R.id.andr2_lesson1_layout_with_radiogroup);
         persons = new ArrayList<>();
 
         fieldsLayout.setVisibility(View.GONE);
         etIdSet.setVisibility(View.GONE);
         delete1ElementLayout.setVisibility(View.GONE);
+        radioButtonsLayout.setVisibility(View.GONE);
     }
     public void setButtonsAndView(){
         setOnClick();
@@ -69,6 +70,7 @@ public class Lesson1 extends AppCompatActivity {
         btnCancel = findViewById(R.id.andr2_lesson1_cancel);
         btnDelete1Element = findViewById(R.id.andr2_lesson1_btn_delete1element);
         BtnDelete1ElementInLayout = findViewById(R.id.andr2_lesson1_btn_delete1element_in_layout);
+        btnSort = findViewById(R.id.andr2_lesson1_btn_sort);
 
         btnOpenFields.setOnClickListener(listener);
         btnDelete.setOnClickListener(listener);
@@ -77,15 +79,16 @@ public class Lesson1 extends AppCompatActivity {
         btnAddNew.setOnClickListener(listener);
         btnUpdate.setOnClickListener(listener);
         btnCancel.setOnClickListener(listener);
-        btnDelete1Element.setOnClickListener(listener); //
-        BtnDelete1ElementInLayout.setOnClickListener(listener); //
+        btnDelete1Element.setOnClickListener(listener);
+        BtnDelete1ElementInLayout.setOnClickListener(listener);
+        btnSort.setOnClickListener(listener);
 
         etFio = findViewById(R.id.a2l1_et_f_i_o);
         etAge = findViewById(R.id.a2l1_et_age);
         etPost = findViewById(R.id.a2l1_et_post);
         etCost = findViewById(R.id.a2l1_et_cost);
         etIdSet = findViewById(R.id.a2l1_et_set_id);
-        etDelete1Element = findViewById(R.id.andr2_lesson1_et_delete1element); //
+        etDelete1Element = findViewById(R.id.andr2_lesson1_et_delete1element);
 
     }
 
@@ -133,6 +136,12 @@ public class Lesson1 extends AppCompatActivity {
                         int delCount = db.delete("mytable", "id = "+idInEt,null);
                         Toast.makeText(getApplicationContext(),delCount+" запись удалена id = "+idInEt,Toast.LENGTH_SHORT).show();
                         delete1ElementLayout.setVisibility(View.GONE);
+                    case R.id.andr2_lesson1_btn_sort:
+                        if(radioButtonsLayout.getVisibility() == View.GONE)
+                            radioButtonsLayout.setVisibility(View.VISIBLE);
+                        else
+                            radioButtonsLayout.setVisibility(View.GONE);
+                        break;
 
                 }
                 dbHelper.close();
