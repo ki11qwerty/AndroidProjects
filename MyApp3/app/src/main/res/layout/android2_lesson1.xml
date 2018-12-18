@@ -311,7 +311,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/andr2_lesson1_background"
-            android:text="select" />
+            android:text="Acept" />
 
         <RadioGroup
             android:id="@+id/andr2_lesson1_radiogroup1"
