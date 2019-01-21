@@ -18,7 +18,6 @@ public class Lesson2 extends Activity {
 
     }
     public void setMyButtonsAndViews(){
-        //exit удалить
         exit = findViewById(R.id.andr2_lesson2_btn_exit);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
