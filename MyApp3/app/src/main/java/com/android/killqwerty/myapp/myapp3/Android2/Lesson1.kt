@@ -23,18 +23,18 @@ class Lesson1 : AppCompatActivity() {
     val names = arrayOf("Иванов", "Петров", "Сидоров", "Антонов", "Песков", "Никульшин", "Ивлеев", "Захаров", "Марченко", "Путин", "Медведев", "Навальный", "Дробинин", "Винярский", "Ильченко", "Крюков")
     val i_o = arrayOf("А.А", "А.В", "Е.Г", "О.Ю", "Г.О", "П.П", "П.В", "Н.О", "Е.А", "О.Г", "В.Е", "А.Н", "А.Б", "Б.Ю")
     val posts = arrayOf("Напальник отдела", "уборщик", "бармен", "тестировщик", "царь во дворца", "помощник директора", "системный администратор", "официант", "халдей", "повар", "шеф-повар", "администратор", "бухгалтер", "закупщик", "грузчик", "программист", "доставщик", "поставщик", "кладовщик", "старший бухгалтер", "SEO", "фотограф", "водитель", "стажер", "директор")
-    var myListener: View.OnClickListener? = null
-    var btnOpenFields : Button? = null                   // думал думал короче, ничего умнее пока не придумал и примеров не нашел...
-    var btnLoad : Button? = null                         // доступ чисто по id мне пока не очень то тут нужен
-    var btnDelete : Button? = null
-    var btnExample : Button? = null
-    var btnAddNew: Button? = null
-    var btnUpdate : Button? = null
-    var btnCancel : Button? = null
-    var btnDelete1Element : Button? = null
-    var btnDelete1ElementInLayout : Button? = null
-    var btnSort : Button? = null
-    var btnSelect : Button? = null
+    internal var myListener: View.OnClickListener? = null
+//    var btnOpenFields : Button? = null                   // думал думал короче, ничего умнее пока не придумал и примеров не нашел...
+//    var btnLoad : Button? = null                         // доступ чисто по id мне пока не очень то тут нужен
+//    var btnDelete : Button? = null
+//    var btnExample : Button? = null
+//    var btnAddNew: Button? = null
+//    var btnUpdate : Button? = null
+//    var btnCancel : Button? = null
+//    var btnDelete1Element : Button? = null
+//    var btnDelete1ElementInLayout : Button? = null
+//    var btnSort : Button? = null
+//    var btnSelect : Button? = null
 
     var fieldsLayout : LinearLayout? = null
     var allPersonsLayout : LinearLayout? = null
@@ -94,31 +94,44 @@ class Lesson1 : AppCompatActivity() {
     fun setButtonsAndView() {
         setOnClick()
         //TODO: запилить второй листенер, без использования базы данных
-        btnOpenFields = btn_a2_l1_open_fields
-        btnLoad = btn_a2_l1_load
-        btnDelete = btn_a2_l1_delete
-        btnExample = btn_a2l1_example
-        //btnAddNew = andr2_lesson1_add_new
-        btnUpdate = andr2_lesson1_btn_update
-        btnCancel = andr2_lesson1_cancel
-        btnDelete1Element = andr2_lesson1_btn_delete1element
-        btnDelete1ElementInLayout = andr2_lesson1_btn_delete1element_in_layout
-        btnSort = andr2_lesson1_btn_sort
-        btnSelect = android2_lesson1_btn_select
+//        btnOpenFields = btn_a2_l1_open_fields        // последняя нерабочая версия
+//        btnLoad = btn_a2_l1_load
+//        btnDelete = btn_a2_l1_delete
+//        btnExample = btn_a2l1_example
+//        //btnAddNew = andr2_lesson1_add_new
+//        btnUpdate = andr2_lesson1_btn_update
+//        btnCancel = andr2_lesson1_cancel
+//        btnDelete1Element = andr2_lesson1_btn_delete1element
+//        btnDelete1ElementInLayout = andr2_lesson1_btn_delete1element_in_layout
+//        btnSort = andr2_lesson1_btn_sort
+//        btnSelect = android2_lesson1_btn_select
+//
+//        btnOpenFields?.setOnClickListener { myListener }
+//        btnDelete?.setOnClickListener { myListener }
+//        btnLoad?.setOnClickListener { myListener }
+//        btnExample?.setOnClickListener { myListener }
+//        btnAddNew?.setOnClickListener { myListener }
+//
+//        btnUpdate?.setOnClickListener { myListener }
+//        btnCancel?.setOnClickListener { myListener }
+//        btnDelete1Element?.setOnClickListener { myListener }
+//        btnDelete1ElementInLayout?.setOnClickListener {myListener }
+//        btnSort?.setOnClickListener { myListener }
+//        btnSelect?.setOnClickListener { myListener }
 
-        btnOpenFields?.setOnClickListener { myListener }
-        btnDelete?.setOnClickListener { myListener }
-        btnLoad?.setOnClickListener { myListener }
-        btnExample?.setOnClickListener { myListener }
-       // btnAddNew?.setOnClickListener { listener }
-        btn_a2_l1_open_fields.setOnClickListener { myListener }
 
-        btnUpdate?.setOnClickListener { myListener }
-        btnCancel?.setOnClickListener { myListener }
-        btnDelete1Element?.setOnClickListener { myListener }
-        btnDelete1ElementInLayout?.setOnClickListener {myListener }
-        btnSort?.setOnClickListener { myListener }
-        btnSelect?.setOnClickListener { myListener }
+    btn_a2_l1_open_fields.setOnClickListener { myListener }      //а это если не будет работать то я афк нахер
+    btn_a2_l1_delete.setOnClickListener { myListener }
+    btn_a2_l1_load.setOnClickListener { myListener }
+    btn_a2l1_example.setOnClickListener { myListener }
+    andr2_lesson1_add_new.setOnClickListener { myListener }
+    andr2_lesson1_btn_update.setOnClickListener { myListener }
+    andr2_lesson1_cancel.setOnClickListener { myListener }
+    andr2_lesson1_btn_delete1element.setOnClickListener { myListener }
+    andr2_lesson1_btn_delete1element_in_layout.setOnClickListener { myListener }
+    andr2_lesson1_btn_sort.setOnClickListener { myListener }
+    android2_lesson1_btn_select.setOnClickListener { myListener }
+    andr2_lesson1_radiogroup1.setOnClickListener { myListener }
 
         fieldsLayout = andr2_lesson1_fields_linear
         allPersonsLayout = andr2_lesson1_linearl_in_scroll
@@ -184,7 +197,7 @@ class Lesson1 : AppCompatActivity() {
                 }
                 R.id.btn_a2l1_example -> createRandomFields()
                 R.id.andr2_lesson1_btn_update -> {
-                    btnAddNew?.text = "update"
+                   // btnAddNew?.text = "update"                   убрал лишь бы проверить
                     fieldsLayout?.visibility = View.VISIBLE
                     etIdSet?.visibility = View.VISIBLE
                 }
@@ -230,7 +243,7 @@ class Lesson1 : AppCompatActivity() {
     }
 
     fun openFields() {
-        btnAddNew?.text = "add+"
+       // btnAddNew?.text = "add+"                              убрал для проверки
         etIdSet?.visibility = View.GONE
         if (fieldsLayout?.visibility == View.GONE) {
             fieldsLayout?.visibility = View.VISIBLE

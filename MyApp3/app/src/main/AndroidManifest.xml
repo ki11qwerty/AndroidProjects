@@ -50,10 +50,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Android2.Lesson1">
-            <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
-            </intent-filter>
-        </activity>
+        <intent-filter>
+            <action android:name="android.intent.action.ALL_APPS"/>
+        </intent-filter>
+    </activity>
         <activity android:name=".Android2.Lesson2">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
