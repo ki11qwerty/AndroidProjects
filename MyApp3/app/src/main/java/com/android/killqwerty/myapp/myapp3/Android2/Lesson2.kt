@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.android2_lesson2.*
 
 class Lesson2: Activity() {
     val text = "this! is! KOOOOOTLIN!"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.android2_lesson2)
@@ -20,8 +21,8 @@ class Lesson2: Activity() {
     }
 
     private fun setMyButtonsAndViews() {
-        val exit = findViewById<Button>(R.id.andr2_lesson2_btn_exit)
-        exit.setOnClickListener { finish() }
+        val exit = andr2_lesson2_btn_exit
+        exit?.setOnClickListener { finish() }
         val tv1 = findViewById<TextView>(R.id.andr2_lesson2_tv1)
         tv1.text = text
         tv1.textSize = 24f
@@ -29,6 +30,5 @@ class Lesson2: Activity() {
         Toast.makeText(this,"this is my first activity with Kotlin", Toast.LENGTH_LONG).show()
     }
     private fun someFun(){
-
     }
 }

@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import static com.android.killqwerty.myapp.myapp3.Android2.Lesson1.MY_TAG;
-
 public class Lesson1DbHelper extends SQLiteOpenHelper {
     public static final int version = 1;
     public Lesson1DbHelper(@Nullable Context context, String name) {
@@ -16,7 +14,7 @@ public class Lesson1DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.d(MY_TAG,"--- create DataBase ---");
+        Log.d("MyLogs","--- create DataBase ---");
         sqLiteDatabase.execSQL("create table mytable ("
         + "id integer primary key autoincrement,"
         + "fio text,"
