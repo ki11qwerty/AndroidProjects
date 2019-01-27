@@ -59,6 +59,11 @@
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Android2.Lesson3">
+        <intent-filter>
+            <action android:name="android.intent.action.ALL_APPS"/>
+        </intent-filter>
+    </activity>
     </application>
 
 </manifest>

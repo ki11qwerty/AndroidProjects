@@ -90,15 +90,16 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_lesson6_main"
+            android:id="@+id/btn_andr2_lesson3"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:background="@color/colorLesson6"
-            android:text="@string/main_lesson_6_button"
-            android:visibility="invisible" />
+            android:background="@color/andr2_lesson3"
+            android:text="ебаный котлин дубль 2"
+            android:textColor="@color/colorWhite"
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/button_lesson7_main"

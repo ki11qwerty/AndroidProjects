@@ -24,7 +24,6 @@ public class Lesson2 extends AppCompatActivity {
 
 
     // Я просто оставлю это здесь, это урок 1 но на ява, а тот на котлин... пусть пока будут оба короче
-
     public static final String DB_NAME = "MyDataBaseLesson1";
     public static final String MY_TAG = "MyLogs";
     //TODO: Захерачить загрузку бд и заполнения колекции в асинктаск, а то чет жирно

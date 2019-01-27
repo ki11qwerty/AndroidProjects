@@ -12,10 +12,11 @@ import com.android.killqwerty.myapp.myapp3.Android1.Lesson6;
 import com.android.killqwerty.myapp.myapp3.Android1.Lesson7_8;
 import com.android.killqwerty.myapp.myapp3.Android2.Lesson1;
 import com.android.killqwerty.myapp.myapp3.Android2.Lesson2;
+import com.android.killqwerty.myapp.myapp3.Android2.Lesson3;
 
 public class MainActivity extends Activity {
     Button btnNext, btnLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit,btnAndroid1,
-            btnAndroid2, btnAndr2Lesson1, btnAndr2Lesson2;
+            btnAndroid2, btnAndr2Lesson1, btnAndr2Lesson2, btnAndr2Lesson3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +119,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Lesson2.class);
+                startActivity(intent);
+            }
+        });
+        btnAndr2Lesson3 = findViewById(R.id.btn_andr2_lesson3);
+        btnAndr2Lesson3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Lesson3.class);
                 startActivity(intent);
             }
         });
