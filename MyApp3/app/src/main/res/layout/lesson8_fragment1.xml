@@ -4,7 +4,7 @@
     android:id="@+id/lesson8_framelayout_fragment1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Android1.Lesson8_fragment1">
+    tools:context=".android1.Lesson8_fragment1">
 
     <TextView
         android:layout_width="match_parent"

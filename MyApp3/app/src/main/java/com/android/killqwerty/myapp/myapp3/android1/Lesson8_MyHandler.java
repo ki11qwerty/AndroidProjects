@@ -1,10 +1,8 @@
-package com.android.killqwerty.myapp.myapp3.Android1;
+package com.android.killqwerty.myapp.myapp3.android1;
 
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-
-import com.android.killqwerty.myapp.myapp3.Android1.Lesson7_8;
 
 import java.lang.ref.WeakReference;
 

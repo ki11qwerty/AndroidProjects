@@ -1,4 +1,4 @@
-package com.android.killqwerty.myapp.myapp3.Android1;
+package com.android.killqwerty.myapp.myapp3.android1;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

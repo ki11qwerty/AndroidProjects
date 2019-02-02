@@ -1,4 +1,4 @@
-package com.android.killqwerty.myapp.myapp3.Android2;
+package com.android.killqwerty.myapp.myapp3.android_2;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

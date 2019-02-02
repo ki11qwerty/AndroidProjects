@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.killqwerty.myapp.myapp3.Android1.Lesson4;
-import com.android.killqwerty.myapp.myapp3.Android1.Lesson5;
-import com.android.killqwerty.myapp.myapp3.Android1.Lesson6;
-import com.android.killqwerty.myapp.myapp3.Android1.Lesson7_8;
-import com.android.killqwerty.myapp.myapp3.Android2.Lesson1;
-import com.android.killqwerty.myapp.myapp3.Android2.Lesson2;
-import com.android.killqwerty.myapp.myapp3.Android2.Lesson3;
+import com.android.killqwerty.myapp.myapp3.android1.Lesson4;
+import com.android.killqwerty.myapp.myapp3.android1.Lesson5;
+import com.android.killqwerty.myapp.myapp3.android1.Lesson6;
+import com.android.killqwerty.myapp.myapp3.android1.Lesson7_8;
+import com.android.killqwerty.myapp.myapp3.android_2.Lesson1;
+import com.android.killqwerty.myapp.myapp3.android_2.Lesson2;
+import com.android.killqwerty.myapp.myapp3.android_2.Lesson3;
 
 public class MainActivity extends Activity {
     Button btnNext, btnLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit,btnAndroid1,

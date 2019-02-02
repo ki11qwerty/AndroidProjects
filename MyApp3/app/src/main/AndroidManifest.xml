@@ -24,42 +24,42 @@
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Android1.Lesson6SecondActivity">
+        <activity android:name=".android1.Lesson6SecondActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Android1.Lesson4">
+        <activity android:name=".android1.Lesson4">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Android1.Lesson5">
+        <activity android:name=".android1.Lesson5">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Android1.Lesson6">
+        <activity android:name=".android1.Lesson6">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Android1.Lesson7_8">
+        <activity android:name=".android1.Lesson7_8">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Android2.Lesson1">
+        <activity android:name=".android_2.Lesson1">
         <intent-filter>
             <action android:name="android.intent.action.ALL_APPS"/>
         </intent-filter>
     </activity>
-        <activity android:name=".Android2.Lesson2">
+        <activity android:name=".android_2.Lesson2">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Android2.Lesson3">
+        <activity android:name=".android_2.Lesson3">
         <intent-filter>
             <action android:name="android.intent.action.ALL_APPS"/>
         </intent-filter>

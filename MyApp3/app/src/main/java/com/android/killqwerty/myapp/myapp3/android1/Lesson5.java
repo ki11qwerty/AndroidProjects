@@ -1,4 +1,4 @@
-package com.android.killqwerty.myapp.myapp3.Android1;
+package com.android.killqwerty.myapp.myapp3.android1;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;

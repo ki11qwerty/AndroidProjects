@@ -1,6 +1,5 @@
-package com.android.killqwerty.myapp.myapp3.Android1;
+package com.android.killqwerty.myapp.myapp3.android1;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
