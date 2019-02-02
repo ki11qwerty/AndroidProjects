@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#54b054</color>
     <color name="colorPrimaryDark">#1d701d</color>
+    <color name="colorPrimaryDark_pressed_button">#144D14</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorLesson4">#8db09e</color>
     <color name="colorOfButtonsInActivityLesson4">#58b082</color>

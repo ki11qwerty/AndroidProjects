@@ -1,8 +1,6 @@
 package com.android.killqwerty.myapp.myapp3.Android2
 
 import android.content.ContentValues
-import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -15,40 +13,40 @@ import android.widget.TextView
 import android.widget.Toast
 
 import com.android.killqwerty.myapp.myapp3.R
+import org.jetbrains.annotations.Nullable
 
 import java.util.ArrayList
 import java.util.Random
 
- class Lesson2:AppCompatActivity() {
+class Lesson3: AppCompatActivity() {
 internal var names = arrayOf("Иванов", "Петров", "Сидоров", "Антонов", "Песков", "Никульшин", "Ивлеев", "Захаров", "Марченко", "Путин", "Медведев", "Навальный", "Дробинин", "Винярский", "Ильченко", "Крюков")
 internal var i_o = arrayOf("А.А", "А.В", "Е.Г", "О.Ю", "Г.О", "П.П", "П.В", "Н.О", "Е.А", "О.Г", "В.Е", "А.Н", "А.Б", "Б.Ю")
 internal var posts = arrayOf("Напальник отдела", "уборщик", "бармен", "тестировщик", "царь во дворца", "помощник директора", "системный администратор", "официант", "халдей", "повар", "шеф-повар", "администратор", "бухгалтер", "закупщик", "грузчик", "программист", "доставщик", "поставщик", "кладовщик", "старший бухгалтер", "SEO", "фотограф", "водитель", "стажер", "директор")
-//как человеку из явы прешедшего, меня ужасает эта херня) ща посплю и разберусь че такое то ваще)
-     internal var listener:View.OnClickListener
-internal var btnOpenFields:Button
-internal var btnLoad:Button
-internal var btnDelete:Button
-internal var btnExample:Button
-internal var btnAddNew:Button
-internal var btnUpdate:Button
-internal var btnCancel:Button
-internal var btnDelete1Element:Button
-internal var BtnDelete1ElementInLayout:Button
-internal var btnSort:Button
-internal var btnSelect:Button
-internal var radioGroup:RadioGroup
-internal var etFio:EditText
-internal var etAge:EditText
-internal var etPost:EditText
-internal var etCost:EditText
-internal var etIdSet:EditText
-internal var etDelete1Element:EditText
-internal var dbHelper:Lesson1DbHelper
-internal var allPersonsLayout:LinearLayout
-internal var fieldsLayout:LinearLayout
-internal var delete1ElementLayout:LinearLayout
-internal var radioButtonsLayout:LinearLayout
-internal var persons:ArrayList<Person>
+lateinit var listener:View.OnClickListener
+lateinit var btnOpenFields:Button
+lateinit var btnLoad:Button
+lateinit var btnDelete:Button
+lateinit var btnExample:Button
+lateinit var btnAddNew:Button
+lateinit var btnUpdate:Button
+lateinit var btnCancel:Button
+lateinit var btnDelete1Element:Button
+lateinit var BtnDelete1ElementInLayout:Button
+lateinit var btnSort:Button
+lateinit var btnSelect:Button
+lateinit var radioGroup:RadioGroup
+lateinit var etFio:EditText
+lateinit var etAge:EditText
+lateinit var etPost:EditText
+lateinit var etCost:EditText
+lateinit var etIdSet:EditText
+lateinit var etDelete1Element:EditText
+lateinit var dbHelper:Lesson1DbHelper
+lateinit var allPersonsLayout:LinearLayout
+lateinit var fieldsLayout:LinearLayout
+lateinit var delete1ElementLayout:LinearLayout
+lateinit var radioButtonsLayout:LinearLayout
+lateinit var persons:MutableList<Person>
 
 
 override fun onCreate(savedInstanceState:Bundle?) {
@@ -132,8 +130,9 @@ listener = View.OnClickListener { view ->
             delete1ElementLayout.visibility = View.VISIBLE
         }
         R.id.andr2_lesson1_btn_delete1element_in_layout -> {
-            if (etDelete1Element.text.toString().equals("", ignoreCase = true))
-                break
+            if (etDelete1Element.text.toString().equals("", ignoreCase = true)) {
+                //
+            }
             val idInEt = etDelete1Element.text.toString()
             val delCount = db.delete("mytable", "id = $idInEt", null)
             Toast.makeText(applicationContext, (delCount).toString() + " запись удалена id = " + idInEt, Toast.LENGTH_SHORT).show()
@@ -172,11 +171,11 @@ if (fieldsLayout.visibility == View.GONE)
  fun loadFromDb(orderBy:String?) {
  //TODO: можно захуярить все это дело в асинк таск, с анимацией  загрузки
         persons.clear()
-val id:Int
-val fio:String
-val age:Int
-val post:String
-val cost:Int
+var id:Int
+var fio:String
+var age:Int
+var post:String
+var cost:Int
 val db = dbHelper.writableDatabase
 val c = db.query("mytable", null, null, null, null, null, orderBy)
 if (c.moveToFirst())
@@ -190,7 +189,7 @@ val costColIndex = c.getColumnIndex("cost")
 do
 {
  //впринципе меня пока и устроит вот так вот) дальше в поток запилить, если зажористо будет
-                id = c.getInt(idColIndex)
+id = c.getInt(idColIndex)
 fio = c.getString(fioColIndex)
 age = Integer.parseInt(c.getString(ageColIndex))
 post = c.getString(postColIndex)
@@ -217,7 +216,6 @@ dbHelper.close()
 }
 
  fun addNewOrUpdate() {
-val id:Int
 val fio:String
 val age:Int
 val post:String
@@ -289,7 +287,7 @@ etPost.setText(post)
 
 }
 
- fun fillScrollView(persons:ArrayList<Person>) {
+ fun fillScrollView(persons:MutableList<Person>) {
 allPersonsLayout.removeAllViews()
 
 for (p in persons)
@@ -306,38 +304,22 @@ val post = viewItem.findViewById<TextView>(R.id.a2l1_item_post)
     cost.text = "" + p.cost + "руб"
     post.text = p.post
  //TODO: на следующем уроке зафигачить сюда контекстное меню, для получения id и удаления из бд, с последующим обновлением коллекции
+    viewItem.setOnLongClickListener{ _ ->
+        val db = dbHelper.writableDatabase
+        val delCount = db.delete("mytable", "id = ${id.text}", null)
+        Toast.makeText(applicationContext, (delCount).toString() + " запись удалена id = ${id.text}", Toast.LENGTH_SHORT).show()
+        true
+}
             allPersonsLayout.addView(viewItem)
 }
 
 }
 
-private inner class Person private constructor(id:Int, fio:String, age:Int, post:String, cost:Int) {
- var id:Int = 0
-internal set
- var fio:String
-internal set
- var age:Int = 0
-internal set
- var post:String
-internal set
- var cost:Int = 0
-internal set
-
-init{
-this.id = id
-this.age = age
-this.fio = fio
-this.post = post
-this.cost = cost
-}
-}
+data class Person(var id:Int, var fio:String, var age:Int, var post:String, var cost:Int)
 
 companion object {
-
-
- // Я просто оставлю это здесь, это урок 1 но на ява, а тот на котлин... пусть пока будут оба короче
-     val DB_NAME = "MyDataBaseLesson1"
- val MY_TAG = "MyLogs"
+    const val DB_NAME = "MyDataBaseLesson1"
+    const val MY_TAG = "MyLogs"
 }
 
 }
