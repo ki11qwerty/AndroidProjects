@@ -311,6 +311,7 @@ class Lesson1 : AppCompatActivity() {
     companion object {
         const val DB_NAME = "MyDataBaseLesson1"
         const val MY_TAG = "MyLogs"
+        private lateinit var btnLoad: Button
     }
 
 }

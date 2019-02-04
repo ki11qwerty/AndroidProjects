@@ -73,7 +73,6 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:background="@color/andr2_lesson2"
-            android:text="Урок №2 \n \n (intent фильтры, контент провайдеры)"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:visibility="visible" />
@@ -97,7 +96,6 @@
             android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:background="@color/andr2_lesson3"
-            android:text="ебаный котлин дубль 2"
             android:textColor="@color/colorWhite"
             android:visibility="visible" />
 
