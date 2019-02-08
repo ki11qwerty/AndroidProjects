@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.killqwerty.myapp.myapp3.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 
 
 public class Lesson8_fragment1 extends Fragment {
