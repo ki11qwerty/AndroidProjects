@@ -39,7 +39,7 @@
         <!--app:layout_constraintEnd_toEndOf="parent"-->
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toBottomOf="@+id/andr2_les2_edText" />-->
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    <fragment
         android:id="@+id/andr2_les2_fragment_in_map_layout"
         class="com.google.android.gms.maps.MapFragment"
         android:layout_width="359dp"
@@ -50,5 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andr2_les2_edText" />
+        app:layout_constraintTop_toBottomOf="@+id/andr2_les2_edText"
+        android:name="com.android.killqwerty.myapp.myapp3.android_2.Lesson2_map_fragment" />
 </android.support.constraint.ConstraintLayout>
+    <!-->-->
