@@ -73,7 +73,7 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:background="@color/andr2_lesson2"
-            android:text="работа с картой"
+            android:text="урок №2 \n "
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:visibility="visible" />

@@ -2,6 +2,8 @@ package com.android.killqwerty.myapp.myapp3.android_2
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -13,25 +15,20 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 import kotlinx.android.synthetic.main.android2_lesson2.*
 
-class Lesson2 : Activity() {
-//    override fun onMapReady(googleMap: GoogleMap?) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        googleMap?.addMarker(MarkerOptions().position(LatLng(0.0, 0.0)).title("Marker"))
-//    }
+class Lesson2 : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.android2_lesson2)
+        val fragment = Lesson2_Fragment()
         setMyButtons()
-        setMap()
-    }
+        val fragManager = supportFragmentManager
+            fragManager.beginTransaction()
+                    .add(R.id.fragment, fragment)
+                    .commit()
+        }
 
     fun setMyButtons() {
         Toast.makeText(this,"${(andr2_les2_edText.text)}", Toast.LENGTH_LONG).show()
     }
-    fun setMap(){
-//       // val myMap = findViewById(R.id.andr2_les2_fragment_in_map_layout) as MapView
-//        val myMap2 = fragmentManager.findFragmentById(R.id.andr2_les2_fragment_in_map_layout) as MapView
-//        myMap2.getMapAsync(this)
-     }
 }

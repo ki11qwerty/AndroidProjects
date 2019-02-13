@@ -9,18 +9,18 @@
     <fragment
         android:id="@+id/andr2_les2_fragment_in_map_layout"
         class="com.google.android.gms.maps.MapFragment"
-        android:layout_width="412dp"
-        android:layout_height="772dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.508" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/andr2_les2_edText"
@@ -41,4 +41,20 @@
         app:layout_constraintBottom_toBottomOf="@+id/andr2_les2_edText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/andr2_les2_edText" />
+
+    <fragment
+        android:id="@+id/fragment"
+        class="com.android.killqwerty.myapp.myapp3.android_2.Lesson2_Fragment"
+        android:layout_width="match_parent"
+        android:layout_height="321dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andr2_les2_fragment_in_map_layout"
+        app:layout_constraintVertical_bias="0.011" />
 </android.support.constraint.ConstraintLayout>
