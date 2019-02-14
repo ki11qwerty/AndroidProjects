@@ -6,55 +6,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--> class="com.google.android.gms.maps.MapFragment" <-->
+
     <fragment
-        android:id="@+id/andr2_les2_fragment_in_map_layout"
-        class="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/fragment"
+        class="com.android.killqwerty.myapp.myapp3.android_2.Lesson2_Fragment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/andr2_les2_edText"
-        android:layout_width="match_parent"
+        android:layout_width="190dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:singleLine="true"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/andr2_les2_btn_search"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/andr2_les2_btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="@+id/andr2_les2_edText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/andr2_les2_edText" />
+        app:layout_constraintTop_toTopOf="@+id/andr2_les2_edText"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <fragment
-        android:id="@+id/fragment"
-        class="com.android.killqwerty.myapp.myapp3.android_2.Lesson2_Fragment"
-        android:layout_width="match_parent"
-        android:layout_height="321dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andr2_les2_fragment_in_map_layout"
-        app:layout_constraintVertical_bias="0.011" />
 </android.support.constraint.ConstraintLayout>
