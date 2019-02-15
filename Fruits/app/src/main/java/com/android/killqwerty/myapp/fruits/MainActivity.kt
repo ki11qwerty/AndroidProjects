@@ -1,24 +1,17 @@
 package com.android.killqwerty.myapp.fruits
 
 import android.app.Activity
-import android.content.Intent
-import android.content.Intent.ACTION_SEND
 import android.os.Bundle
-import android.text.Layout
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.main_activity.*
-import kotlinx.android.synthetic.main.main_activity2.*
-import java.util.zip.Inflater
 
 class MainActivity : Activity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity2)
+        setContentView(R.layout.main_activity)
         //btn_send.setOnClickListener { onClick(it) }
         btn_add.setOnClickListener { onClick(it) }
     }
@@ -36,7 +29,7 @@ class MainActivity : Activity(){
 //        startActivity(intent)
 //    }
     fun addSome(){
-        setContentView(R.layout.main_activity2)
+        setContentView(R.layout.main_activity)
         for(x in 0..10){
             var NewFruit = Fruit(myArr[x])
             var layout = layoutInflater.inflate(R.layout.view_element,null)

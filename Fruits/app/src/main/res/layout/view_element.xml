@@ -6,23 +6,27 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="8dp" android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" android:layout_height="wrap_content">
         <TextView
                 android:text="TextView"
                 android:layout_height="wrap_content" android:id="@+id/tv_name" android:layout_weight="1"
-                android:textAlignment="viewStart" android:layout_width="100dp"/>
+                android:textAlignment="viewStart" android:layout_width="50dp"
+                android:textSize="18sp" android:layout_marginEnd="25dp"/>
         <Button
                 android:text="-"
-                android:layout_height="wrap_content" android:id="@+id/btn_minus" android:layout_weight="1"
-                android:layout_width="5dp" android:textAlignment="center"/>
+                android:layout_height="30dp" android:id="@+id/btn_minus" android:layout_weight="0.4"
+                android:textAlignment="center"
+                android:background="@color/color_btn_minus" android:layout_width="15dp"/>
         <Button
                 android:text="+"
-                android:layout_width="5dp"
-                android:layout_height="wrap_content" android:id="@+id/btn_plus" android:layout_weight="1"/>
+                android:layout_width="15dp"
+                android:layout_height="30dp" android:id="@+id/btn_plus" android:layout_weight="0.4"
+                android:background="@color/color_btn_plus" android:layout_marginStart="8dp"/>
         <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
+                android:text="0"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content" android:id="@+id/tv_count" android:layout_weight="1"
-                android:textAlignment="textEnd"/>
+                android:textAlignment="textEnd" android:textSize="18sp" android:inputType="numberSigned"/>
     </LinearLayout>
 </RelativeLayout>
