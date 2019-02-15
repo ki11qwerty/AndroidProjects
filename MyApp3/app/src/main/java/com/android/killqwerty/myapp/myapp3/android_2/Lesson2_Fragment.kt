@@ -41,6 +41,7 @@ class Lesson2_Fragment : Fragment() , OnMapReadyCallback, View.OnClickListener{
         val settings = googleMap.uiSettings
         settings.isZoomControlsEnabled = true
         //TODO: короче закоменчю пока что это дело. завтра допилить все это дело с получением кординат, маркеры, ну и пробки можно добавить
+        //todo  : Допилить кнопку, при нажатии сделать видимым меню и скрыть кнопку, а там уже маркеры
 //        settings.isMapToolbarEnabled = true
 //        settings.isMyLocationButtonEnabled = true
 //        if(ContextCompat.checkSelfPermission(myView.context,"android.permission.ACCESS_COARSE_LOCATION") == PackageManager.PERMISSION_GRANTED)
