@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/id">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="622dp"
+            android:layout_marginBottom="109dp" android:layout_alignParentBottom="true">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1"
+        >
+            <TextView
+                    android:text="Яблоко"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView" android:layout_weight="1"
+                    tools:ignore="HardcodedText" android:textAlignment="textStart"/>
+            <Button
+                    android:text="-"
+                    android:layout_height="wrap_content" android:id="@+id/button1" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_height="wrap_content" android:id="@+id/button3" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView12" android:layout_weight="1.5"
+                    android:textAlignment="center"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Апельсин"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_weight="1"
+                    tools:ignore="HardcodedText"/>
+            <Button
+                    android:text="-"
+                    android:layout_height="wrap_content" android:id="@+id/button4" android:layout_weight="1"
+            />
+            <Button
+                    android:text="+"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/button5" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView13" android:layout_weight="1.5"
+                    android:textAlignment="center"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Грейпфрут"
+                    android:layout_width="28dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_height="wrap_content" android:id="@+id/button6" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_height="wrap_content" android:id="@+id/button7" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView14" android:layout_weight="1.5"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Лайм"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView4" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button8" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button9" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView15" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Яблоко"
+                    android:layout_width="99dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView5" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button10" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button11" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView16" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Сельдерей"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView6" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button12" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button13" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView17" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Гранат"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView7" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button14" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button15" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView18" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Мандарин"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button16" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button17" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView19" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Мята"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button18" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button19" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView20" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Эстрагон"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView10" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button20" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button21" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView21" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_weight="1">
+            <TextView
+                    android:text="Миндаль"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView11" android:layout_weight="1"/>
+            <Button
+                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button22" android:layout_weight="1"/>
+            <Button
+                    android:text="+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/button23" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView22" android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+            android:text="отправить"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/btn_send" android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp" android:layout_alignParentEnd="true" android:layout_marginEnd="132dp"
+            android:layout_alignParentStart="true" android:layout_marginStart="132dp" android:textAlignment="center"/>
+</RelativeLayout>
