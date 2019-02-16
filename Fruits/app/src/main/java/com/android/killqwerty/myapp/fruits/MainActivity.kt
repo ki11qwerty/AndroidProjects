@@ -1,49 +1,90 @@
 package com.android.killqwerty.myapp.fruits
 
 import android.app.Activity
+import android.content.Intent
+import android.content.Intent.ACTION_SEND
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.main_activity.*
 
-class MainActivity : Activity(){
+class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myString = ""
         setContentView(R.layout.main_activity)
-        //btn_send.setOnClickListener { onClick(it) }
-        btn_add.setOnClickListener { onClick(it) }
+        Toast.makeText(applicationContext, "${myString.length}",Toast.LENGTH_LONG).show()
+
+        addSome()
+        btn_send.setOnClickListener { onClick(it) }
+        button_empty.setOnClickListener { onClick(it) }
     }
-    fun onClick(view: View){
-        when(view.id){
-//            btn_send.id -> toViber()
-            btn_add.id -> addSome()
+
+    fun onClick(view: View) {
+        when (view.id) {
+           btn_send.id -> {toViber()}
+            button_empty.id -> {makeString()}
         }
     }
-//    fun toViber(){
-//        val intent = Intent(ACTION_SEND)
-//        intent.setPackage("com.viber.voip");
-//        intent.type ="text/plain"
-//        intent.putExtra(Intent.EXTRA_TEXT, "Работает Не?")
-//        startActivity(intent)
-//    }
-    fun addSome(){
-        setContentView(R.layout.main_activity)
-        for(x in 0..10){
-            var NewFruit = Fruit(myArr[x])
-            var layout = layoutInflater.inflate(R.layout.view_element,null)
-            layout.findViewById<TextView>(R.id.tv_name).text = NewFruit.name
-            layout.findViewById<Button>(R.id.btn_plus).setOnClickListener { Toast.makeText(applicationContext, "plus", Toast.LENGTH_LONG).show() }
-            layout.findViewById<Button>(R.id.btn_minus).setOnClickListener { Toast.makeText(applicationContext, "minus", Toast.LENGTH_LONG).show() }
+
+        fun toViber(){
+            if(myString.length == 0){
+                makeString()
+            }
+        val intent : Intent = Intent(ACTION_SEND)
+        intent.setPackage("com.viber.voip")
+        intent.type ="text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, myString)
+        startActivity(intent)
+    }
+    fun addSome() {
+        for (x in 0..10) {
+            var step: Int = 1
+            var SomeFruit = Fruit(myArr[x])
+            if (SomeFruit.name.contentEquals("Мята") ||
+                SomeFruit.name.contentEquals("Эстрагон") ){
+                step = 100
+                SomeFruit.weightValue = "гр"}
+            if(SomeFruit.name.contentEquals("Сельдерей")) {
+                SomeFruit.weightValue = "Уп"
+            }
+            val layout = layoutInflater.inflate(R.layout.view_element, null)
+
+            layout.findViewById<TextView>(R.id.tv_name).text = SomeFruit.name
+            layout.findViewById<TextView>(R.id.tv_count).text = "${SomeFruit.count} ${SomeFruit.weightValue}"
+            layout.findViewById<Button>(R.id.btn_plus)
+                .setOnClickListener { SomeFruit.count += step
+                    layout.findViewById<TextView>(R.id.tv_count).text = "${SomeFruit.count} ${SomeFruit.weightValue}"}
+            layout.findViewById<Button>(R.id.btn_minus)
+                .setOnClickListener { if(SomeFruit.count > 0) SomeFruit.count -= step
+                    layout.findViewById<TextView>(R.id.tv_count).text = "${SomeFruit.count} ${SomeFruit.weightValue}"}
             linear_in_scroll.addView(layout)
+            listFruits.add(SomeFruit)
 
         }
     }
+
+    fun makeString(){
+        Log.d("MyT","makeString starts")
+        for (x in 0..(listFruits.size - 1)) {
+            if (listFruits[x].count > 0) {
+                Toast.makeText(applicationContext,"${listFruits[x].count}", Toast.LENGTH_LONG).show()
+                myString += "${listFruits[x].name} - ${listFruits[x].count}${listFruits[x].weightValue} \n"
+            }
+        }
+        Toast.makeText(applicationContext,"${myString}", Toast.LENGTH_LONG).show()
+    }
+
     companion object {
-        val myArr = listOf("лимон","Апельсин","грейпрфрут","лайм","яблоко","сельдерей","гранат",
-            "мандарин","мята","эстрагон","миндаль")
+        val myArr = listOf(
+            "Лимон", "Апельсин", "Грейпрфрут", "Лайм", "Яблоко", "Сельдерей", "Гранат",
+            "Мандарин", "Мята", "Эстрагон", "Миндаль"
+        )
+        var listFruits = mutableListOf<Fruit>()
+        var myString = ""
     }
 }
-
-data class Fruit(var name:String)
+data class Fruit(var name:String, var count: Int = 0, var weightValue: String = "Кг")
