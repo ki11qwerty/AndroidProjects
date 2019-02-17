@@ -69,6 +69,7 @@ class MainActivity : Activity() {
 
     fun makeString(){
         Log.d("MyT","makeString starts")
+        myString = ""
         for (x in 0..(listFruits.size - 1)) {
             if (listFruits[x].count > 0) {
                 Toast.makeText(applicationContext,"${listFruits[x].count}", Toast.LENGTH_LONG).show()
