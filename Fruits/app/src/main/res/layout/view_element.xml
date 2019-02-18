@@ -6,8 +6,9 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_marginTop="8dp" android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" android:layout_height="wrap_content">
+            android:layout_marginTop="10dp" android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" android:layout_height="wrap_content" android:layout_marginBottom="10dp"
+    >
         <TextView
                 android:text="TextView"
                 android:layout_height="wrap_content" android:id="@+id/tv_name" android:layout_weight="1"
@@ -22,7 +23,8 @@
                 android:text="+"
                 android:layout_width="15dp"
                 android:layout_height="30dp" android:id="@+id/btn_plus" android:layout_weight="0.4"
-                android:background="@color/color_btn_plus" android:layout_marginStart="8dp"/>
+                android:background="@color/color_btn_plus" android:layout_marginStart="8dp"
+                android:layout_marginEnd="25dp"/>
         <TextView
                 android:text="0"
                 android:layout_width="50dp"
