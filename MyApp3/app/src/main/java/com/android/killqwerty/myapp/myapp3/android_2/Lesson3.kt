@@ -2,6 +2,7 @@ package com.android.killqwerty.myapp.myapp3.android_2
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.android.killqwerty.myapp.myapp3.R
 import kotlinx.android.synthetic.main.android2_lesson3.*
 
@@ -14,5 +15,13 @@ class Lesson3 : AppCompatActivity() {
 
     fun setMyButtons() {
         andr2_lesson3_btn_exit.setOnClickListener { finish() }
+        andr2_les3_btn_start.setOnClickListener { onClick(it) }
+        andr2_les3_btn_stop.setOnClickListener { onClick(it) }
+    }
+    fun onClick(view: View){
+        when(view.id){
+            andr2_les3_btn_start.id -> return // do something
+            andr2_les3_btn_stop.id -> return // do something
+        }
     }
 }
