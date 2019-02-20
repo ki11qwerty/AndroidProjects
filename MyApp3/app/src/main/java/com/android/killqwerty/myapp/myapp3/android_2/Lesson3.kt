@@ -1,5 +1,6 @@
 package com.android.killqwerty.myapp.myapp3.android_2
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -18,10 +19,11 @@ class Lesson3 : AppCompatActivity() {
         andr2_les3_btn_start.setOnClickListener { onClick(it) }
         andr2_les3_btn_stop.setOnClickListener { onClick(it) }
     }
-    fun onClick(view: View){
-        when(view.id){
-            andr2_les3_btn_start.id -> return // do something
-            andr2_les3_btn_stop.id -> return // do something
+
+    fun onClick(view: View) {
+        when (view.id) {
+            andr2_les3_btn_start.id -> startService(Intent(this, Lesson3_MyService::class.java))
+            andr2_les3_btn_stop.id -> stopService(Intent(this, Lesson3_MyService::class.java))
         }
     }
 }
