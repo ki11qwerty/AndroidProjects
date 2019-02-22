@@ -17,7 +17,6 @@ class MainActivity : Activity() {
         myString = ""
         setContentView(R.layout.main_activity)
         Toast.makeText(applicationContext, "${myString.length}",Toast.LENGTH_LONG).show()
-
         addSome()
         btn_send.setOnClickListener { onClick(it) }
         button_empty.setOnClickListener { onClick(it) }
@@ -25,12 +24,12 @@ class MainActivity : Activity() {
 
     fun onClick(view: View) {
         when (view.id) {
-           btn_send.id -> {toViber()}
+           btn_send.id -> {sendStringToViber()}
             button_empty.id -> {makeString()}
         }
     }
 
-        fun toViber(){
+        fun sendStringToViber(){
             if(myString.length == 0){
                 makeString()
             }
@@ -41,7 +40,10 @@ class MainActivity : Activity() {
         startActivity(intent)
     }
     fun addSome() {
-        for (x in 0..10) {
+//        myArr.add("новая позиция")
+//        myArr.add("и еще одна позиция")
+//        myArr.add("ну и последняя")
+        for (x in 0.rangeTo(myArr.size - 1)) {
             var step: Int = 1
             var SomeFruit = Fruit(myArr[x])
             if (SomeFruit.name.contentEquals("Мята") ||
@@ -80,9 +82,9 @@ class MainActivity : Activity() {
     }
 
     companion object {
-        val myArr = listOf(
-            "Лимон", "Апельсин", "Грейпрфрут", "Лайм", "Яблоко", "Сельдерей", "Гранат",
-            "Мандарин", "Мята", "Эстрагон", "Миндаль"
+        var myArr = mutableListOf<String>(
+            "Апельсин", "Гранат", "Грейпрфрут", "Лайм", "Лимон","Мандарин", "Мята",
+            "Сельдерей", "Эстрагон", "Яблоко"
         )
         var listFruits = mutableListOf<Fruit>()
         var myString = ""
