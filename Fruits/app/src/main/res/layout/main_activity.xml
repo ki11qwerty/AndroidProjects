@@ -21,13 +21,13 @@
                 android:text="показать заявку"
                 android:layout_height="match_parent" android:id="@+id/button_empty"
                 android:layout_width="match_parent" android:layout_weight="1"
-                android:background="@color/color_layout_btns" android:layout_marginEnd="4dp"
-                android:layout_marginStart="4dp"/>
+                android:background="@color/color_layout_btns" android:layout_marginEnd="16dp"
+                android:layout_marginStart="32dp"/>
         <Button
                 android:text="Отправить"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/btn_send"
                 android:layout_weight="1" android:background="@color/color_layout_btns"
-                android:layout_marginStart="4dp" android:layout_marginEnd="4dp"/>
+                android:layout_marginStart="16dp" android:layout_marginEnd="32dp"/>
     </LinearLayout>
 </RelativeLayout>
