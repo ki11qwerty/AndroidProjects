@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.android.killqwerty.myapp.myapp3.R
 import kotlinx.android.synthetic.main.android2_lesson3.*
+import kotlinx.coroutines.runBlocking
 
 class Lesson3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +23,8 @@ class Lesson3 : AppCompatActivity() {
 
     fun onClick(view: View) {
         when (view.id) {
-            andr2_les3_btn_start.id -> startService(Intent(this, Lesson3_MyService::class.java))
-            andr2_les3_btn_stop.id -> stopService(Intent(this, Lesson3_MyService::class.java))
+            andr2_les3_btn_start.id -> startService(Intent(this, Lesson3Service::class.java))
+            andr2_les3_btn_stop.id -> stopService(Intent(this, Lesson3Service::class.java))
         }
     }
 }

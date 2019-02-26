@@ -75,7 +75,7 @@
             <action android:name="android.intent.action.ALL_APPS"/>
         </intent-filter>
     </activity>
-        <service android:name=".android_2.Lesson3_MyService"/>
+        <service android:name=".android_2.Lesson3Service"/>
     </application>
 
 </manifest>
