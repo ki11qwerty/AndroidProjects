@@ -16,14 +16,14 @@
                 android:textSize="18sp"/>
         <Button
                 android:text="-"
-                android:layout_height="35dp" android:id="@+id/btn_minus" android:layout_weight="0.4"
+                android:layout_height="28dp" android:id="@+id/btn_minus" android:layout_weight="0.4"
                 android:textAlignment="center"
                 android:background="@color/color_btn_minus" android:layout_width="30dp"
                 android:layout_marginStart="30dp"/>
         <Button
                 android:text="+"
                 android:layout_width="30dp"
-                android:layout_height="35dp" android:id="@+id/btn_plus" android:layout_weight="0.4"
+                android:layout_height="28dp" android:id="@+id/btn_plus" android:layout_weight="0.4"
                 android:background="@color/color_btn_plus" android:layout_marginStart="8dp"
                 android:layout_marginEnd="25dp"/>
         <TextView

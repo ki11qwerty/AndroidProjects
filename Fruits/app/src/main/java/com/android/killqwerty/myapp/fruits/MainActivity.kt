@@ -30,7 +30,7 @@ class MainActivity : Activity() {
     }
 
         fun sendStringToViber(){
-            if(myString.length == 0){
+            if(myString.isEmpty()){
                 makeString()
             }
         val intent : Intent = Intent(ACTION_SEND)
@@ -83,7 +83,7 @@ class MainActivity : Activity() {
 
     companion object {
         var myArr = mutableListOf<String>(
-            "Апельсин", "Гранат", "Грейпрфрут", "Лайм", "Лимон","Мандарин", "Мята",
+            "Апельсин", "Гранат", "Грейпрфрут", "Лайм", "Лимон","Мандарин","Миндаль", "Мята",
             "Сельдерей", "Эстрагон", "Яблоко"
         )
         var listFruits = mutableListOf<Fruit>()
