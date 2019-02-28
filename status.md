@@ -4,10 +4,10 @@
 так как переписывать предыдущие уроки на котлин затратно и не оправданно по времени.
 
 for(i in 0..JuniorAndroidDevelop){
-    reading Kotlin in Action
-    doSomething in android courses
-    upgrade my others projects
-    learning StartAndroid courses
+    reading Kotlin in Action \n
+    doSomething in android courses \n
+    upgrade my others projects \n
+    learning StartAndroid courses \n
 }else{ Die }
     
 
