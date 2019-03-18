@@ -23,6 +23,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/colorLesson4"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:text="start service"
         app:layout_constraintEnd_toStartOf="@+id/andr2_les3_btn_stop"
         app:layout_constraintHorizontal_bias="0.059"
@@ -35,6 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/colorLesson4"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:text="stop service"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -65,4 +71,78 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/andr2_les3_btn_launch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="236dp"
+        android:background="@color/colorLesson6"
+        android:text="запуск 1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/andr2_les3_btn_launch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/colorLesson6"
+        android:text="запуск 2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andr2_les3_btn_launch1" />
+
+    <Button
+        android:id="@+id/andr2_les3_btn_launch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/colorLesson6"
+        android:text="запуск 3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andr2_les3_btn_launch2" />
+
+    <TextView
+        android:id="@+id/andr2_les3_tv_status1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="244dp"
+        android:gravity="center"
+        android:text="ожидание"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/andr2_les3_btn_launch1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/andr2_les3_tv_status2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:lineSpacingExtra="24sp"
+        android:text="ожидание"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/andr2_les3_btn_launch2"
+        app:layout_constraintTop_toBottomOf="@+id/andr2_les3_tv_status1" />
+
+    <TextView
+        android:id="@+id/andr2_les3_tv_status3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center"
+        android:text="ожидание"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/andr2_les3_btn_launch3"
+        app:layout_constraintTop_toBottomOf="@+id/andr2_les3_tv_status2" />
 </android.support.constraint.ConstraintLayout>

@@ -4,11 +4,11 @@
     <color name="colorPrimaryDark">#1d701d</color>
     <color name="colorPrimaryDark_pressed_button">#144D14</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorLesson4">#8db09e</color>
+    <color name="colorLesson4">#8DB09E</color>
     <color name="colorOfButtonsInActivityLesson4">#58b082</color>
     <color name="colorLesson5">#c8b09e</color>
     <color name="colorOfButtonLesson5">#c78350</color>
-    <color name="colorLesson6">#9ea8c8</color>
+    <color name="colorLesson6">#9EA8C8</color>
     <color name="colorOfButtonLesson6">#637bc7</color>
     <color name="colorLesson7">#c79d9d</color>
     <color name="colorOfButtonLesson7">#c76363</color>
