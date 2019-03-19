@@ -10,25 +10,28 @@ import java.util.function.IntToLongFunction
 
 class Lesson3Service : Service() {
     override fun onCreate() {
-        Log.d(MYTAG, "onCreate started")
-       // myJob = GlobalScope.launch { myFun() }
+        Log.d(Lesson3.MYTAG, "onCreate started")
+        myJob = GlobalScope.launch { myFun() }
         super.onCreate()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        var time = intent?.getIntExtra(PARAM_TIME,0)
-        var pi = intent?.getParcelableExtra<PendingIntent>(PARAM_PINTENT)
-        GlobalScope.launch { newJob(time,startId,pi) }.start()
-//
-//        if (!myJob.isActive)
-//            myJob.start()
-//        Log.d(MYTAG, "onStartCommand started")
+        val time = intent?.getIntExtra(Lesson3.PARAM_TIME,0)
+        val pi = intent?.getParcelableExtra<PendingIntent>(Lesson3.PARAM_PINTENT)
+        if (!myJob.isActive) { // надо будет поколдовать чет не понял чутка
+            myJob.start()
+        }
+        else {
+            GlobalScope.launch { newJob(time,startId,pi) }.start()
+            Log.d(Lesson3.MYTAG, "onStartCommand started")
+        }
         return super.onStartCommand(intent, flags, startId)
+
     }
 
     override fun onDestroy() {
-        Log.d(MYTAG, "onDestroy service")
-      //  myJob.cancel()
+        Log.d(Lesson3.MYTAG, "onDestroy service")
+
         super.onDestroy()
     }
 
@@ -40,38 +43,31 @@ class Lesson3Service : Service() {
         while (myJob.isActive) {
             delay(100)
             count += 1
-            Log.d(MYTAG, "$count")
+            Log.d(Lesson3.MYTAG, "$count")
             if (count % 10 == 0)
-                Log.d(MYTAG,"----------------------------------------------------------------")
-            if (count % 100 == 0)
+                Log.d(Lesson3.MYTAG,"----------------------------------------------------------------")
+            if (count % 100 == 0) {
                 stopSelf()
+                myJob.cancel()
+            }
+
         }
     }
 
     suspend fun newJob(time: Int? ,startId : Int,pi : PendingIntent?){
         Log.d("MYTAG","вошел в метод newJob time = $time pi = $pi startid = $startId ")
-        pi?.send(STATUS_START)
+        pi?.send(Lesson3.STATUS_START)
         if (time != null) {
             delay((time * 1000).toLong())
-        var myIntent = Intent().putExtra(PARAM_RESULT, time * 1000)
-            pi?.send(this,STATUS_FINISH,myIntent)
+        var myIntent = Intent().putExtra(Lesson3.PARAM_RESULT, time * 1000)
+            pi?.send(this,Lesson3.STATUS_FINISH,myIntent)
             delay(3000)
-            pi?.send(STATUS_CLEAR)
+            pi?.send(Lesson3.STATUS_CLEAR)
             stopSelf()}
     }
 
     companion object {
-        val MYTAG = "MYTAG"
         lateinit var myJob : Job
-        val TASK_1 = 1
-        val TASK_2 = 2
-        val TASK_3 = 3
-        val STATUS_START = 100
-        val STATUS_FINISH = 200
-        val STATUS_CLEAR = 300
-        val PARAM_TIME = "time"
-        val PARAM_PINTENT = "pendingIntent"
-        val PARAM_RESULT = "result"
 
     }
 }
