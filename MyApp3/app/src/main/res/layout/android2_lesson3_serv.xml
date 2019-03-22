@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
+        android:background="@color/andr2_lesson3_btns_in_main"
         android:text="exit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -23,10 +24,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/colorLesson4"
+        android:background="@color/colorGray"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:text="start service"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toStartOf="@+id/andr2_les3_btn_stop"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,16 +40,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/colorLesson4"
+        android:background="@color/colorGray"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:text="stop service"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Inverse"
         android:layout_width="130dp"
         android:layout_height="108dp"
         android:layout_marginStart="8dp"
@@ -78,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="236dp"
-        android:background="@color/colorLesson6"
+        android:background="@color/andr2_lesson3_btns_in_main"
         android:text="запуск 1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -89,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="56dp"
-        android:background="@color/colorLesson6"
+        android:background="@color/andr2_lesson3_btns_in_main"
         android:text="запуск 2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andr2_les3_btn_launch1" />
@@ -100,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="56dp"
-        android:background="@color/colorLesson6"
+        android:background="@color/andr2_lesson3_btns_in_main"
         android:text="запуск 3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andr2_les3_btn_launch2" />

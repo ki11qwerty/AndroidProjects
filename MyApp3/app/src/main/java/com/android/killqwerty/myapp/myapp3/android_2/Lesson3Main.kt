@@ -17,9 +17,9 @@ class Lesson3Main : AppCompatActivity(){
              val intent = Intent(this, Lesson3serv::class.java)
              startActivity(intent)
          }
-//        andr2_les3_main_btn_broadcast.setOnClickListener {
-//            val intent = Intent(Lesson3Main(), Lesson3broadcast::class.java)
-//            startActivity(intent)
-//        }
+        andr2_les3_main_btn_broadcast.setOnClickListener {
+            val intent = Intent(this, Lesson3Broadcast::class.java)
+            startActivity(intent)
+        }
     }
 }

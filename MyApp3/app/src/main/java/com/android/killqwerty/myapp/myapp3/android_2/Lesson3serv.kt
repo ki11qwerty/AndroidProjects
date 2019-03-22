@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
-import kotlinx.android.synthetic.main.android2_lesson3serv.*
+import kotlinx.android.synthetic.main.android2_lesson3_serv.*
 
 class Lesson3serv : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.android2_lesson3serv)
+        setContentView(R.layout.android2_lesson3_serv)
         setMyViews()
     }
 
