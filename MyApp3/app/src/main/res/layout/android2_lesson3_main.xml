@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sgsdfgdsgsdfg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/andr2_lesson3_main_background">
+
+    <LinearLayout
+        android:id="@+id/ll23"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/andr2_les3_main_btn_service"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@color/andr2_lesson3_btns_in_main"
+            android:text="Service" />
+
+        <Button
+            android:id="@+id/andr2_les3_main_btn_broadcast"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@color/andr2_lesson3_btns_in_main"
+            android:text="Broadcast" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -17,10 +17,12 @@
     <color name="andr2_lesson2">#640404</color>
     <color name="andr2_lesson3">#076404</color>
     <color name="andr2_lesson2_color_btn">#74435EEE</color>
+
+    <color name="andr2_lesson3_main_background">#A5D6A7</color>
+    <color name="andr2_lesson3_btns_in_main">#66BB6A</color>
     <!-->
-    <color name="andr2_lesson4"></color>
-    <color name="andr2_lesson5"></color>
     <color name="andr2_lesson6"></color>
+
     <color name="andr2_lesson7"></color>
  <-->
 
