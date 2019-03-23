@@ -29,16 +29,16 @@ class Lesson3ServerV2 : Service(){
         super.onDestroy()
     }
     suspend fun myFun(){
-        val intent = Intent(Lesson3Broadcast.BROADCAST_ACTION)
+        val intent = Intent(Lesson4Broadcast.BROADCAST_ACTION)
         for(x in 0..100) {
             delay(75)
-            intent.putExtra(Lesson3Broadcast.GIVE_ME_INTEGER, x)
+            intent.putExtra(Lesson4Broadcast.GIVE_ME_INTEGER, x)
             sendBroadcast(intent)
         }
         delay(1000)
         for (x in 100.downTo(0)){
             delay(75)
-            intent.putExtra(Lesson3Broadcast.GIVE_ME_INTEGER, x)
+            intent.putExtra(Lesson4Broadcast.GIVE_ME_INTEGER, x)
             sendBroadcast(intent)
         }
         stopSelf()

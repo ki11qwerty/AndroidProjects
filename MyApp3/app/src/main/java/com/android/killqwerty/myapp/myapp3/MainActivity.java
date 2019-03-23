@@ -10,10 +10,9 @@ import com.android.killqwerty.myapp.myapp3.android1.Lesson4;
 import com.android.killqwerty.myapp.myapp3.android1.Lesson5;
 import com.android.killqwerty.myapp.myapp3.android1.Lesson6;
 import com.android.killqwerty.myapp.myapp3.android1.Lesson7_8;
-import com.android.killqwerty.myapp.myapp3.android_2.Lesson1;
-import com.android.killqwerty.myapp.myapp3.android_2.Lesson2;
-import com.android.killqwerty.myapp.myapp3.android_2.Lesson3Main;
-import com.android.killqwerty.myapp.myapp3.android_2.Lesson3serv;
+import com.android.killqwerty.myapp.myapp3.android_2.Lesson1_2;
+import com.android.killqwerty.myapp.myapp3.android_2.Lesson3;
+import com.android.killqwerty.myapp.myapp3.android_2.Lesson4Main;
 
 public class MainActivity extends Activity {
     Button btnNext, btnLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit,btnAndroid1,
@@ -111,7 +110,7 @@ public class MainActivity extends Activity {
         btnAndr2Lesson1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Lesson1.class);
+                Intent intent = new Intent(MainActivity.this, Lesson1_2.class);
                 startActivity(intent);
             }
         });
@@ -119,7 +118,7 @@ public class MainActivity extends Activity {
         btnAndr2Lesson2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Lesson2.class);
+                Intent intent = new Intent(MainActivity.this, Lesson3.class);
                 startActivity(intent);
             }
         });
@@ -127,7 +126,7 @@ public class MainActivity extends Activity {
         btnAndr2Lesson3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Lesson3Main.class);
+                Intent intent = new Intent(MainActivity.this, Lesson4Main.class);
                 startActivity(intent);
             }
         });

@@ -60,7 +60,7 @@
             android:layout_weight="1"
             android:background="@color/andr2_lesson1"
             android:gravity="center"
-            android:text="Урок №1 \n \n(SQLite)"
+            android:text="Урок № 1, 2 \n \n(SQLite)"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:visibility="visible" />
@@ -73,7 +73,7 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:background="@color/andr2_lesson2"
-            android:text="урок №2 \n  \n (Map)"
+            android:text="урок № 3 \n  \n (Map)"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:visibility="visible" />
@@ -97,7 +97,7 @@
             android:layout_marginRight="8dp"
             android:layout_weight="1"
             android:background="@color/andr2_lesson3"
-            android:text="урок №3 \n\n (Service)"
+            android:text="урок № 4 \n\n (Service)"
             android:textColor="@color/colorWhite"
             android:visibility="visible" />
 

@@ -11,16 +11,16 @@ import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.android.killqwerty.myapp.myapp3.R
-import kotlinx.android.synthetic.main.android2_lesson3_broadcast.*
+import kotlinx.android.synthetic.main.android2_lesson4_broadcast.*
 
-class Lesson3Broadcast : Activity() {
+class Lesson4Broadcast : Activity() {
     lateinit var tv: TextView
     lateinit var progress: ProgressBar
     lateinit var br: BroadcastReceiver
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        setContentView(R.layout.android2_lesson3_broadcast)
+        setContentView(R.layout.android2_lesson4_broadcast)
         setMyViews()
         br = object :BroadcastReceiver(){
             override fun onReceive(context: Context,intent: Intent){

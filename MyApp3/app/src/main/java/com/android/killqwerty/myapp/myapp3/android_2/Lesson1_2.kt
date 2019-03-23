@@ -17,7 +17,7 @@ import com.android.killqwerty.myapp.myapp3.R
 import java.util.ArrayList
 import java.util.Random
 
-class Lesson1 : AppCompatActivity() {
+class Lesson1_2 : AppCompatActivity() {
     internal var names = arrayOf("Иванов", "Петров", "Сидоров", "Антонов", "Песков", "Никульшин", "Ивлеев", "Захаров", "Марченко", "Путин", "Медведев", "Навальный", "Дробинин", "Винярский", "Ильченко", "Крюков")
     internal var i_o = arrayOf("А.А", "А.В", "Е.Г", "О.Ю", "Г.О", "П.П", "П.В", "Н.О", "Е.А", "О.Г", "В.Е", "А.Н", "А.Б", "Б.Ю")
     internal var posts = arrayOf("Напальник отдела", "уборщик", "бармен", "тестировщик", "царь во дворца", "помощник директора", "системный администратор", "официант", "халдей", "повар", "шеф-повар", "администратор", "бухгалтер", "закупщик", "грузчик", "программист", "доставщик", "поставщик", "кладовщик", "старший бухгалтер", "SEO", "фотограф", "водитель", "стажер", "директор")
@@ -40,7 +40,7 @@ class Lesson1 : AppCompatActivity() {
     private lateinit var etCost: EditText
     private lateinit var etIdSet: EditText
     private lateinit var etDelete1Element: EditText
-    private lateinit var dbHelper: Lesson1DbHelper
+    private lateinit var dbHelper: Lesson1DBhelper
     private lateinit var allPersonsLayout: LinearLayout
     private lateinit var fieldsLayout: LinearLayout
     private lateinit var delete1ElementLayout: LinearLayout
@@ -52,7 +52,7 @@ class Lesson1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.android2_lesson1)
         setButtonsAndView()
-        dbHelper = Lesson1DbHelper(this, DB_NAME)
+        dbHelper = Lesson1DBhelper(this, DB_NAME)
         allPersonsLayout = findViewById(R.id.andr2_lesson1_linearl_in_scroll)
         delete1ElementLayout = findViewById(R.id.andr2_lesson1_linear_delete_element)
         fieldsLayout = findViewById(R.id.andr2_lesson1_fields_linear)

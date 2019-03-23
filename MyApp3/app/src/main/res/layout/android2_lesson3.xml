@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        class="com.android.killqwerty.myapp.myapp3.android_2.Lesson2_Fragment"
+        class="com.android.killqwerty.myapp.myapp3.android_2.Lesson3_Fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"

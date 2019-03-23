@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
-import kotlinx.android.synthetic.main.android2_lesson3_serv.*
+import kotlinx.android.synthetic.main.android2_lesson4for_service.*
 
-class Lesson3serv : AppCompatActivity() {
+class Lesson4forService : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.android2_lesson3_serv)
+        setContentView(R.layout.android2_lesson4for_service)
         setMyViews()
     }
 
@@ -28,27 +28,27 @@ class Lesson3serv : AppCompatActivity() {
     fun onClick(view: View) {
         when (view.id) {
             andr2_les3_btn_start.id -> {
-                startService(Intent(this, Lesson3Service::class.java))
+                startService(Intent(this, Lesson4Service::class.java))
                 Toast.makeText(this, "Всю движуху смотреть в логах, \n тут ничего не видно =)", Toast.LENGTH_LONG).show()
             }
-            andr2_les3_btn_stop.id -> stopService(Intent(this, Lesson3Service::class.java))
+            andr2_les3_btn_stop.id -> stopService(Intent(this, Lesson4Service::class.java))
             andr2_les3_btn_launch1.id -> {
                 val pi = createPendingResult(TASK_1, Intent(), 0)
-                val intent = Intent(this, Lesson3Service::class.java)
+                val intent = Intent(this, Lesson4Service::class.java)
                         .putExtra(PARAM_TIME, 7)
                         .putExtra(PARAM_PINTENT, pi)
                 startService(intent)
             }
             andr2_les3_btn_launch2.id -> {
                 val pi = createPendingResult(TASK_2, Intent(), 0)
-                val intent = Intent(this, Lesson3Service::class.java)
+                val intent = Intent(this, Lesson4Service::class.java)
                         .putExtra(PARAM_TIME, 4)
                         .putExtra(PARAM_PINTENT, pi)
                 startService(intent)
             }
             andr2_les3_btn_launch3.id -> {
                 val pi = createPendingResult(TASK_3, Intent(), 0)
-                val intent = Intent(this, Lesson3Service::class.java)
+                val intent = Intent(this, Lesson4Service::class.java)
                         .putExtra(PARAM_TIME, 2)
                         .putExtra(PARAM_PINTENT, pi)
                 startService(intent)

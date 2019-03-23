@@ -43,4 +43,6 @@
     <string name="lesson8_swap">swap</string>
     <string name="add1">add frag1</string>
     <string name="add2">add frag2</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

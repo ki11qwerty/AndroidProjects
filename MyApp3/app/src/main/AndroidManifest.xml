@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.killqwerty.myapp.myapp3">
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:allowBackup="true"
@@ -19,9 +18,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".android_2.Lesson5Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDAINF9rLW_w2TgslOI-bf-dHuTiOjGRi4"/>
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/lesson5_widget_info" />
+        </receiver>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDAINF9rLW_w2TgslOI-bf-dHuTiOjGRi4" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -32,27 +43,27 @@
         </activity>
         <activity android:name=".AboutMe">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
+                <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
         <activity android:name=".android1.Lesson6SecondActivity">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
+                <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
         <activity android:name=".android1.Lesson4">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
+                <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
         <activity android:name=".android1.Lesson5">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
+                <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
         <activity android:name=".android1.Lesson6">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
+                <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
         <activity android:name=".android1.Lesson7_8">
@@ -60,34 +71,34 @@
                 <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
-        <activity android:name=".android_2.Lesson1">
+        <activity android:name=".android_2.Lesson1_2">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
-        <activity android:name=".android_2.Lesson2">
+        <activity android:name=".android_2.Lesson3">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
-        <activity android:name=".android_2.Lesson3Main">
+        <activity android:name=".android_2.Lesson4Main">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
-        <activity android:name=".android_2.Lesson3serv">
+        <activity android:name=".android_2.Lesson4forService">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
-        <activity android:name=".android_2.Lesson3Broadcast">
+        <activity android:name=".android_2.Lesson4Broadcast">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
 
-        <service android:name=".android_2.Lesson3Service" />
-        <service android:name=".android_2.Lesson3ServerV2"/>
+        <service android:name=".android_2.Lesson4Service" />
+        <service android:name=".android_2.Lesson3ServerV2" />
     </application>
 
 </manifest>

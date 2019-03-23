@@ -28,7 +28,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:background="@color/andr2_lesson3_btns_in_main"
-            android:text="Service" />
+            android:text="Pending_Intent \nService" />
 
         <Button
             android:id="@+id/andr2_les3_main_btn_broadcast"
@@ -37,7 +37,7 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="@color/andr2_lesson3_btns_in_main"
-            android:text="Broadcast" />
+            android:text="Broadcast \nService" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

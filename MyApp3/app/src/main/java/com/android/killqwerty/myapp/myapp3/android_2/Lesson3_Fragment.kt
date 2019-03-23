@@ -12,15 +12,15 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.CameraPosition
-import kotlinx.android.synthetic.main.android2_lesson2_some_fragment.*
+import kotlinx.android.synthetic.main.android2_lesson3_some_fragment.*
 
 
-class Lesson2_Fragment : Fragment() , OnMapReadyCallback, View.OnClickListener{
+class Lesson3_Fragment : Fragment() , OnMapReadyCallback, View.OnClickListener{
     lateinit var myView : View
     override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState)}
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        myView = inflater.inflate(R.layout.android2_lesson2_some_fragment,container,false)
+        myView = inflater.inflate(R.layout.android2_lesson3_some_fragment,container,false)
         return myView
     }
 
