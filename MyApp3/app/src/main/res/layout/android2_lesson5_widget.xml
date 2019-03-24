@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="110dp"
-    android:layout_height="110dp"
-    android:background="@color/andr2_lesson3_main_background">
+    android:layout_height="110dp">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -15,7 +14,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@drawable/friend9"
+        android:background="@drawable/friend6"
         android:padding="10dp" />
 
 </RelativeLayout>
