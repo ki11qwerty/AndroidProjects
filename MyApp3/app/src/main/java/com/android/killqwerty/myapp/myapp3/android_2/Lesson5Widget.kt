@@ -6,9 +6,7 @@ import android.content.Context
 import android.widget.RemoteViews
 import com.android.killqwerty.myapp.myapp3.R
 
-/**
- * Implementation of App Widget functionality.
- */
+
 class Lesson5Widget : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -30,6 +28,8 @@ class Lesson5Widget : AppWidgetProvider() {
 
         internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager,
                                      appWidgetId: Int) {
+            //TODO: я наверное пока оставлю виджет тупо с картинкой, позже думаю найду ему применение. пробежался по теме, все понятно, идеи пока нет че туда впихнуть)
+            //TODO: StartAndroid 120урок и предыдущие про активити для виджета, пересмотреть чет не рабочий настрой
 
 //            val widgetText = context.getString(R.string.appwidget_text)
 //            // Construct the RemoteViews object
