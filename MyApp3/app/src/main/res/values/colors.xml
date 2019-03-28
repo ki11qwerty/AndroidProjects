@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#1d701d</color>
     <color name="colorPrimaryDark_pressed_button">#144D14</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="main_color_background">#C8E6C9</color>
     <color name="colorLesson4">#8DB09E</color>
     <color name="colorOfButtonsInActivityLesson4">#58b082</color>
     <color name="colorLesson5">#c8b09e</color>
@@ -20,6 +21,8 @@
 
     <color name="andr2_lesson3_main_background">#A5D6A7</color>
     <color name="andr2_lesson3_btns_in_main">#66BB6A</color>
+
+    <color name="andr2_lesson5">#5E35B1</color>
     <!-->
     <color name="andr2_lesson6"></color>
 

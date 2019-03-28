@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main_layout2"
+    android:id="@+id/ba"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="0dp"
     android:layout_marginStart="0dp"
+    android:layout_marginEnd="0dp"
+    android:background="@color/main_color_background"
     android:minHeight="250dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -45,9 +46,9 @@
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -63,7 +64,9 @@
             android:text="Урок № 1, 2 \n \n(SQLite)"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:insetLeft = "10dp"
+            android:insetTop = "10dp"/>
 
         <Button
             android:id="@+id/btn_andr2_lesson2"
@@ -83,9 +86,9 @@
         android:id="@+id/linear_layout6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -102,14 +105,16 @@
             android:visibility="visible" />
 
         <Button
-            android:id="@+id/button_lesson7_main"
+            android:id="@+id/btn_andr2_lesson5"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
-            android:background="@color/colorLesson7"
-            android:visibility="invisible" />
+            android:background="@color/andr2_lesson5"
+            android:text="Урок №5 \n\n (Widget)"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
 
     </LinearLayout>
 
@@ -122,9 +127,9 @@
             android:id="@+id/buttonExit"
             android:layout_width="100px"
             android:layout_height="150px"
-            android:layout_marginBottom="10dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/exit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,8 +141,8 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
             android:layout_weight="1"
             android:text="@string/next_button"
             app:layout_constraintBottom_toBottomOf="parent"
