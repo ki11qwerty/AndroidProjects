@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="0dp"
-        android:layout_weight="1.2"
+        android:layout_weight="1"
         android:gravity="top"
         android:orientation="horizontal">
 
@@ -42,81 +42,128 @@
             android:text="Android 2 \n (Kotlin)" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_weight="0.3">
 
-        <Button
-            android:id="@+id/btn_andr2_lesson1"
-            style="@style/Widget.AppCompat.Button.Borderless"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:background="@color/andr2_lesson1"
-            android:gravity="center"
-            android:text="Урок № 1, 2 \n \n(SQLite)"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite"
-            android:visibility="visible"
-            android:insetLeft = "10dp"
-            android:insetTop = "10dp"/>
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_andr2_lesson2"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:background="@color/andr2_lesson2"
-            android:text="урок № 3 \n  \n (Map)"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite"
-            android:visibility="visible" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/linear_layout6"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_andr2_lesson1"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/andr2_lesson1"
+                    android:gravity="center"
+                    android:insetLeft="10dp"
+                    android:insetTop="10dp"
+                    android:text="Урок № 1, 2 \n \n(SQLite)"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:visibility="visible" />
 
-        <Button
-            android:id="@+id/btn_andr2_lesson3"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:background="@color/andr2_lesson3"
-            android:text="урок № 4 \n\n (Service)"
-            android:textColor="@color/colorWhite"
-            android:visibility="visible" />
+                <Button
+                    android:id="@+id/btn_andr2_lesson2"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/andr2_lesson2"
+                    android:text="урок № 3 \n  \n (Map)"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:visibility="visible" />
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_andr2_lesson5"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:background="@color/andr2_lesson5"
-            android:text="Урок №5 \n\n (Widget)"
-            android:textColor="@android:color/white"
-            android:visibility="visible" />
+            <LinearLayout
+                android:id="@+id/linear_layout6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btn_andr2_lesson3"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/andr2_lesson3"
+                    android:text="урок № 4 \n\n (Service)"
+                    android:textColor="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_andr2_lesson5"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/andr2_lesson5"
+                    android:text="Урок №5 \n\n (Widget)"
+                    android:textColor="@android:color/white"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_android2_lesson6"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/andr2_lesson6"
+                    android:text="Lesson №6 \n\n (empty)"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/button6"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/andr2_lesson7"
+                    android:text="Lesson №7 \n\n (empty)"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

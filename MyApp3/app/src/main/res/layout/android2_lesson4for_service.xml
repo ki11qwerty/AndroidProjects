@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/andr2_lesson3_btns_in_main"
+        android:background="@color/andr2_lesson3"
         android:text="exit"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -81,8 +82,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="236dp"
-        android:background="@color/andr2_lesson3_btns_in_main"
+        android:background="@color/andr2_lesson3"
         android:text="запуск 1"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,8 +94,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="56dp"
-        android:background="@color/andr2_lesson3_btns_in_main"
+        android:background="@color/andr2_lesson3"
         android:text="запуск 2"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andr2_les3_btn_launch1" />
 
@@ -103,8 +106,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="56dp"
-        android:background="@color/andr2_lesson3_btns_in_main"
+        android:background="@color/andr2_lesson3"
         android:text="запуск 3"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/andr2_les3_btn_launch2" />
 

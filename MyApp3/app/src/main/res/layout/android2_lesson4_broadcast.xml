@@ -58,8 +58,9 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:background="@color/andr2_lesson3_btns_in_main"
+            android:background="@color/andr2_lesson3"
             android:text="Start Service"
+            android:textColor="@android:color/white"
             tools:layout_editor_absoluteX="33dp"
             tools:layout_editor_absoluteY="515dp" />
 
@@ -69,8 +70,9 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:background="@color/andr2_lesson3_btns_in_main"
+            android:background="@color/andr2_lesson3"
             android:text="Stop Service"
+            android:textColor="@android:color/white"
             tools:layout_editor_absoluteX="131dp"
             tools:layout_editor_absoluteY="563dp" />
     </LinearLayout>
