@@ -13,11 +13,13 @@ import com.android.killqwerty.myapp.myapp3.android1.Lesson7_8;
 import com.android.killqwerty.myapp.myapp3.android_2.Lesson1_2;
 import com.android.killqwerty.myapp.myapp3.android_2.Lesson3;
 import com.android.killqwerty.myapp.myapp3.android_2.Lesson4Main;
+//import com.android.killqwerty.myapp.myapp3.android_2.Lesson5ConfigForWidget
 
 public class MainActivity extends Activity {
+    com.android.killqwerty.myapp.myapp3.android_2.Lesson6 A2Lesson6 = new com.android.killqwerty.myapp.myapp3.android_2.Lesson6(); // Import android2.lesson6
     Button btnNext, btnLesson4, buttLesson5, buttLesson6, buttLesson7, buttExit,btnAndroid1,
-            btnAndroid2, btnAndr2Lesson1, btnAndr2Lesson2, btnAndr2Lesson3;
-
+            btnAndroid2, btnAndr2Lesson1, btnAndr2Lesson2, btnAndr2Lesson4, btnAndr2Lesson5,
+            btnAndr2Lesson6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,11 +124,27 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-        btnAndr2Lesson3 = findViewById(R.id.btn_andr2_lesson3);
-        btnAndr2Lesson3.setOnClickListener(new View.OnClickListener() {
+        btnAndr2Lesson4 = findViewById(R.id.btn_andr2_lesson4);
+        btnAndr2Lesson4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Lesson4Main.class);
+                startActivity(intent);
+            }
+        });
+//        btnAndr2Lesson5 = findViewById(R.id.btn_android2_lesson5);
+//        btnAndr2Lesson5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this,);
+//                startActivity(intent);
+//            }
+//        });
+        btnAndr2Lesson6 = findViewById(R.id.btn_android2_lesson6);
+        btnAndr2Lesson6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, A2Lesson6.getClass());
                 startActivity(intent);
             }
         });
