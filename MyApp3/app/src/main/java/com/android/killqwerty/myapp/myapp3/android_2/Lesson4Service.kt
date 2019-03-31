@@ -35,7 +35,7 @@ class Lesson4Service : Service() {
     }
 
     override fun onBind(p0: Intent?): IBinder? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return null
     }
     suspend fun myFun(){
         var count = 0
@@ -58,7 +58,7 @@ class Lesson4Service : Service() {
         pi?.send(Lesson4forService.STATUS_START)
         if (time != null) {
             delay((time * 1000).toLong())
-        var myIntent = Intent().putExtra(Lesson4forService.PARAM_RESULT, time * 1000)
+        val myIntent = Intent().putExtra(Lesson4forService.PARAM_RESULT, time * 1000)
             pi?.send(this,Lesson4forService.STATUS_FINISH,myIntent)
             delay(3000)
             pi?.send(Lesson4forService.STATUS_CLEAR)

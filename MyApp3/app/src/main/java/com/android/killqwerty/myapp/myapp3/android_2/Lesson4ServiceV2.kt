@@ -21,7 +21,7 @@ class Lesson3ServerV2 : Service(){
     }
 
     override fun onBind(p0: Intent?): IBinder? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return null
     }
 
     override fun onDestroy() {
