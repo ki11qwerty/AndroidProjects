@@ -12,12 +12,6 @@ import com.android.killqwerty.myapp.myapp3.R
 class Lesson6PageFragment : Fragment() {
     var pageNumber: Int? = 0
 
-    //    static PageFragment newInstance(int page) {
-//        PageFragment pageFragment = new PageFragment();
-//        Bundle arguments = new Bundle();
-//        arguments.putInt(ARGUMENT_PAGE_NUMBER, page);
-//        pageFragment.setArguments(arguments);
-//        return pageFragment;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageNumber = arguments?.getInt(ARGUMENT_PAGE_NUMBER, 1)
