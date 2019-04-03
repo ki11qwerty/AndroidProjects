@@ -1,6 +1,5 @@
 package com.android.killqwerty.myapp.myapp3.android_2
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
@@ -43,5 +42,14 @@ private class MyFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter
     }
     override fun getCount(): Int {
         return Lesson6.PAGE_COUNT
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        when(position){
+            0 -> return "sms"
+            1 -> return "sensors"
+            2 -> return "bluetooth"
+        }
+        return null
     }
 }
