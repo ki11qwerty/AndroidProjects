@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.killqwerty.myapp.myapp3.R
 
-class Lesson6FragmentBluetooth : Fragment(){
+class Lesson6FragmentSensors : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.android2_lesson6_fragment_bluetooth, container, false)
-
+        return inflater.inflate(R.layout.android2_lesson6_fragment_sensors, container, false)
     }
 }
+

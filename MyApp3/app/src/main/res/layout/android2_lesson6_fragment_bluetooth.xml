@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="201dp"
+        android:layout_height="209dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="265dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="257dp"
+        android:gravity="center"
+        android:text="Bluetooth Fragment"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+</RelativeLayout>

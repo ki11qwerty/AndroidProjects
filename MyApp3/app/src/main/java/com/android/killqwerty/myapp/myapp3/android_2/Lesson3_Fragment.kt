@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
@@ -30,7 +29,6 @@ class Lesson3_Fragment : Fragment() , OnMapReadyCallback, View.OnClickListener{
         myMap.onCreate(null)
         myMap.onResume()
         myMap.getMapAsync(this)
-        Toast.makeText(myView.context,"чпонь", Toast.LENGTH_LONG).show()
         setButtons()
     }
 

@@ -13,6 +13,7 @@ import com.android.killqwerty.myapp.myapp3.android1.Lesson7_8;
 import com.android.killqwerty.myapp.myapp3.android_2.Lesson1_2;
 import com.android.killqwerty.myapp.myapp3.android_2.Lesson3;
 import com.android.killqwerty.myapp.myapp3.android_2.Lesson4Main;
+import com.android.killqwerty.myapp.myapp3.android_2.Lesson5ConfigForWidget;
 //import com.android.killqwerty.myapp.myapp3.android_2.Lesson5ConfigForWidget
 
 public class MainActivity extends Activity {
@@ -132,14 +133,14 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-//        btnAndr2Lesson5 = findViewById(R.id.btn_android2_lesson5);
-//        btnAndr2Lesson5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this,);
-//                startActivity(intent);
-//            }
-//        });
+        btnAndr2Lesson5 = findViewById(R.id.btn_android2_lesson5);
+        btnAndr2Lesson5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Lesson5ConfigForWidget.class);
+                startActivity(intent);
+            }
+        });
         btnAndr2Lesson6 = findViewById(R.id.btn_android2_lesson6);
         btnAndr2Lesson6.setOnClickListener(new View.OnClickListener() {
             @Override
