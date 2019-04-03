@@ -18,13 +18,13 @@ class Lesson6PageFragment : Fragment() {
 //        return pageFragment;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageNumber = arguments?.getInt(ARGUMENT_PAGE_NUMBER,0)
+        pageNumber = arguments?.getInt(ARGUMENT_PAGE_NUMBER,1)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        val myView = inflater.inflate(R.layout.android2_lesson6_fragment_sms,container)
-        return view
+        val myView = inflater.inflate(R.layout.android2_lesson6_fragment_sms,container,false)
+        return myView
     }
 
     companion object {
