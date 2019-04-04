@@ -1,13 +1,24 @@
 package com.android.killqwerty.myapp.myapp3.android_2
 
+import android.app.Application
+import android.content.ContentResolver
+import android.content.pm.PackageManager
+import android.database.Cursor
 import android.os.Bundle
+import android.provider.Telephony
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.telephony.SmsManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
+import java.util.jar.Manifest
 
 class Lesson6PageFragment : Fragment() {
     var pageNumber: Int? = 0
@@ -40,7 +51,34 @@ class Lesson6PageFragment : Fragment() {
     }
 
     fun configureFirstFragment(view: View) { // тут будет настройка смс фрагмента
+        //var listOfItem : MutableList<Item> = MutableList(100,)
         view.findViewById<Button>(R.id.button1).setOnClickListener { Toast.makeText(context, "чпонь кнопка 1", Toast.LENGTH_SHORT).show() }
+        //TODO: захуярить сюда проверку разрешения, пока включил в ручную эт пиздец
+        //val listView = view.findViewById<ListView>(R.id.a2l6_listview)
+        //val cr = object : ContentResolver(context){}
+        if(ContextCompat.checkSelfPermission(context!!.applicationContext, android.Manifest.permission.READ_SMS)
+            != PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(context,"приложению нужно разрешение на чтение смс",Toast.LENGTH_LONG).show()
+        }
+        else {
+            val c = context?.contentResolver?.query(Telephony.Sms.Inbox.CONTENT_URI, null, null, null, null)
+            var address: String
+            var addressIDX: Int
+            var text: String
+            var textIDX: Int
+            if (c != null) {
+                c.moveToFirst()
+                do {
+                    addressIDX = c.getColumnIndex(Telephony.Sms.Inbox.ADDRESS)
+                    textIDX = c.getColumnIndex(Telephony.Sms.BODY)
+                    address = c.getString(addressIDX)
+                    text = c.getString(textIDX)
+                    Log.d("MYTAG", "$address :::: $text\n\n")
+                  //  listOfItem.add(Item(address,text))
+                } while (c.moveToNext())
+                c.close()
+            }
+        }
     }
 
     fun configureSecondFragment(view: View) { // тут будет настройка сенсоров
@@ -56,10 +94,11 @@ class Lesson6PageFragment : Fragment() {
         fun create(page: Int): Lesson6PageFragment {
             val pageFragment = Lesson6PageFragment()
             val arguments = Bundle()
-            arguments.putInt(ARGUMENT_PAGE_NUMBER,page)
+            arguments.putInt(ARGUMENT_PAGE_NUMBER, page)
             pageFragment.arguments = arguments
             return pageFragment
 
         }
     }
 }
+data class Item(var address :String,var body : String)
