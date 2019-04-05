@@ -1,31 +1,27 @@
 package com.android.killqwerty.myapp.myapp3.android_2
 
-import android.app.Application
-import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
-import android.database.Cursor
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.provider.Telephony
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.telephony.SmsManager
-import android.util.Log
+import android.support.v4.content.ContextCompat.getSystemService
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.android.killqwerty.myapp.myapp3.R
-import java.util.jar.Manifest
-import java.util.zip.Inflater
 
 class Lesson6PageFragment : Fragment() {
     var pageNumber: Int? = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageNumber = arguments?.getInt(ARGUMENT_PAGE_NUMBER, 1)
-        //   setMyButtons()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,10 +47,8 @@ class Lesson6PageFragment : Fragment() {
 
     fun configureFirstFragment(view: View) { // тут будет настройка смс фрагмента
         val listOfItem = mutableListOf<Item>()
-        view.findViewById<Button>(R.id.button1).setOnClickListener { Toast.makeText(context, "чпонь кнопка 1", Toast.LENGTH_SHORT).show() }
-        //TODO: захуярить сюда проверку разрешения, пока включил в ручную эт пиздец
+        //TODO: захуярить сюда проверку разрешения, пока включил в ручную эт зашкварно
         val listView = view.findViewById<ListView>(R.id.a2l6_listview)
-        //val cr = object : ContentResolver(context){}
         if(ContextCompat.checkSelfPermission(context!!.applicationContext, android.Manifest.permission.READ_SMS)
             != PackageManager.PERMISSION_GRANTED){
             Toast.makeText(context,"приложению нужно разрешение на чтение смс",Toast.LENGTH_LONG).show()
@@ -72,7 +66,6 @@ class Lesson6PageFragment : Fragment() {
                     textIDX = c.getColumnIndex(Telephony.Sms.BODY)
                     address = c.getString(addressIDX)
                     text = c.getString(textIDX)
-                   // Log.d("MYTAG", "$address :::: $text\n\n")
                     listOfItem.add(Item(address,text))
                 } while (c.moveToNext())
                 c.close()
@@ -84,6 +77,8 @@ class Lesson6PageFragment : Fragment() {
 
     fun configureSecondFragment(view: View) { // тут будет настройка сенсоров
         view.findViewById<Button>(R.id.button2).setOnClickListener { Toast.makeText(context, "чпонь кнопка 2", Toast.LENGTH_SHORT).show() }
+//        val sensManager = getSystemService() as SensorManager TODO ну тут я сдаюсь короче.... завтра гляну
+//        val sensor = sensManager.getDefaultSensor(Sensor.TYPE_ALL)
     }
 
     fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус
