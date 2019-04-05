@@ -76,9 +76,20 @@ class Lesson6PageFragment : Fragment() {
     }
 
     fun configureSecondFragment(view: View) { // тут будет настройка сенсоров
-        view.findViewById<Button>(R.id.button2).setOnClickListener { Toast.makeText(context, "чпонь кнопка 2", Toast.LENGTH_SHORT).show() }
-//        val sensManager = getSystemService() as SensorManager TODO ну тут я сдаюсь короче.... завтра гляну
-//        val sensor = sensManager.getDefaultSensor(Sensor.TYPE_ALL)
+        val sensManager = view.context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sensors = sensManager.getSensorList(Sensor.TYPE_ALL)
+        var myString = ""
+        for(x in 0 until sensors.size){
+            myString += "------------------------------------------------\n"
+            myString += "имя - ${sensors[x].name}\n"
+            myString += "тип - ${sensors[x].type}\n"
+            myString += "шаг - ${sensors[x].resolution}\n"
+            myString += "максимальное значение - ${sensors[x].maximumRange}\n"
+            myString += "производство  - ${sensors[x].vendor}\n"
+            myString += "------------------------------------------------\n\n\n"
+        }
+        view.findViewById<TextView>(R.id.a2l6_sensors_tv).text = myString
+
     }
 
     fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус
