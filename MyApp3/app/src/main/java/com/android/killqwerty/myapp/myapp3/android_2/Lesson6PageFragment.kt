@@ -93,7 +93,6 @@ class Lesson6PageFragment : Fragment() {
     }
 
     fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус
-        view.findViewById<Button>(R.id.button3).setOnClickListener { Toast.makeText(context, "чпонь кнопка 3", Toast.LENGTH_SHORT).show() }
     }
 
     companion object {
