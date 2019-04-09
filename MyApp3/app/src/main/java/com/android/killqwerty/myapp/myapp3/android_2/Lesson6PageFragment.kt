@@ -1,6 +1,14 @@
 package com.android.killqwerty.myapp.myapp3.android_2
 
+import android.app.Activity.RESULT_CANCELED
+import android.app.Activity.RESULT_OK
+import android.app.Application
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorManager
@@ -8,7 +16,6 @@ import android.os.Bundle
 import android.provider.Telephony
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.getSystemService
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +24,7 @@ import com.android.killqwerty.myapp.myapp3.R
 
 class Lesson6PageFragment : Fragment() {
     var pageNumber: Int? = 0
-
+    val myBTAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,11 +99,70 @@ class Lesson6PageFragment : Fragment() {
 
     }
 
-    fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус
+    fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус          TODO - убрать эти грязные танцы, господи кошмар какой
+        view.findViewById<Button>(R.id.a2l6_bluetooth_btn_find).setOnClickListener { findBT(view) }
+        val enableBT = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+        if (myBTAdapter == null){
+            Toast.makeText(context,"устройство не поддерживает BlueTooth",Toast.LENGTH_LONG).show()
+        }
+        if (myBTAdapter?.isEnabled == false){
+
+            startActivityForResult(enableBT,REQUEST_ENABLE_BT)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK)
+            Toast.makeText(context,"blueTooth активирован",Toast.LENGTH_LONG).show()
+        if (resultCode == RESULT_CANCELED)
+            Toast.makeText(context,"отменено",Toast.LENGTH_LONG).show()
+    }
+
+    fun findBT(view: View){
+        if(myBTAdapter?.isEnabled == false) {
+            Toast.makeText(context,"bluetooth не активен",Toast.LENGTH_SHORT).show()
+            return
+        }
+        view.findViewById<TextView>(R.id.a2l6_bluetooth_tv).text = "идет поиск устройств"
+        myBTAdapter!!.startDiscovery()
+        val myIFilter = IntentFilter(BluetoothDevice.ACTION_FOUND)
+        receiver = object : BroadcastReceiver(){
+            override fun onReceive(c: Context?, intent: Intent?) {
+                val action = intent?.action
+                when(action){
+                    BluetoothDevice.ACTION_FOUND -> {
+                        val device: BluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
+                        val deviceName = device.name
+                        val deviceHardwareAddress = device.address
+                        myString += "$deviceName \n $deviceHardwareAddress \n\n"
+                        setMyTv()
+
+                    }
+                }
+            }
+        }
+        context!!.applicationContext.registerReceiver(receiver,myIFilter)
+        var cancel = view.findViewById<Button>(R.id.a2l6_bluetooth_btn_cancel)
+        cancel.visibility = View.VISIBLE
+        cancel.setOnClickListener { stopAndInvis(it) }
+
+    }
+    fun setMyTv(){
+        val myTextView: TextView = view!!.findViewById(R.id.a2l6_bluetooth_tv)
+        myTextView.text = myString
+    }
+    fun stopAndInvis(cancel: View){
+        cancel.visibility = View.INVISIBLE
+        if(myBTAdapter != null)
+            myBTAdapter.cancelDiscovery()
+
     }
 
     companion object {
-        val ARGUMENT_PAGE_NUMBER = "arg_page_num"
+        var myString = ""
+        lateinit var receiver: BroadcastReceiver
+        const val REQUEST_ENABLE_BT = 10001
+        const val ARGUMENT_PAGE_NUMBER = "arg_page_num"
         fun create(page: Int): Lesson6PageFragment {
             val pageFragment = Lesson6PageFragment()
             val arguments = Bundle()
@@ -128,7 +194,7 @@ class SmsAdapter(val items : MutableList<Item>, var c : Context) : BaseAdapter()
         }
 
         myView!!.findViewById<TextView>(R.id.a2l6_item_address).text = items[position].address
-        myView!!.findViewById<TextView>(R.id.a2l6_item_body).text = items[position].body
+        myView.findViewById<TextView>(R.id.a2l6_item_body).text = items[position].body
         return myView
     }
 }
