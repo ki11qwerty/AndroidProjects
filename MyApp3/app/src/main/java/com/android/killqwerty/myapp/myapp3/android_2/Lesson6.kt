@@ -36,6 +36,7 @@ class Lesson6 : FragmentActivity() {
         pagerAdapter = MyFragmentPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
         viewPager.offscreenPageLimit = 2
+        //viewPager.getChildAt(0) //TODO во че откопал! вот это и будет отправной точкой на завтрашний день
 
 
 
