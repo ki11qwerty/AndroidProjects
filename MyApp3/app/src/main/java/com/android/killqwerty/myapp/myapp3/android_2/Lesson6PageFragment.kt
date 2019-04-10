@@ -2,7 +2,6 @@ package com.android.killqwerty.myapp.myapp3.android_2
 
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
-import android.app.Application
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
@@ -14,13 +13,18 @@ import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.provider.Telephony
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.android.killqwerty.myapp.myapp3.R
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class Lesson6PageFragment : Fragment() {
     var pageNumber: Int? = 0
@@ -29,6 +33,7 @@ class Lesson6PageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageNumber = arguments?.getInt(ARGUMENT_PAGE_NUMBER, 1)
+        Lesson6
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -53,34 +58,9 @@ class Lesson6PageFragment : Fragment() {
     }
 
     fun configureFirstFragment(view: View) { // тут будет настройка смс фрагмента
-        val listOfItem = mutableListOf<Item>()
-        //TODO: захуярить сюда проверку разрешения, пока включил в ручную эт зашкварно
-        val listView = view.findViewById<ListView>(R.id.a2l6_listview)
-        if(ContextCompat.checkSelfPermission(context!!.applicationContext, android.Manifest.permission.READ_SMS)
-            != PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(context,"приложению нужно разрешение на чтение смс",Toast.LENGTH_LONG).show()
-        }
-        else {
-            val c = context?.contentResolver?.query(Telephony.Sms.Inbox.CONTENT_URI, null, null, null, null)
-            var address: String
-            var addressIDX: Int
-            var text: String
-            var textIDX: Int
-            if (c != null) {
-                c.moveToFirst()
-                do {
-                    addressIDX = c.getColumnIndex(Telephony.Sms.Inbox.ADDRESS)
-                    textIDX = c.getColumnIndex(Telephony.Sms.BODY)
-                    address = c.getString(addressIDX)
-                    text = c.getString(textIDX)
-                    listOfItem.add(Item(address,text))
-                } while (c.moveToNext())
-                c.close()
-            }
-            listView.adapter = SmsAdapter(listOfItem,this.activity!!.applicationContext) // todo тут чет с контексотом херня нужно нот нул
+
 
         }
-    }
 
     fun configureSecondFragment(view: View) { // тут будет настройка сенсоров
         val sensManager = view.context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -100,7 +80,7 @@ class Lesson6PageFragment : Fragment() {
     }
 
     fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус          TODO - убрать эти грязные танцы, господи кошмар какой
-        view.findViewById<Button>(R.id.a2l6_bluetooth_btn_find).setOnClickListener { findBT(view) }
+        view.findViewById<Button>(R.id.a2l6_bluetooth_btn_find).setOnClickListener { findBT(view) } //TODO - это удалить и перенести в активити. a хотяяяя... -___-
         val enableBT = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
         if (myBTAdapter == null){
             Toast.makeText(context,"устройство не поддерживает BlueTooth",Toast.LENGTH_LONG).show()
@@ -110,7 +90,6 @@ class Lesson6PageFragment : Fragment() {
             startActivityForResult(enableBT,REQUEST_ENABLE_BT)
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK)
             Toast.makeText(context,"blueTooth активирован",Toast.LENGTH_LONG).show()
@@ -123,19 +102,24 @@ class Lesson6PageFragment : Fragment() {
             Toast.makeText(context,"bluetooth не активен",Toast.LENGTH_SHORT).show()
             return
         }
-        view.findViewById<TextView>(R.id.a2l6_bluetooth_tv).text = "идет поиск устройств"
+        myString = "идет поиск устройств"
+        view.findViewById<TextView>(R.id.a2l6_bluetooth_tv).text = myString
         myBTAdapter!!.startDiscovery()
         val myIFilter = IntentFilter(BluetoothDevice.ACTION_FOUND)
+        myString = " "
         receiver = object : BroadcastReceiver(){
             override fun onReceive(c: Context?, intent: Intent?) {
                 val action = intent?.action
                 when(action){
                     BluetoothDevice.ACTION_FOUND -> {
                         val device: BluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
-                        val deviceName = device.name
-                        val deviceHardwareAddress = device.address
-                        myString += "$deviceName \n $deviceHardwareAddress \n\n"
-                        setMyTv()
+                        if (device.name != null) {
+                            val deviceName = device.name
+                            val deviceHardwareAddress = device.address
+                            myString += "имя девайса -$deviceName \nадрес - $deviceHardwareAddress \nкласс bluetooth - ${device.bluetoothClass}" +
+                                    "\nтип девайса - ${device.type} \n\n"
+                            setMyTv()
+                        }
 
                     }
                 }
@@ -143,13 +127,20 @@ class Lesson6PageFragment : Fragment() {
         }
         context!!.applicationContext.registerReceiver(receiver,myIFilter)
         var cancel = view.findViewById<Button>(R.id.a2l6_bluetooth_btn_cancel)
+        GlobalScope.launch {
+            for (x in 0..100){
+                Log.d("RECEIVER",receiver.toString())
+                delay(250)
+            }
+        }
         cancel.visibility = View.VISIBLE
         cancel.setOnClickListener { stopAndInvis(it) }
 
     }
     fun setMyTv(){
-        val myTextView: TextView = view!!.findViewById(R.id.a2l6_bluetooth_tv)
-        myTextView.text = myString
+        val myTextView: TextView? = view?.findViewById(R.id.a2l6_bluetooth_tv)
+        if (myTextView != null)
+            myTextView.text = myString
     }
     fun stopAndInvis(cancel: View){
         cancel.visibility = View.INVISIBLE
@@ -171,30 +162,5 @@ class Lesson6PageFragment : Fragment() {
             return pageFragment
 
         }
-    }
-}
-data class Item(var address :String,var body : String)
-class SmsAdapter(val items : MutableList<Item>, var c : Context) : BaseAdapter(){
-
-    override fun getCount(): Int {
-       return items.size
-    }
-
-    override fun getItem(position: Int): Any {
-       return items[position]
-    }
-
-    override fun getItemId(p0: Int): Long {
-        return p0.toLong()
-    }
-    override fun getView(position: Int,convertView: View?, parent: ViewGroup?): View {
-        var myView = convertView
-        if(myView == null) {
-            myView = LayoutInflater.from(c).inflate(R.layout.android2_lesson6_item, null)
-        }
-
-        myView!!.findViewById<TextView>(R.id.a2l6_item_address).text = items[position].address
-        myView.findViewById<TextView>(R.id.a2l6_item_body).text = items[position].body
-        return myView
     }
 }
