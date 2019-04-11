@@ -52,7 +52,7 @@ class Lesson6 : FragmentActivity() {
                 when (position) {  // TODO: уже лучше... надо придумать как сделать чтобы отображение смс шло с первого запуска если есть разрешение...
                     0 -> {
                         if (requestIsOK && listOfItem.isEmpty() ) {
-                            val listView = findViewById<ListView>(R.id.a2l6_listview)
+                            val listView: ListView = findViewById(R.id.a2l6_listview)
                             val c = contentResolver.query(Telephony.Sms.Inbox.CONTENT_URI, null, null, null, null)
                             var address: String
                             var addressIDX: Int
@@ -70,6 +70,7 @@ class Lesson6 : FragmentActivity() {
                                 c.close()
                             }
                             listView.adapter = SmsAdapter(listOfItem, applicationContext)
+                                    //  listOfItem.add(Item()) Todo: как можно обновлять в режиме реального времени? или хендлерить новое смс? ну посмотреть дома уже тогда
                         }
                     }
                 }
