@@ -36,10 +36,6 @@ class Lesson6 : FragmentActivity() {
         pagerAdapter = MyFragmentPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
         viewPager.offscreenPageLimit = 2
-        //viewPager.getChildAt(0) //TODO во че откопал! вот это и будет отправной точкой на завтрашний день
-
-
-
         viewPager.addOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
             }
@@ -49,33 +45,37 @@ class Lesson6 : FragmentActivity() {
             }
 
             override fun onPageSelected(position: Int) { // можно и сюда выгрузить всю логику из создани PageFragment, но пока и так работает, для учебы и так нормально я думаю вышло
-                when (position) {  // TODO: уже лучше... надо придумать как сделать чтобы отображение смс шло с первого запуска если есть разрешение...
+                when (position) {
                     0 -> {
-                        if (requestIsOK && listOfItem.isEmpty() ) {
-                            val listView: ListView = findViewById(R.id.a2l6_listview)
-                            val c = contentResolver.query(Telephony.Sms.Inbox.CONTENT_URI, null, null, null, null)
-                            var address: String
-                            var addressIDX: Int
-                            var text: String
-                            var textIDX: Int
-                            if (c != null) {
-                                c.moveToFirst()
-                                do {
-                                    addressIDX = c.getColumnIndex(Telephony.Sms.Inbox.ADDRESS)
-                                    textIDX = c.getColumnIndex(Telephony.Sms.BODY)
-                                    address = c.getString(addressIDX)
-                                    text = c.getString(textIDX)
-                                    listOfItem.add(Item(address, text))
-                                } while (c.moveToNext())
-                                c.close()
-                            }
-                            listView.adapter = SmsAdapter(listOfItem, applicationContext)
-                                    //  listOfItem.add(Item()) Todo: как можно обновлять в режиме реального времени? или хендлерить новое смс? ну посмотреть дома уже тогда
+                        if (requestIsOK && listOfItem.isEmpty()) {
+                            fillSmsList()
                         }
                     }
                 }
             }
         })
+        viewPager.setCurrentItem(1,false) //todo: костыль!!! стартую со второй, чтобы при переходе на первую отображался список. умнее ничего не придумал, а переносить все это дело обратно в PageFragment такая лень...
+
+    }
+    fun fillSmsList(){
+        val listView: ListView = findViewById(R.id.a2l6_listview)
+        val c = applicationContext.contentResolver.query(Telephony.Sms.Inbox.CONTENT_URI, null, null, null, null)
+        var address: String
+        var addressIDX: Int
+        var text: String
+        var textIDX: Int
+        if (c != null) {
+            c.moveToFirst()
+            do {
+                addressIDX = c.getColumnIndex(Telephony.Sms.Inbox.ADDRESS)
+                textIDX = c.getColumnIndex(Telephony.Sms.BODY)
+                address = c.getString(addressIDX)
+                text = c.getString(textIDX)
+                listOfItem.add(Item(address, text))
+            } while (c.moveToNext())
+            c.close()
+        }
+        listView.adapter = SmsAdapter(listOfItem, applicationContext)
     }
 
     fun requestSMS() {
@@ -83,8 +83,7 @@ class Lesson6 : FragmentActivity() {
                 != PackageManager.PERMISSION_GRANTED) {
             requestIsOK = false
             Toast.makeText(applicationContext, "приложению нужно разрешение на чтение смс", Toast.LENGTH_LONG).show()
-        }
-        else
+        } else
             requestIsOK = true
         if (Build.VERSION.SDK_INT >= 23) {
             if (shouldShowRequestPermissionRationale(android.Manifest.permission.READ_SMS)) {

@@ -33,7 +33,6 @@ class Lesson6PageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageNumber = arguments?.getInt(ARGUMENT_PAGE_NUMBER, 1)
-        Lesson6
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -89,6 +88,7 @@ class Lesson6PageFragment : Fragment() {
 
             startActivityForResult(enableBT,REQUEST_ENABLE_BT)
         }
+
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK)

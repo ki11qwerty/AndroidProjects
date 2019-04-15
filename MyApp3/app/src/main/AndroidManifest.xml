@@ -110,6 +110,11 @@
                 <action android:name="android.intent.action.ALL_APPS" />
             </intent-filter>
         </activity>
+        <activity android:name=".android_2.Lesson7">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".android_2.Lesson4Service" />
         <service android:name=".android_2.Lesson3ServerV2" />
