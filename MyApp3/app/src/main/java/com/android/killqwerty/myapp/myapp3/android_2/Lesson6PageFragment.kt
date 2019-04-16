@@ -8,14 +8,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.provider.Telephony
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -57,8 +53,12 @@ class Lesson6PageFragment : Fragment() {
     }
 
     fun configureFirstFragment(view: View) { // тут будет настройка смс фрагмента
+        val btn_sms = view.findViewById<Button>(R.id.a2l6_btn_sms_fragment)
+        btn_sms.setOnClickListener {
+            if((activity as Lesson6).fillSmsList()) // спасибо тебе великий интернет, опять такой же ступор как на яве, но уже не на весь день)
+                btn_sms.visibility = View.INVISIBLE
 
-
+        }
         }
 
     fun configureSecondFragment(view: View) { // тут будет настройка сенсоров
@@ -78,7 +78,7 @@ class Lesson6PageFragment : Fragment() {
 
     }
 
-    fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус          TODO - убрать эти грязные танцы, господи кошмар какой
+    fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус
         view.findViewById<Button>(R.id.a2l6_bluetooth_btn_find).setOnClickListener { findBT(view) } //TODO - это удалить и перенести в активити. a хотяяяя... -___-
         val enableBT = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
         if (myBTAdapter == null){

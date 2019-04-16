@@ -15,16 +15,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.android.killqwerty.myapp.myapp3.R
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
 class Lesson6 : FragmentActivity() {
     lateinit var viewPager: ViewPager
     lateinit var pagerAdapter: PagerAdapter
-    var listOfItem = mutableListOf<Item>()
+    var listOfItems = mutableListOf<Item>()
+    val myJob = GlobalScope.async { fillListOfItems()}
     override fun onCreate(savedInstanceState: Bundle?) {
+        LIST_VIEW_IS_READY = false
         super.onCreate(savedInstanceState)
         setContentView(R.layout.android2_lesson6)
-        if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED)
+        if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED) {
             requestIsOK = true
+            myJob.start()
+        }
         else
             requestSMS()
         createViews()
@@ -44,21 +50,11 @@ class Lesson6 : FragmentActivity() {
 
             }
 
-            override fun onPageSelected(position: Int) { // можно и сюда выгрузить всю логику из создани PageFragment, но пока и так работает, для учебы и так нормально я думаю вышло
-                when (position) {
-                    0 -> {
-                        if (requestIsOK && listOfItem.isEmpty()) {
-                            fillSmsList()
-                        }
-                    }
-                }
+            override fun onPageSelected(position: Int) {
             }
         })
-        viewPager.setCurrentItem(1,false) //todo: костыль!!! стартую со второй, чтобы при переходе на первую отображался список. умнее ничего не придумал, а переносить все это дело обратно в PageFragment такая лень...
-
     }
-    fun fillSmsList(){
-        val listView: ListView = findViewById(R.id.a2l6_listview)
+    suspend fun fillListOfItems(){
         val c = applicationContext.contentResolver.query(Telephony.Sms.Inbox.CONTENT_URI, null, null, null, null)
         var address: String
         var addressIDX: Int
@@ -71,11 +67,19 @@ class Lesson6 : FragmentActivity() {
                 textIDX = c.getColumnIndex(Telephony.Sms.BODY)
                 address = c.getString(addressIDX)
                 text = c.getString(textIDX)
-                listOfItem.add(Item(address, text))
+                listOfItems.add(Item(address, text))
             } while (c.moveToNext())
             c.close()
         }
-        listView.adapter = SmsAdapter(listOfItem, applicationContext)
+    }
+    fun fillSmsList() : Boolean{
+        if(requestIsOK && myJob.isCompleted) {
+            val listView: ListView = findViewById(R.id.a2l6_listview)
+            listView.adapter = SmsAdapter(listOfItems, applicationContext)
+            LIST_VIEW_IS_READY = true
+            return true
+        }else
+            return false
     }
 
     fun requestSMS() {
@@ -96,6 +100,7 @@ class Lesson6 : FragmentActivity() {
     companion object {
         val PAGE_COUNT = 3
         var requestIsOK = false
+        var LIST_VIEW_IS_READY = false
     }
 }
 
