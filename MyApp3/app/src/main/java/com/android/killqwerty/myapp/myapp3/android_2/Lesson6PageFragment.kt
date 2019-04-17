@@ -79,7 +79,7 @@ class Lesson6PageFragment : Fragment() {
     }
 
     fun configureThirdFragment(view: View) { // а тут уже будет настройка блютус
-        view.findViewById<Button>(R.id.a2l6_bluetooth_btn_find).setOnClickListener { findBT(view) } //TODO - это удалить и перенести в активити. a хотяяяя... -___-
+        view.findViewById<Button>(R.id.a2l6_bluetooth_btn_find).setOnClickListener { findBT(view) } //..это удалить и перенести в активити. a хотяяяя... -___-
         val enableBT = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
         if (myBTAdapter == null){
             Toast.makeText(context,"устройство не поддерживает BlueTooth",Toast.LENGTH_LONG).show()

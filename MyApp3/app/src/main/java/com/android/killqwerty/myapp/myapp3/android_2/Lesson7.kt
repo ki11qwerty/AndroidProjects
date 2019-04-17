@@ -8,5 +8,6 @@ class Lesson7 : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.android2_lesson7)
+
     }
 }

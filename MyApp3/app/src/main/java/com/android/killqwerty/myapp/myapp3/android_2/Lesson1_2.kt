@@ -294,7 +294,6 @@ class Lesson1_2 : AppCompatActivity() {
             age.text = "" + p.age
             cost.text = "" + p.cost + "руб"
             post.text = p.post
-            //TODO: на следующем уроке зафигачить сюда контекстное меню, для получения id и удаления из бд, с последующим обновлением коллекции
             viewItem.setOnLongClickListener { _ ->
                 val db = dbHelper.writableDatabase
                 val delCount = db.delete("mytable", "id = ${id.text}", null)
