@@ -144,6 +144,7 @@ class Lesson6PageFragment : Fragment() {
     }
     fun stopAndInvis(cancel: View){
         cancel.visibility = View.INVISIBLE
+        myString = ""  // отчистка чтобы не дублировать при следующем вызове
         if(myBTAdapter != null)
             myBTAdapter.cancelDiscovery()
 
