@@ -134,17 +134,18 @@ class Lesson6PageFragment : Fragment() {
             }
         }
         cancel.visibility = View.VISIBLE
-        cancel.setOnClickListener { stopAndInvis(it) }
+        cancel.setOnClickListener { stopAndInvis(view) }
 
     }
     fun setMyTv(){
         val myTextView: TextView? = view?.findViewById(R.id.a2l6_bluetooth_tv)
         if (myTextView != null)
             myTextView.text = myString
+        myString = " "   // записали и отчистили, бредовая риализация но показывает что хотел. // если буду доводить все свои костыли до блеска, буду старым и безработным...
     }
-    fun stopAndInvis(cancel: View){
-        cancel.visibility = View.INVISIBLE
-        myString = ""  // отчистка чтобы не дублировать при следующем вызове
+    fun stopAndInvis(view: View){
+        view.findViewById<Button>(R.id.a2l6_bluetooth_btn_cancel).visibility = View.INVISIBLE
+        view.findViewById<TextView>(R.id.a2l6_bluetooth_tv).text = "TextView"
         if(myBTAdapter != null)
             myBTAdapter.cancelDiscovery()
 
