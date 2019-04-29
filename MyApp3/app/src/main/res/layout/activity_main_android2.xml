@@ -157,7 +157,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@color/andr2_lesson7"
-                    android:text="Lesson №7 \n\n (empty)"
+                    android:text="Lesson №7 \n\n (графика)\n(анимация)\n(компоненты UI)"
                     android:textColor="@android:color/white" />
             </LinearLayout>
         </LinearLayout>

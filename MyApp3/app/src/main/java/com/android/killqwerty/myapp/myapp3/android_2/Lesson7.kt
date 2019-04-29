@@ -9,6 +9,8 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
 import kotlin.random.Random
+//TODO: урок номер 7, сделать на следующую смену все из методички, отложить пока конвас, все по теме а там уже на что время хватит
+
 
 class Lesson7 : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,16 +25,15 @@ class Lesson7 : Activity() {
         var r = 100
         var g = 100
         var b = 100
-        var toast = Toast.makeText(context,"red-$r \ngreen-$g \nblue-$b",Toast.LENGTH_SHORT)
         override fun onDraw(canvas: Canvas?) {
             canvas?.drawARGB(100,r,g,b)
-            toast.show()
 
         }
         fun onClick(){
             r = Random.nextInt(0,255)
             g = Random.nextInt(0,255)
             b = Random.nextInt(0,255)
+            Toast.makeText(context,"red-$r \ngreen-$g \nblue-$b",Toast.LENGTH_SHORT).show()
             invalidate()
         }
     }
