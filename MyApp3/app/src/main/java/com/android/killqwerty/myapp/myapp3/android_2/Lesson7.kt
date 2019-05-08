@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
 import kotlin.random.Random
 //TODO: урок номер 7, сделать на следующую смену все из методички, отложить пока конвас, все по теме а там уже на что время хватит
+//TODO : потерянный ноутбук нашелся! соберусь с силами и с 10 мая вотсоновлю учебу... праздничная обстановка на работе это такое себе...
 
 
 class Lesson7 : Activity() {
