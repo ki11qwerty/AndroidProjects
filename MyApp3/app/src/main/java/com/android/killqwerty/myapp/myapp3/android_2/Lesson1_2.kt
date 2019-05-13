@@ -67,7 +67,6 @@ class Lesson1_2 : AppCompatActivity() {
 
     fun setButtonsAndView() {
         setOnClick()
-        //TODO: запилить второй листенер, без использования базы данных
         btnOpenFields = findViewById(R.id.btn_a2_l1_open_fields)
         btnDelete = findViewById(R.id.btn_a2_l1_delete)
         btnLoad = findViewById(R.id.btn_a2_l1_load)
@@ -171,7 +170,6 @@ class Lesson1_2 : AppCompatActivity() {
     }
 
     fun loadFromDb(orderBy: String?) {
-        //TODO: можно захуярить все это дело в асинк таск, с анимацией  загрузки
         persons.clear()
         var id: Int
         var fio: String
