@@ -38,27 +38,39 @@ class Lesson7 : Activity() {
     }
 
     class MyDrawable(c: Context) : View(c) {
-        var r = 100
-        var g = 100
-        var b = 100
         var xPos = (this.width / 2).toFloat()
         var yPos = -1240f
         var myRad = 100f
         var myStep = 10f
+        var myStr = "сбоку пососи"
         var myP = Paint().apply {
             color = Color.WHITE
             strokeWidth = 1f
+        }
+        var myP2 = Paint().apply {
+            color = Color.BLACK
+            strokeWidth = 1f
+            textSize = myRad / 2
+
+        }
+        var myP3 = Paint().apply {
+            color = Color.GREEN
+            strokeWidth = 5f
+            textSize = 75f
         }
         override fun onDraw(canvas: Canvas?) {
             if (yPos == -1240f) yPos = (height / 2).toFloat()
             canvas?.drawColor(Color.BLACK)
             canvas?.drawCircle(xPos, yPos,myRad, myP)
+            canvas?.drawText(myStr,(xPos - myRad * 0.9f),(yPos),myP2)
+            canvas?.drawText("скорость: $myStep px в 10наноСек",10f,height - 100f,myP3)
         }
         fun changeXPos(x : Float){
             if(xPos < -myRad) {
                 xPos = (this.width + 250).toFloat()
                 changeYPos(Random.nextInt(100,height).toFloat())
                 changeMyRad()
+                myP2.textSize = myRad / 3.5f// удалить потом
             }
             xPos -= x
             invalidate()
@@ -75,6 +87,7 @@ class Lesson7 : Activity() {
             myStep = speed
         }
         fun onClick(){
+
         }
     }
 
