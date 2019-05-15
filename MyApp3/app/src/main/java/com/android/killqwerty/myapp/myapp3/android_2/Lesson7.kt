@@ -29,11 +29,10 @@ class Lesson7 : Activity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         myDraw.setOnClickListener {  myDraw.onClick() }
         setContentView(myDraw)
-        val myStep = 10f
         GlobalScope.launch {
             while (run) {
                 delay(10)
-                myDraw.changeXPos(myStep)
+                myDraw.changeXPos(myDraw.myStep)
             }
         }
     }
@@ -44,6 +43,8 @@ class Lesson7 : Activity() {
         var b = 100
         var xPos = (this.width / 2).toFloat()
         var yPos = -1240f
+        var myRad = 100f
+        var myStep = 10f
         var myP = Paint().apply {
             color = Color.WHITE
             strokeWidth = 1f
@@ -51,21 +52,29 @@ class Lesson7 : Activity() {
         override fun onDraw(canvas: Canvas?) {
             if (yPos == -1240f) yPos = (height / 2).toFloat()
             canvas?.drawColor(Color.BLACK)
-            canvas?.drawCircle(xPos, yPos,100f, myP)
+            canvas?.drawCircle(xPos, yPos,myRad, myP)
         }
-        suspend fun changeXPos(x : Float){
-            if(xPos < -100) xPos = (this.width + 250).toFloat()
+        fun changeXPos(x : Float){
+            if(xPos < -myRad) {
+                xPos = (this.width + 250).toFloat()
+                changeYPos(Random.nextInt(100,height).toFloat())
+                changeMyRad()
+            }
             xPos -= x
             invalidate()
         }
         fun changeYPos(y : Float){
-            if(yPos > (this.height).toFloat()) yPos = 0f
-            yPos += y
-            invalidate()
+            yPos = y
+        }
+        fun changeMyRad(){
+            var rand = Random.nextInt(10,500).toFloat()
+            myRad = rand
+            changeMyStep((rand / 50) + 1 )
+        }
+        fun changeMyStep(speed : Float){
+            myStep = speed
         }
         fun onClick(){
-            xPos += 100
-            invalidate()
         }
     }
 
