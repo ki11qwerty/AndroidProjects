@@ -18,8 +18,32 @@ import kotlin.random.Random
 //TODO: завтра переделать это убожище, что то я не уловил видимо)
 
 class Lesson7 : Activity() {
+    var w = windowManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(MyDraw(this))
+    }
+}
+class MyDraw(c: Context) : View(c){
+    val mX = 500f
+    val mY = 500f
+    val mRad = 300f
+    var mHeight = this.height.toFloat()
+    val mArr = floatArrayOf(100f,100f,100f,mHeight+1000f)// arrayOf(10f,10f,20f,20f,30f,30f,40f,40f,50f,50f)
+    val mPaint : Paint = Paint().apply {
+        color = Color.WHITE
+        strokeWidth = 5f
+    }
+    val mPaint2 = Paint().apply {
+        color = Color.GREEN
+        strokeWidth = 10f
+    }
+
+    override fun onDraw(canvas: Canvas?) {
+        canvas?.drawColor(Color.BLACK)
+        canvas?.drawCircle(mX,mY,mRad,mPaint)
+        canvas?.drawLines(mArr,mPaint2)
+        super.onDraw(canvas)
     }
 }
 //Домашнее задание
