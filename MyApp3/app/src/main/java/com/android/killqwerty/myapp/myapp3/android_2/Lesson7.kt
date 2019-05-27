@@ -2,11 +2,9 @@ package com.android.killqwerty.myapp.myapp3.android_2
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
@@ -18,33 +16,61 @@ import kotlin.random.Random
 //TODO: завтра переделать это убожище, что то я не уловил видимо)
 
 class Lesson7 : Activity() {
-    var w = windowManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var display : Display = windowManager.defaultDisplay
+        var mPoint = Point()
+        display.getSize(mPoint)
+        xDisplay = mPoint.x
+        yDisplay = mPoint.y
         setContentView(MyDraw(this))
+
+    }
+    companion object{
+        var xDisplay: Int = -10
+        var yDisplay: Int = -10
     }
 }
 class MyDraw(c: Context) : View(c){
-    val mX = 500f
-    val mY = 500f
-    val mRad = 300f
-    var mHeight = this.height.toFloat()
-    val mArr = floatArrayOf(100f,100f,100f,mHeight+1000f)// arrayOf(10f,10f,20f,20f,30f,30f,40f,40f,50f,50f)
-    val mPaint : Paint = Paint().apply {
-        color = Color.WHITE
-        strokeWidth = 5f
+    var xDisplay: Float = Lesson7.xDisplay.toFloat()
+    var yDisplay: Float = Lesson7.yDisplay.toFloat()
+    val mX = (xDisplay / 2)
+    val mY = (yDisplay / 2)
+    val mRad = 450f
+    val mArr = floatArrayOf(100f, 100f, 100f, yDisplay - 100f,
+            100f, 100f, xDisplay - 100f, 100f,
+            xDisplay - 100f, 100f, xDisplay - 100, yDisplay - 100f,
+            100f, yDisplay - 100f, xDisplay - 100, yDisplay - 100f,
+            100f, 100f, xDisplay - 100f, yDisplay - 100f,
+            100f, yDisplay - 100f, xDisplay - 100f, 100f)
+
+    val mPaint = Paint().apply {
+        color = Color.GREEN
+        strokeWidth = 3.3f
     }
     val mPaint2 = Paint().apply {
-        color = Color.GREEN
-        strokeWidth = 10f
+        color = Color.BLACK
+        strokeWidth = 3.3f
+    }
+    var mPaint3 = Paint().apply {
+        color = Color.RED
+        strokeWidth = 3.3f
     }
 
     override fun onDraw(canvas: Canvas?) {
         canvas?.drawColor(Color.BLACK)
+        canvas?.drawLines(mArr,mPaint)
         canvas?.drawCircle(mX,mY,mRad,mPaint)
-        canvas?.drawLines(mArr,mPaint2)
+        for(x in 10..mRad.toInt() step 10){
+            canvas?.drawCircle(mX,mY,(mRad - x) ,mPaint2)
+            canvas?.drawCircle(mX,mY,mRad - x - 3.3f,mPaint)
+            canvas?.drawCircle(mX,mY,mRad - x - 6.6f,mPaint3)
+            Log.d("PIZDEC","$x")
+        }
         super.onDraw(canvas)
     }
+
+
 }
 //Домашнее задание
 // Разобрать все примеры из урока
