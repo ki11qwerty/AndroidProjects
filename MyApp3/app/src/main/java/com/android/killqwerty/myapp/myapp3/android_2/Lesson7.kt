@@ -6,29 +6,30 @@ import android.graphics.*
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageButton
 import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
-import kotlinx.coroutines.*
-import java.util.zip.Inflater
-import kotlin.coroutines.CoroutineContext
-import kotlin.random.Random
-//TODO: урок номер 7, сделать на следующую смену все из методички, отложить пока конвас, все по теме а там уже на что время хватит
-//TODO: завтра переделать это убожище, что то я не уловил видимо)
+
+// TODO: осталась анимация на дом
 
 class Lesson7 : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.android2_lesson7)
         var display : Display = windowManager.defaultDisplay
         var mPoint = Point()
         display.getSize(mPoint)
         xDisplay = mPoint.x
         yDisplay = mPoint.y
-        setContentView(MyDraw(this))
+       findViewById<ImageButton>(R.id.a2_l7_ib_canvas).setOnClickListener{setContentView(MyDraw(this))}
+        findViewById<ImageButton>(R.id.a2_l7_ib_animation).setOnClickListener{
+            Toast.makeText(applicationContext,"А ты там что нибудь делал?",Toast.LENGTH_LONG).show()
+        }
 
     }
     companion object{
-        var xDisplay: Int = -10
-        var yDisplay: Int = -10
+        var xDisplay: Int = -1
+        var yDisplay: Int = -1
     }
 }
 class MyDraw(c: Context) : View(c){
