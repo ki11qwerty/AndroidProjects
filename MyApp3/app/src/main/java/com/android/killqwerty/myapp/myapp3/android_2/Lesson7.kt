@@ -3,10 +3,12 @@ package com.android.killqwerty.myapp.myapp3.android_2
 import android.app.Activity
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
 
@@ -23,9 +25,16 @@ class Lesson7 : Activity() {
         yDisplay = mPoint.y
        findViewById<ImageButton>(R.id.a2_l7_ib_canvas).setOnClickListener{setContentView(MyDraw(this))}
         findViewById<ImageButton>(R.id.a2_l7_ib_animation).setOnClickListener{
-            Toast.makeText(applicationContext,"А ты там что нибудь делал?",Toast.LENGTH_LONG).show()
+            setContentView(R.layout.android2_lesson7_animation)
+            animateThis()
         }
 
+    }
+    fun animateThis(){
+        val myImageView = findViewById<ImageView>(R.id.a2l7_iv)
+        myImageView.setBackgroundResource(R.drawable.anim)
+        val animation = myImageView.background as AnimationDrawable
+        animation.start()
     }
     companion object{
         var xDisplay: Int = -1
