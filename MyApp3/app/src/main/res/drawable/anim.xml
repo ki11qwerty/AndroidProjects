@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/z1" android:duration="80"/>
-    <item android:drawable="@drawable/z2" android:duration="80"/>
-    <item android:drawable="@drawable/z3" android:duration="80"/>
-    <item android:drawable="@drawable/z4" android:duration="80"/>
-    <item android:drawable="@drawable/z5" android:duration="80"/>
-    <item android:drawable="@drawable/z6" android:duration="80"/>
-    <item android:drawable="@drawable/z7" android:duration="80"/>
-    <item android:drawable="@drawable/z8" android:duration="80"/>
-    <item android:drawable="@drawable/z9" android:duration="80"/>
-    <item android:drawable="@drawable/z10" android:duration="80"/>
-    <item android:drawable="@drawable/z11" android:duration="80"/>
-    <item android:drawable="@drawable/z12" android:duration="80"/>
-    <item android:drawable="@drawable/z13" android:duration="80"/>
-    <item android:drawable="@drawable/z14" android:duration="80"/>
+    <item android:drawable="@drawable/z1" android:duration= "60"/>
+    <item android:drawable="@drawable/z2" android:duration= "60"/>
+    <item android:drawable="@drawable/z3" android:duration= "60"/>
+    <item android:drawable="@drawable/z4" android:duration= "60"/>
+    <item android:drawable="@drawable/z5" android:duration= "60"/>
+    <item android:drawable="@drawable/z6" android:duration= "60"/>
+    <item android:drawable="@drawable/z7" android:duration ="60"/>
+    <item android:drawable="@drawable/z8" android:duration= "60"/>
+    <item android:drawable="@drawable/z9" android:duration= "60"/>
+    <item android:drawable="@drawable/z10" android:duration="60"/>
+    <item android:drawable="@drawable/z11" android:duration="60"/>
+    <item android:drawable="@drawable/z12" android:duration="60"/>
+    <item android:drawable="@drawable/z13" android:duration="60"/>
+    <item android:drawable="@drawable/z14" android:duration="60"/>
 </animation-list>

@@ -27,7 +27,10 @@
         android:id="@+id/a2l7_ground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:accessibilityLiveRegion="none"
+        android:adjustViewBounds="false"
         android:background="@drawable/lesson7ground"
+        android:cropToPadding="false"
         android:scaleType="fitXY"
         android:scaleX="5" />
 

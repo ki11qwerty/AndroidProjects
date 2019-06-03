@@ -5,19 +5,20 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import android.util.Log
+import android.text.Layout
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.TranslateAnimation
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import com.android.killqwerty.myapp.myapp3.R
 
 
 class Lesson7 : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.android2_lesson7)
         var display : Display = windowManager.defaultDisplay
