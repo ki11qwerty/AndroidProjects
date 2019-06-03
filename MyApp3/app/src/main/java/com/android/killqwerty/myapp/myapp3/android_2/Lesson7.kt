@@ -107,7 +107,6 @@ class MyDraw(c: Context) : View(c){
             canvas?.drawCircle(mX,mY,(mRad - x) ,mPaint2)
             canvas?.drawCircle(mX,mY,mRad - x - 3.3f,mPaint)
             canvas?.drawCircle(mX,mY,mRad - x - 6.6f,mPaint3)
-            Log.d("PIZDEC","$x")
         }
         super.onDraw(canvas)
     }
