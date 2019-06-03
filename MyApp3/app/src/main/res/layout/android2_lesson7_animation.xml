@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/a2l7animbacground"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/a2l7animbacground" />
+        android:scaleType="fitXY" />
 
     <ImageView
         android:id="@+id/a2l7_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@id/imageView4"
+        android:layout_alignTop="@id/imageView4"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="142dp"
+        android:background="@drawable/anim" />
+
+    <ImageView
+        android:id="@+id/a2l7_ground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/lesson7ground"
+        android:scaleType="fitXY"
+        android:scaleX="5" />
+
+    <ImageView
+        android:id="@+id/a2l7_sky"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467"
-        app:srcCompat="@drawable/anim" />
-</android.support.constraint.ConstraintLayout>
+        android:background="@drawable/sky"
+        android:scaleType="fitXY"
+        android:scaleX="5" />
+
+    <ImageView
+        android:id="@+id/a2l7_sky2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sky2"
+        android:scaleType="fitXY"
+        android:scaleX="5" />
+
+</RelativeLayout>
