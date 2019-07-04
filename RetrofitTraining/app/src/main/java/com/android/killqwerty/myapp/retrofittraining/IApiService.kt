@@ -13,8 +13,8 @@ import java.util.*
 
 interface IApiService {
     // тут будет гет и тому подобное но потом
-    @GET("posts")
-    fun getAllPosts() : Call<List<Post>>
+    @GET("users")
+    fun getAllUsers() : Call<List<User>>
 
     companion object Factory {
         fun create(): IApiService {

@@ -2,42 +2,59 @@ package com.android.killqwerty.myapp.retrofittraining
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import com.google.gson.GsonBuilder
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.internal.schedulers.IoScheduler
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.coroutineContext
 
 class MainActivity : Activity() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
+    private var myListOfPosts: List<User> = emptyList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
+        if (myListOfPosts.isEmpty()) {
+            val postsApi = IApiService.create()
+            val response = postsApi.getAllUsers()
+            response.enqueue(object : Callback<List<User>> {
+                override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                    myListOfPosts = response.body()!!
+                    createThisFuckenView()
+                    // createList(response.body()!!)
+                    Log.d("callback", "onResponse: ${response.body()!!}")
+                }
 
-        val postsApi = IApiService.create()
-        val response =  postsApi.getAllPosts()
-        response.enqueue(object : Callback<List<Post>>{
-            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-              //  doSomething(response.body()!!)       передать в метод ответ
-                Log.d("callback","onResponse: ${response.body()!![99]}\n\n ${response.body()!!.lastIndex}")
-            }
-            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                Log.d("callBack","onFailure")
-            }
-        })
+                override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                    Log.d("callBack", "onFailure")
+                }
+            })
+        }else createThisFuckenView()
+
     }
-//    fun doSomething(list : List<Post>){    тут будет обработка ответа и заполнение вьюхи а пока учу ресайклер =)
+    fun createThisFuckenView(){
+        viewManager = LinearLayoutManager(this)
+        viewAdapter = MyAdapter(myListOfPosts)
+        recyclerView = findViewById<RecyclerView>(R.id.recycler_view).apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
+    }
+//    fun createList(list : List<Post>){    тут будет обработка ответа и заполнение вьюхи а пока учу ресайклер =)
 //
+//    }
+//    override fun onSaveInstanceState(outState: Bundle?) {
+//    outState.putParcelable("list",myListOfPosts.)
+//        super.onSaveInstanceState(outState)
+//    }
+//
+//    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {             такс, потом будет сохранение чтобы не делать запрос, пока не понял как проще то
+//        savedInstanceState.getParcelableArrayList<User>()
+//        super.onRestoreInstanceState(savedInstanceState)
 //    }
 
     override fun onDestroy() {
