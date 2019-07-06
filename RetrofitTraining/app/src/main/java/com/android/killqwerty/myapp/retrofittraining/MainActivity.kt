@@ -44,9 +44,7 @@ class MainActivity : Activity() {
             adapter = viewAdapter
         }
     }
-//    fun createList(list : List<Post>){    тут будет обработка ответа и заполнение вьюхи а пока учу ресайклер =)
-//
-//    }
+
 //    override fun onSaveInstanceState(outState: Bundle?) {
 //    outState.putParcelable("list",myListOfPosts.)
 //        super.onSaveInstanceState(outState)
