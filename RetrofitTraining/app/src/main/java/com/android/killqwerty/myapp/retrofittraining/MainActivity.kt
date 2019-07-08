@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.widget.Button
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,14 +18,16 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
+        findViewById<Button>(R.id.my_btn_users).setOnClickListener { conectingToUsers() }
+    }
+    fun conectingToUsers(){
         if (myListOfPosts.isEmpty()) {
             val postsApi = IApiService.create()
             val response = postsApi.getAllUsers()
             response.enqueue(object : Callback<List<User>> {
                 override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                     myListOfPosts = response.body()!!
-                    createThisFuckenView()
-                    // createList(response.body()!!)
+                    createView()
                     Log.d("callback", "onResponse: ${response.body()!!}")
                 }
 
@@ -32,10 +35,12 @@ class MainActivity : Activity() {
                     Log.d("callBack", "onFailure")
                 }
             })
-        }else createThisFuckenView()
-
+        }else {
+            Log.d("callback","it is else and not response")
+            createView()
+        }
     }
-    fun createThisFuckenView(){
+    fun createView(){
         viewManager = LinearLayoutManager(this)
         viewAdapter = MyAdapter(myListOfPosts)
         recyclerView = findViewById<RecyclerView>(R.id.recycler_view).apply {
