@@ -16,6 +16,9 @@ interface IApiService {
     @GET("users")
     fun getAllUsers() : Call<List<User>>
 
+    @GET("posts")
+    fun getAllPosts() : Call<List<Post>>
+
     companion object Factory {
         fun create(): IApiService {
             val retrofit = Retrofit.Builder()
