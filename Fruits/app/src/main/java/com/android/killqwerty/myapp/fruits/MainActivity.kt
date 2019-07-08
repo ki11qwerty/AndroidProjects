@@ -18,23 +18,9 @@ class MainActivity : Activity() {
         setContentView(R.layout.main_activity)
         Toast.makeText(applicationContext, "${myString.length}", Toast.LENGTH_LONG).show()
         addSome()
-        btn_send.setOnClickListener { onClick(it) }
-        btn_empty.setOnClickListener { onClick(it) }
-        btn_text.setOnClickListener { onClick(it) }
-    }
-
-    fun onClick(view: View) {
-        when (view.id) {
-            btn_send.id -> {
-                sendStringToViber()
-            }
-            btn_empty.id -> {
-                makeString()
-            }
-            btn_text.id -> {
-                showOrHide()
-            }
-        }
+        btn_send.setOnClickListener { sendStringToViber() }
+        btn_empty.setOnClickListener { makeString() }
+        btn_text.setOnClickListener { showOrHide() }
     }
 
     fun sendStringToViber() {
@@ -109,7 +95,7 @@ class MainActivity : Activity() {
 
     companion object {
         var myArr = mutableListOf(
-            "Апельсин", "Гранат", "Грейпрфрут", "Имбирь", "Лайм", "Лимон", "Мандарин",
+            "Апельсин", "Гранат", "Грейпрфрут", "Имбирь", "Лайм", "Лимон",// "Мандарин",
             "Миндаль", "Мята", "Сельдерей", "Эстрагон", "Яблоко"
         )
         var listFruits = mutableListOf<Fruit>()
