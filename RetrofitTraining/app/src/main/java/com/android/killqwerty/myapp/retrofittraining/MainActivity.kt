@@ -39,7 +39,6 @@ class MainActivity : Activity() {
             Log.d("callback","it is else and not response")
             createView()
         }
-                //TODO: интересно, второй запрос для постов тоже сюда херачить надо? или в отдельный метод... вот так и живем...
     }
     fun createView(){
         viewManager = LinearLayoutManager(this)
