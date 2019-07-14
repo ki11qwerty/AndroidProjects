@@ -1,4 +1,6 @@
 package com.android.killqwerty.myapp.weatherki11qwerty.ui
 
-class MainActivity : Activity {
+import android.app.Activity
+
+class MainActivity : Activity() {
 }
