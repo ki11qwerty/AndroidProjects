@@ -14,5 +14,5 @@ interface ApiWeather{
     )
 
     companion object{
-    }
+    }//TODO: ты знаешь что нужно сделать
 }
