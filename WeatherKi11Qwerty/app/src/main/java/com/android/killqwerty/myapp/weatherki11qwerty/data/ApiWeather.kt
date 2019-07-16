@@ -39,7 +39,7 @@ interface ApiWeather{
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl("https://api.apixu.com/v1/")
-            .addCallAdapterFactory() //TODO короче сил нет думать сегодня, https://medium.com/nuances-of-programming/android-networking-%D0%B2-2019-retrofit-%D1%81-kotlin-coroutines-7254e68ca4a4
+            //.addCallAdapterFactory() //TODO короче сил нет думать сегодня, https://medium.com/nuances-of-programming/android-networking-%D0%B2-2019-retrofit-%D1%81-kotlin-coroutines-7254e68ca4a4
             // вот там поискать завтра ответы, как с депрекейтед КоротинсАдаптерФактори быть...
             .addConverterFactory(GsonConverterFactory.create())
             .build()
