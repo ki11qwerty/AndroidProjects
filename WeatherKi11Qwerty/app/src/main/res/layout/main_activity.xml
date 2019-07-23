@@ -1,27 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:background="@android:color/holo_blue_bright">
+              android:layout_height="match_parent" android:background="@android:color/holo_blue_bright"
+              android:gravity="center_horizontal">
 
-    <Button
-            android:text="Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/my_btn" android:layout_marginTop="50dp"/>
-    <Button
-            android:text="just click  (test ui)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/button2"/>
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/my_tv_1" android:textSize="30sp"
-                    android:layout_marginTop="40dp"/>
+                    android:layout_height="wrap_content" android:id="@+id/location" android:layout_marginTop="40dp"
+                    android:textAlignment="center"/>
+            <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/condition_icon" tools:visibility="visible"
+                    android:layout_gravity="center_horizontal"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/condition_text" android:gravity="center"
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:textSize="24sp"/>
+            <TextView
+                    android:text="00"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/temp_c"
+                    android:gravity="center|center_vertical"
+                    android:textSize="120dp" android:fontFamily="cursive"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" android:typeface="serif"
+                    android:textStyle="bold|italic" android:textAllCaps="false" android:layout_marginTop="24dp"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/feels_like" android:gravity="center"
+                    android:textSize="24sp"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/last_update" android:textAlignment="viewEnd"
+                    android:textSize="12sp" android:layout_marginTop="50dp" android:paddingBottom="50dp"/>
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <Button
+                        android:text="Обновить"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/update_btn"
+                        android:layout_marginBottom="60dp"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="16dp" android:background="@android:color/holo_blue_dark"/>
+                <EditText
+                        android:layout_width="227dp"
+                        android:layout_height="45dp" android:id="@+id/city_et"
+                        app:layout_constraintEnd_toStartOf="@+id/update_btn" android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="60dp" app:layout_constraintBottom_toBottomOf="parent"
+                        android:textAlignment="center" android:hint="введите название города" android:singleLine="true"
+                        android:textIsSelectable="false"/>
+            </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

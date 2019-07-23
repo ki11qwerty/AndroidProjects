@@ -1,13 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.android.killqwerty.myapp.weatherki11qwerty">
+          xmlns:tools="http://schemas.android.com/tools" package="com.android.killqwerty.myapp.weatherki11qwerty">
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application android:allowBackup="true"
                  android:label="@string/app_name"
-                 android:icon="@mipmap/ic_launcher"
-                 android:roundIcon="@mipmap/ic_launcher_round"
+                 android:icon="@mipmap/launcher"
+                 android:roundIcon="@mipmap/launcher_round"
                  android:supportsRtl="true"
-                 android:theme="@style/AppTheme">
+                 android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
