@@ -4,9 +4,24 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent" android:background="@android:color/holo_blue_bright">
 
-    <TextView
-            android:text="TextView"
+    <Button
+            android:text="Button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/my_tv_1" android:textSize="30sp"
-            android:layout_marginTop="40dp"/>
+            android:layout_height="wrap_content" android:id="@+id/my_btn" android:layout_marginTop="50dp"/>
+    <Button
+            android:text="just click  (test ui)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/button2"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/my_tv_1" android:textSize="30sp"
+                    android:layout_marginTop="40dp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

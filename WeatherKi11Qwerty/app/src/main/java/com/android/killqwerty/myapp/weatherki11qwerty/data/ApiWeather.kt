@@ -16,7 +16,7 @@ interface ApiWeather{
     suspend fun getCurrentWeather(
         @Query("q") location: String,
         @Query("lang") language: String = "en"
-    ) : Deferred<CurrentWeatherResponse>
+    ) : CurrentWeatherResponse
 
     companion object{
     operator fun invoke() : ApiWeather{
