@@ -5,13 +5,6 @@
 //
 //            мелочь на дом
 // todo: чуть подшаманить вьюшки, по красоте
-// todo:
-//
-//
-//
-//
-//
-//
 //-------------------------------------------------------------------------
 
 
@@ -65,16 +58,4 @@ class MainActivity : Activity() {
                 .into(myImage)
         }
     }
-//    fun click(){
-//        GlobalScope.launch(Dispatchers.Main){
-//            Toast.makeText(this@MainActivity,"delay",Toast.LENGTH_SHORT).show()
-//            kotlinx.coroutines.delay(5000)
-//            Toast.makeText(this@MainActivity,"after delay",Toast.LENGTH_SHORT).show()
-//            response = weatherApi.getCurrentWeather("Volgograd")
-//            //TODO = Registering an InstanceCreator with Gson for this type may fix this problem. похоже я тут надолго
-//            findViewById<TextView>(R.id.my_tv_1).text = response.currentWeatherEntry.toString()
-//            delay(100L)
-//            Log.d("myTag","after delay!")
-//        }
-//    }
 }
