@@ -24,7 +24,6 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.coroutines.*
 import retrofit2.HttpException
-import retrofit2.Retrofit
 
 class MainActivity : Activity() {
     lateinit var response : CurrentWeatherResponse
@@ -44,18 +43,19 @@ class MainActivity : Activity() {
                 city = city_et.text.toString()
             init() }
     }
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n") // иду  на это осознанно так как наврятли я это приложение буду переводить на другие языки, и суть учебы на данный момент совсем в другом
     fun init() {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 response = weatherApi.getCurrentWeather(city, "ru")
             } catch (e: HttpException) {                                // ловим и тостим ошибку, ставим город по умолчанию, делаем запрос повторно
                 when (e.code()) {                                       // оставлю WHEN если понадобится обработать разные ошибки после
-                    in 200..450 -> {
-                        Toast.makeText(applicationContext, "ошибка : ${e.code()}", Toast.LENGTH_LONG).show()
+                    in 400..451 -> {
+                        Toast.makeText(applicationContext, "ошибка клиента : ${e.code()}", Toast.LENGTH_LONG).show()
                         city = defaultCity
                         init()
                     }
+                    in 500..507 -> Toast.makeText(applicationContext, "ошибка сервера : ${e.code()}", Toast.LENGTH_LONG).show()
                 }
             }
             Log.d("myTag", "${response.currentWeatherEntry}")
