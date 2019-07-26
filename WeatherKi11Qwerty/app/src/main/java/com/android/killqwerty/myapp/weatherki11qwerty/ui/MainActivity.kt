@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------
 //             По существу:
-// todo: сделать обработку ошибок в запросе
+// готово! - сделать обработку ошибок в запросе
 // todo: реализовать прогноз погоды на ближайшие дни
 //
 //            мелочь на дом
@@ -10,22 +10,27 @@
 
 package com.android.killqwerty.myapp.weatherki11qwerty.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.Toast
 import com.android.killqwerty.myapp.weatherki11qwerty.R
 import com.android.killqwerty.myapp.weatherki11qwerty.data.ApiWeather
 import com.android.killqwerty.myapp.weatherki11qwerty.data.response.CurrentWeatherResponse
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.coroutines.*
+import retrofit2.HttpException
+import retrofit2.Retrofit
 
 class MainActivity : Activity() {
     lateinit var response : CurrentWeatherResponse
     lateinit var myImage : ImageView
     var city : String = "Волгоград"
+    val defaultCity : String = "Волгоград"
     private val weatherApi = ApiWeather()
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
@@ -39,17 +44,27 @@ class MainActivity : Activity() {
                 city = city_et.text.toString()
             init() }
     }
-    fun init(){
-        GlobalScope.launch(Dispatchers.Main){
-            response = weatherApi.getCurrentWeather(city,"ru")
-            Log.d("myTag","${response.currentWeatherEntry}")
-            Log.d("myTag",response.location.country)
-            location.text = "${response.location.country}," +
-                    "${response.location.name}"
+    @SuppressLint("SetTextI18n")
+    fun init() {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                response = weatherApi.getCurrentWeather(city, "ru")
+            } catch (e: HttpException) {                                // ловим и тостим ошибку, ставим город по умолчанию, делаем запрос повторно
+                when (e.code()) {                                       // оставлю WHEN если понадобится обработать разные ошибки после
+                    in 200..450 -> {
+                        Toast.makeText(applicationContext, "ошибка : ${e.code()}", Toast.LENGTH_LONG).show()
+                        city = defaultCity
+                        init()
+                    }
+                }
+            }
+            Log.d("myTag", "${response.currentWeatherEntry}")
+            Log.d("myTag", response.location.country)
+            location.text = "${response.location.country},${response.location.name}"
             condition_text.text = response.currentWeatherEntry.condition.text
             temp_c.text = response.currentWeatherEntry.tempC.toString() + " c"
             feels_like.text = "ощущается как ${response.currentWeatherEntry.feelslikeC}"
-            last_update.text ="последние обновление:${response.currentWeatherEntry.lastUpdated}"
+            last_update.text = "последние обновление:${response.currentWeatherEntry.lastUpdated}"
 
             val imageUrl = "https:${response.currentWeatherEntry.condition.icon}"
             Picasso.get()
