@@ -1,7 +1,7 @@
 //-------------------------------------------------------------------------
 //             По существу:
 // готово! - сделать обработку ошибок в запросе
-// todo: реализовать прогноз погоды на ближайшие дни
+// ну и это чутка сделал, запрос-ответ есть) осталось подшаманить дизайн наверное) todo: реализовать прогноз погоды на ближайшие дни
 //
 //            мелочь на дом
 // todo: чуть подшаманить вьюшки, по красоте
@@ -20,13 +20,16 @@ import android.widget.Toast
 import com.android.killqwerty.myapp.weatherki11qwerty.R
 import com.android.killqwerty.myapp.weatherki11qwerty.data.ApiWeather
 import com.android.killqwerty.myapp.weatherki11qwerty.data.response.CurrentWeatherResponse
+import com.android.killqwerty.myapp.weatherki11qwerty.data.response.ForecastResponse
+import com.android.killqwerty.myapp.weatherki11qwerty.data.response.Forecastday
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 
 class MainActivity : Activity() {
-    lateinit var response : CurrentWeatherResponse
+    lateinit var weatherResponse : CurrentWeatherResponse
+    lateinit var forecastResponse: ForecastResponse
     lateinit var myImage : ImageView
     var city : String = "Волгоград"
     val defaultCity : String = "Волгоград"
@@ -47,7 +50,8 @@ class MainActivity : Activity() {
     fun init() {
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                response = weatherApi.getCurrentWeather(city, "ru")
+                weatherResponse = weatherApi.getCurrentWeather(city, "ru")
+                forecastResponse = weatherApi.getForecastWeather(city,language = "ru")
             } catch (e: HttpException) {                                // ловим и тостим ошибку, ставим город по умолчанию, делаем запрос повторно
                 when (e.code()) {                                       // оставлю WHEN если понадобится обработать разные ошибки после
                     in 400..451 -> {
@@ -58,19 +62,26 @@ class MainActivity : Activity() {
                     in 500..507 -> Toast.makeText(applicationContext, "ошибка сервера : ${e.code()}", Toast.LENGTH_LONG).show()
                 }
             }
-            Log.d("myTag", "${response.currentWeatherEntry}")
-            Log.d("myTag", response.location.country)
-            location.text = "${response.location.country},${response.location.name}"
-            condition_text.text = response.currentWeatherEntry.condition.text
-            temp_c.text = response.currentWeatherEntry.tempC.toString() + " c"
-            feels_like.text = "ощущается как ${response.currentWeatherEntry.feelslikeC}"
-            last_update.text = "последние обновление:${response.currentWeatherEntry.lastUpdated}"
+            Log.d("myTag", "${weatherResponse.currentWeatherEntry}")
+            Log.d("myTag", weatherResponse.location.country)
+            location.text = "${weatherResponse.location.country},${weatherResponse.location.name}"
+            condition_text.text = weatherResponse.currentWeatherEntry.condition.text
+            temp_c.text = weatherResponse.currentWeatherEntry.tempC.toString() + " c"
+            feels_like.text = "ощущается как ${weatherResponse.currentWeatherEntry.feelslikeC}"
+            last_update.text = "последние обновление:${weatherResponse.currentWeatherEntry.lastUpdated}"
 
-            val imageUrl = "https:${response.currentWeatherEntry.condition.icon}"
+            val imageUrl = "https:${weatherResponse.currentWeatherEntry.condition.icon}"
             Picasso.get()
                 .load(imageUrl)
                 .fit()
                 .into(myImage)
+            var myList = mutableListOf(forecastResponse.forecast.forecastday)
+            for(days in myList){
+                for(day in days){
+                    Log.d("myTag","${day.day}")
+                }
+            }
+
         }
     }
 }
