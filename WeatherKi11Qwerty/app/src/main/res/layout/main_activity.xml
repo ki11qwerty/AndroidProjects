@@ -12,22 +12,19 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
             <TextView
-                    android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/location" android:layout_marginTop="40dp"
                     android:textAlignment="center"/>
             <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:id="@+id/condition_icon" tools:visibility="visible"
                     android:layout_gravity="center_horizontal"/>
             <TextView
-                    android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/condition_text" android:gravity="center"
-                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:textSize="24sp"/>
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:textSize="16dp"/>
             <TextView
-                    android:text="00"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/temp_c"
                     android:gravity="center|center_vertical"
@@ -35,15 +32,17 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" android:typeface="serif"
                     android:textStyle="bold|italic" android:textAllCaps="false" android:layout_marginTop="24dp"/>
             <TextView
-                    android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/feels_like" android:gravity="center"
                     android:textSize="24sp"/>
             <TextView
-                    android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/last_update" android:textAlignment="viewEnd"
                     android:textSize="12sp" android:layout_marginTop="50dp" android:paddingBottom="50dp"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/ll_for_forecast"/>
             <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

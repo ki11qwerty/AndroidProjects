@@ -16,6 +16,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import com.android.killqwerty.myapp.weatherki11qwerty.R
 import com.android.killqwerty.myapp.weatherki11qwerty.data.ApiWeather
@@ -75,10 +77,10 @@ class MainActivity : Activity() {
                 .load(imageUrl)
                 .fit()
                 .into(myImage)
-            var myList = mutableListOf(forecastResponse.forecast.forecastday)
+            val myList = mutableListOf(forecastResponse.forecast.forecastday)
             for(days in myList){
                 for(day in days){
-                    Log.d("myTag","${day.day}")
+                    Log.d("myTag","${day.day}") //todo: доделать
                 }
             }
 
