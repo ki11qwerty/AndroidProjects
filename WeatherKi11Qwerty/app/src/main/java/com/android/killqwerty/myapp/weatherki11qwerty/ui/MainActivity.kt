@@ -2,6 +2,12 @@
 //             По существу:
 // готово! - сделать обработку ошибок в запросе
 // ну и это чутка сделал, запрос-ответ есть) осталось подшаманить дизайн наверное) todo: реализовать прогноз погоды на ближайшие дни
+// todo: 3 - реализовать список погоды
+// todo: 4 - подшаманить архитектуру, LiveData или что то попроще, добавить слой
+// todo: 5-  добавить локальное сохранение предыдущих показаний, проверять последнее обновление
+// todo: 6 - после добавления дата слоя, реализовать сервис который будет обновлять информацию хотя бы рад в день
+// todo: 7 - добавить виджет , с состоянием погоды и обновлении вместе с сервисом
+// todo: 8 - реализовать боковое меню
 //
 //            мелочь на дом
 // todo: чуть подшаманить вьюшки, по красоте
@@ -33,8 +39,9 @@ class MainActivity : Activity() {
     lateinit var weatherResponse : CurrentWeatherResponse
     lateinit var forecastResponse: ForecastResponse
     lateinit var myImage : ImageView
-    var city : String = "Волгоград"
     val defaultCity : String = "Волгоград"
+    var city : String = defaultCity
+
     private val weatherApi = ApiWeather()
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
