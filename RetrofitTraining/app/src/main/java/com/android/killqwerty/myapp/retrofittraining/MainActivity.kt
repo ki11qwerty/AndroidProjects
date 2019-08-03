@@ -51,7 +51,8 @@ class MainActivity : Activity() {
     }
 
 //    override fun onSaveInstanceState(outState: Bundle?) {
-//    outState.putParcelable("list",myListOfPosts.)
+//        outState.run {
+//        }
 //        super.onSaveInstanceState(outState)
 //    }
 //
