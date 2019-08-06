@@ -30,7 +30,9 @@
                     android:gravity="center|center_vertical"
                     android:textSize="120dp" android:fontFamily="cursive"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" android:typeface="serif"
-                    android:textStyle="bold|italic" android:textAllCaps="false" android:layout_marginTop="24dp"/>
+                    android:textStyle="bold|italic" android:textAllCaps="false" android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/feels_like" android:gravity="center"
@@ -39,13 +41,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/last_update" android:textAlignment="viewEnd"
                     android:textSize="12sp" android:layout_marginTop="50dp" android:paddingBottom="50dp"/>
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/ll_for_forecast"/>
             <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="300dp" android:id="@+id/my_forecast_list" android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
             <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

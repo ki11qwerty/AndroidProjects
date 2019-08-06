@@ -4,10 +4,12 @@
 // ну и это чутка сделал, запрос-ответ есть) осталось подшаманить дизайн наверное) todo: реализовать прогноз погоды на ближайшие дни
 // todo: 3 - реализовать список погоды
 // todo: 4 - подшаманить архитектуру, LiveData или что то попроще, добавить слой
-// todo: 5-  добавить локальное сохранение предыдущих показаний, проверять последнее обновление
+// todo: 5-  добавить локальное сохранение предыдущих показаний, проверять последнее обновление   .. + показывать старую информацию  если нет сети
 // todo: 6 - после добавления дата слоя, реализовать сервис который будет обновлять информацию хотя бы рад в день
 // todo: 7 - добавить виджет , с состоянием погоды и обновлении вместе с сервисом
 // todo: 8 - реализовать боковое меню
+//
+//
 //-------------------------------------------------------------------------
 
 
@@ -18,10 +20,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.android.killqwerty.myapp.weatherki11qwerty.R
 import com.android.killqwerty.myapp.weatherki11qwerty.data.ApiWeather
 import com.android.killqwerty.myapp.weatherki11qwerty.data.response.CurrentWeatherResponse
@@ -38,12 +37,15 @@ class MainActivity : Activity() {
     lateinit var myImage : ImageView
     val defaultCity : String = "Волгоград"
     var city : String = defaultCity
+    lateinit var forecastListView: ListView
+    lateinit var adapterForList: AdapterForList
 
     private val weatherApi = ApiWeather()
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        forecastListView = findViewById(R.id.my_forecast_list)
         myImage = findViewById(R.id.condition_icon)
         init()
         update_btn.setOnClickListener {
@@ -81,13 +83,25 @@ class MainActivity : Activity() {
                 .load(imageUrl)
                 .fit()
                 .into(myImage)
-            val myList = mutableListOf(forecastResponse.forecast.forecastday)
-            for(days in myList){
-                for(day in days){
-                    Log.d("myTag","${day.day}") //todo: доделать , вот тут допилить или метод или прям тут запилить заполнение списка форкаста
-                }
-            }
 
+                Log.d("MYTAG", "${forecastResponse.forecast.forecastday.size}")
+
+                var myList: MutableList<Forecastday> = mutableListOf()
+                for (list in forecastResponse.forecast.forecastday) {
+                    myList.add(list)
+                }
+                adapterForList = AdapterForList(myList, applicationContext)
+                forecastListView.adapter = adapterForList
+
+
+//            for(days in myList){
+//                for(singleDay in days){
+//                    val myView: View = LayoutInflater.from(applicationContext).inflate(R.layout.forecast_item,null)
+//                    myView.item_date_tv.text = singleDay.day.mintempC.toString()
+//
+//
+//                    Log.d("myTag","${singleDay.day}") //todo: доделать , вот тут допилить или метод или прям тут запилить заполнение списка форкаста
+//                }
         }
     }
 }
