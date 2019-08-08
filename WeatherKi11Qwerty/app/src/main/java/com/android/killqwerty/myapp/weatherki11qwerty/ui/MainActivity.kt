@@ -17,21 +17,30 @@ package com.android.killqwerty.myapp.weatherki11qwerty.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Application
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.WindowManager
 import android.widget.*
 import com.android.killqwerty.myapp.weatherki11qwerty.R
 import com.android.killqwerty.myapp.weatherki11qwerty.data.ApiWeather
+import com.android.killqwerty.myapp.weatherki11qwerty.data.response.CurrentWeatherEntry
 import com.android.killqwerty.myapp.weatherki11qwerty.data.response.CurrentWeatherResponse
 import com.android.killqwerty.myapp.weatherki11qwerty.data.response.ForecastResponse
 import com.android.killqwerty.myapp.weatherki11qwerty.data.response.Forecastday
+import com.android.killqwerty.myapp.weatherki11qwerty.viewmodels.VModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity(){
     lateinit var weatherResponse: CurrentWeatherResponse
     lateinit var forecastResponse: ForecastResponse
     lateinit var myImage: ImageView
@@ -39,8 +48,11 @@ class MainActivity : Activity() {
     var city: String = defaultCity
     lateinit var forecastListView: ListView
     lateinit var adapterForList: AdapterForList
-
     private val weatherApi = ApiWeather()
+
+    //тут обновки дальше (удалить после теста)
+    lateinit var myCurrentWeatherEntry : CurrentWeatherEntry
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -48,6 +60,7 @@ class MainActivity : Activity() {
         )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+    //    val model: VModel= ViewModelProvider.
         forecastListView = findViewById(R.id.my_forecast_list)
         myImage = findViewById(R.id.condition_icon)
         init()
@@ -61,48 +74,59 @@ class MainActivity : Activity() {
 
     @SuppressLint("SetTextI18n") // иду  на это осознанно так как наврятли я это приложение буду переводить на другие языки, и суть учебы на данный момент совсем в другом
     fun init() {
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                weatherResponse = weatherApi.getCurrentWeather(city, "ru")
-                forecastResponse = weatherApi.getForecastWeather(city, language = "ru")
-            } catch (e: HttpException) {                                // ловим и тостим ошибку, ставим город по умолчанию, делаем запрос повторно
-                when (e.code()) {                                       // оставлю WHEN если понадобится обработать разные ошибки после
-                    in 400..451 -> {
-                        Toast.makeText(applicationContext, "ошибка клиента : ${e.code()}", Toast.LENGTH_LONG).show()
-                        city = defaultCity
-                        init()
-                    }
-                    in 500..507 -> Toast.makeText(
-                        applicationContext,
-                        "ошибка сервера : ${e.code()}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-            Log.d("myTag", "${weatherResponse.currentWeatherEntry}")
-            Log.d("myTag", weatherResponse.location.country)
-            location.text = "${weatherResponse.location.country},${weatherResponse.location.name}"
-            condition_text.text = weatherResponse.currentWeatherEntry.condition.text
-            temp_c.text = weatherResponse.currentWeatherEntry.tempC.toString() + " c"
-            feels_like.text = "ощущается как ${weatherResponse.currentWeatherEntry.feelslikeC}"
-            last_update.text = "последние обновление:${weatherResponse.currentWeatherEntry.lastUpdated}"
-
-            val imageUrl = "https:${weatherResponse.currentWeatherEntry.condition.icon}"
-            Picasso.get()
-                .load(imageUrl)
-                .fit()
-                .into(myImage)
-
-            Log.d("MYTAG", "${forecastResponse.forecast.forecastday.size}")
-
-            var myList: MutableList<Forecastday> = mutableListOf()
-            for (list in forecastResponse.forecast.forecastday) {
-                myList.add(list)
-            }
-            adapterForList = AdapterForList(myList, applicationContext)
-            forecastListView.adapter = adapterForList
-
+        GlobalScope.launch(Dispatchers.IO) {
+            myCurrentWeatherEntry = ViewModelProviders.of(this@MainActivity).get(VModel::class.java).getCurrentWeatherEntry()
+            temp_c.text = myCurrentWeatherEntry.tempC.toString()
 
         }
+
+
+
+
+
+
+//        GlobalScope.launch(Dispatchers.Main) {
+//            try {
+//                weatherResponse = weatherApi.getCurrentWeather(city, "ru")
+//                forecastResponse = weatherApi.getForecastWeather(city, language = "ru")
+//            } catch (e: HttpException) {                                // ловим и тостим ошибку, ставим город по умолчанию, делаем запрос повторно
+//                when (e.code()) {                                       // оставлю WHEN если понадобится обработать разные ошибки после
+//                    in 400..451 -> {
+//                        Toast.makeText(applicationContext, "ошибка клиента : ${e.code()}", Toast.LENGTH_LONG).show()
+//                        city = defaultCity
+//                        init()
+//                    }
+//                    in 500..507 -> Toast.makeText(
+//                        applicationContext,
+//                        "ошибка сервера : ${e.code()}",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                }
+//            }
+//            Log.d("myTag", "${weatherResponse.currentWeatherEntry}")
+//            Log.d("myTag", weatherResponse.location.country)
+//            location.text = "${weatherResponse.location.country},${weatherResponse.location.name}"
+//            condition_text.text = weatherResponse.currentWeatherEntry.condition.text
+//            temp_c.text = weatherResponse.currentWeatherEntry.tempC.toString() + " c"
+//            feels_like.text = "ощущается как ${weatherResponse.currentWeatherEntry.feelslikeC}"
+//            last_update.text = "последние обновление:${weatherResponse.currentWeatherEntry.lastUpdated}"
+//
+//            val imageUrl = "https:${weatherResponse.currentWeatherEntry.condition.icon}"
+//            Picasso.get()
+//                .load(imageUrl)
+//                .fit()
+//                .into(myImage)
+//
+//            Log.d("MYTAG", "${forecastResponse.forecast.forecastday.size}")
+//
+//            var myList: MutableList<Forecastday> = mutableListOf()
+//            for (list in forecastResponse.forecast.forecastday) {
+//                myList.add(list)
+//            }
+//            adapterForList = AdapterForList(myList, applicationContext)
+//            forecastListView.adapter = adapterForList
+//
+//
+//        }
     }
 }

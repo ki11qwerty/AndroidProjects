@@ -30,7 +30,8 @@ data class CurrentWeatherEntry(
     @SerializedName("pressure_mb")
     val pressureMb: Double,
     @SerializedName("temp_c")
-    val tempC: Double,
+    var tempC: Double,                 // todo: передалть в VAL после теста, не забудь блядь!
+
     @SerializedName("temp_f")
     val tempF: Double,
     val uv: Double,
