@@ -18,10 +18,7 @@ package com.android.killqwerty.myapp.weatherki11qwerty.ui
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.*
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
@@ -51,7 +48,9 @@ class MainActivity : AppCompatActivity(){
     private val weatherApi = ApiWeather()
 
     //тут обновки дальше (удалить после теста)
-    lateinit var myCurrentWeatherEntry : CurrentWeatherEntry
+   // lateinit var myCurrentWeatherEntry : CurrentWeatherEntry
+    lateinit var myData : LiveData<CurrentWeatherEntry>
+    lateinit var myModel : VModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setFlags(
@@ -75,8 +74,13 @@ class MainActivity : AppCompatActivity(){
     @SuppressLint("SetTextI18n") // иду  на это осознанно так как наврятли я это приложение буду переводить на другие языки, и суть учебы на данный момент совсем в другом
     fun init() {
         GlobalScope.launch(Dispatchers.IO) {
-            myCurrentWeatherEntry = ViewModelProviders.of(this@MainActivity).get(VModel::class.java).getCurrentWeatherEntry()
-            temp_c.text = myCurrentWeatherEntry.tempC.toString()
+            myModel = ViewModelProviders.of(this@MainActivity).get(VModel::class.java)
+            myData = myModel.getCurrentWeatherEntry()
+            myData.observe(this@MainActivity,object : Observer<CurrentWeatherEntry>{
+                override fun onChanged(t: CurrentWeatherEntry?) {
+                    temp_c.text = t?.tempC.toString()
+                }
+            })
 
         }
 
