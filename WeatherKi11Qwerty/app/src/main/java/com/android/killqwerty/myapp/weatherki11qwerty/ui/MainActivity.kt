@@ -3,7 +3,7 @@
 // готово 1 - сделать обработку ошибок в запросе
 // готово 2 - реализовать прогноз погоды на ближайшие дни
 // готово 3 - реализовать список погоды
-// todo: 4 - подшаманить архитектуру, LiveData или что то попроще, добавить слой
+// в процессе - todo: 4 - подшаманить архитектуру, LiveData или что то попроще, добавить слой ...
 // todo: 5-  добавить локальное сохранение предыдущих показаний, проверять последнее обновление   .. + показывать старую информацию  если нет сети
 // todo: 6 - после добавления дата слоя, реализовать сервис который будет обновлять информацию хотя бы рад в день
 // todo: 7 - добавить виджет , с состоянием погоды и обновлении вместе с сервисом
@@ -47,8 +47,6 @@ class MainActivity : AppCompatActivity(){
     lateinit var adapterForList: AdapterForList
     private val weatherApi = ApiWeather()
 
-    //тут обновки дальше (удалить после теста)
-   // lateinit var myCurrentWeatherEntry : CurrentWeatherEntry
     lateinit var myData : LiveData<CurrentWeatherEntry>
     lateinit var myModel : VModel
 
@@ -59,7 +57,6 @@ class MainActivity : AppCompatActivity(){
         )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-    //    val model: VModel= ViewModelProvider.
         forecastListView = findViewById(R.id.my_forecast_list)
         myImage = findViewById(R.id.condition_icon)
         init()
@@ -141,4 +138,5 @@ class MainActivity : AppCompatActivity(){
 // далее рубрика - это работает! но почему не понятно... (разобраться потом на выходных, сейчас не критично)
 //
 // 1 - в чем отличие Activity от AppCompatActivity, почему он подходит под viewModelProviders.of() а активити нет.
-// 2 -
+// 2 - брать ли весь обьект ответа из вьюМодели или создавать кучу лайвов для каждой позиции
+//         а если отдавать весь запрос, то где организовать Picasso чтобы не делать кучу запросов в сеть...

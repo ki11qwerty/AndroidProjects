@@ -9,9 +9,8 @@ import com.android.killqwerty.myapp.weatherki11qwerty.data.response.Forecastday
 import kotlinx.coroutines.*
 
 class VModel : ViewModel() {
+
     private var data: MutableLiveData<CurrentWeatherEntry>? = null
-    // todo: удалить после теста строку ниже
-    lateinit var current: CurrentWeatherEntry
 
     suspend fun getCurrentWeatherEntry(): LiveData<CurrentWeatherEntry> {
         if (data == null) {
@@ -27,19 +26,7 @@ class VModel : ViewModel() {
     private suspend fun loadData() {
         CoroutineScope(Dispatchers.Default).async {
             data = MutableLiveData()
-            current = (ApiWeather.invoke().getCurrentWeather("Волгоград").currentWeatherEntry)  // del
-            data!!.postValue(current)
+            data!!.postValue(ApiWeather.invoke().getCurrentWeather("Волгоград").currentWeatherEntry)
         }.await()
-        CoroutineScope(Dispatchers.Default).launch {
-            doSomethingDirty()  // del
-        }
-    }
-
-    suspend fun doSomethingDirty() { // это все ради примера, тренировка так сказать в бою
-        for (x in 1..100) {
-            delay(1000)
-            current.tempC += 1
-            data!!.postValue(current)
-        }
     }
 }
