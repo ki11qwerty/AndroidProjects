@@ -3,13 +3,13 @@
 // готово 1 - сделать обработку ошибок в запросе
 // готово 2 - реализовать прогноз погоды на ближайшие дни
 // готово 3 - реализовать список погоды
-// в процессе - todo: 4 - подшаманить архитектуру, LiveData или что то попроще, добавить слой ...
+// готово 4 - подшаманить архитектуру, LiveData или что то попроще, добавить слой ...
 // todo: 5-  добавить локальное сохранение предыдущих показаний, проверять последнее обновление   .. + показывать старую информацию  если нет сети
 // todo: 6 - после добавления дата слоя, реализовать сервис который будет обновлять информацию хотя бы рад в день
 // todo: 7 - добавить виджет , с состоянием погоды и обновлении вместе с сервисом
 // todo: 8 - реализовать боковое меню
 //
-//
+//todo: дома если будет время, пройтись по коду и вернуть все функции на место, но под новую модель
 //-------------------------------------------------------------------------
 
 
@@ -73,10 +73,9 @@ class MainActivity : AppCompatActivity(){
         GlobalScope.launch(Dispatchers.IO) {
             myModel = ViewModelProviders.of(this@MainActivity).get(VModel::class.java)
             myData = myModel.getCurrentWeatherEntry()
-            myData.observe(this@MainActivity,object : Observer<CurrentWeatherEntry>{
-                override fun onChanged(t: CurrentWeatherEntry?) {
-                    temp_c.text = t?.tempC.toString()
-                }
+            myData.observe(this@MainActivity,Observer<CurrentWeatherEntry>{
+                if(it != null)
+                    temp_c.text = it.tempC.toString()
             })
 
         }
