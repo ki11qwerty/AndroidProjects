@@ -38,8 +38,8 @@ import kotlinx.coroutines.*
 import retrofit2.HttpException
 
 class MainActivity : AppCompatActivity(){
-    lateinit var weatherResponse: CurrentWeatherResponse
-    lateinit var forecastResponse: ForecastResponse
+   // lateinit var weatherResponse: CurrentWeatherResponse
+   //lateinit var forecastResponse: ForecastResponse
     lateinit var myImage: ImageView
     val defaultCity: String = "Волгоград"
     var city: String = defaultCity
@@ -70,12 +70,23 @@ class MainActivity : AppCompatActivity(){
 
     @SuppressLint("SetTextI18n") // иду  на это осознанно так как наврятли я это приложение буду переводить на другие языки, и суть учебы на данный момент совсем в другом
     fun init() {
-        GlobalScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.Main) {
             myModel = ViewModelProviders.of(this@MainActivity).get(VModel::class.java)
             myData = myModel.getCurrentWeatherEntry()
             myData.observe(this@MainActivity,Observer<CurrentWeatherEntry>{
-                if(it != null)
+                if(it != null) {
                     temp_c.text = it.tempC.toString()
+                  //  location.text = "${it.location.country},${it.location.name}" //todo: ну тут поменять в модели ентри на респонс
+                    condition_text.text = it.condition.text
+                    feels_like.text = "ощущается как ${it.feelslikeC}"
+                    last_update.text = "последние обновление:${it.lastUpdated}"
+
+                    val imageUrl = "https:${it.condition.icon}"
+                    Picasso.get()
+                        .load(imageUrl)
+                        .fit()
+                        .into(myImage)
+                }
             })
 
         }
