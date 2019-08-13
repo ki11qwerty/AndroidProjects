@@ -10,6 +10,8 @@
 // todo: 8 - реализовать боковое меню
 //
 //todo: дома если будет время, пройтись по коду и вернуть все функции на место, но под новую модель
+//todo: добавить обработку ошибок сети в VModel
+//todo: ошибки в vModel ловить можно, а показать об этом лучше как? думаю допилить liveData<String> и выводить во вью какое то время.
 //-------------------------------------------------------------------------
 
 
@@ -38,16 +40,13 @@ import kotlinx.coroutines.*
 import retrofit2.HttpException
 
 class MainActivity : AppCompatActivity(){
-   // lateinit var weatherResponse: CurrentWeatherResponse
-   //lateinit var forecastResponse: ForecastResponse
     lateinit var myImage: ImageView
-    val defaultCity: String = "Волгоград"
-    var city: String = defaultCity
     lateinit var forecastListView: ListView
     lateinit var adapterForList: AdapterForList
     private val weatherApi = ApiWeather()
+    lateinit var condndionIconUrl: String
 
-    lateinit var myData : LiveData<CurrentWeatherEntry>
+    lateinit var myData : LiveData<CurrentWeatherResponse>
     lateinit var myModel : VModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,34 +59,39 @@ class MainActivity : AppCompatActivity(){
         forecastListView = findViewById(R.id.my_forecast_list)
         myImage = findViewById(R.id.condition_icon)
         init()
-        update_btn.setOnClickListener {
-            Log.d("myTag", "${city_et.text}")
-            if (city_et.text.isNotEmpty())
-                city = city_et.text.toString()
-            init()
-        }
+//        update_btn.setOnClickListener {
+//            Log.d("myTag", "${city_et.text}")
+//            if (city_et.text.isNotEmpty())
+//                city = city_et.text.toString()
+//            init()
+//        }
     }
 
     @SuppressLint("SetTextI18n") // иду  на это осознанно так как наврятли я это приложение буду переводить на другие языки, и суть учебы на данный момент совсем в другом
     fun init() {
         GlobalScope.launch(Dispatchers.Main) {
             myModel = ViewModelProviders.of(this@MainActivity).get(VModel::class.java)
-            myData = myModel.getCurrentWeatherEntry()
-            myData.observe(this@MainActivity,Observer<CurrentWeatherEntry>{
-                if(it != null) {
-                    temp_c.text = it.tempC.toString()
-                  //  location.text = "${it.location.country},${it.location.name}" //todo: ну тут поменять в модели ентри на респонс
-                    condition_text.text = it.condition.text
-                    feels_like.text = "ощущается как ${it.feelslikeC}"
-                    last_update.text = "последние обновление:${it.lastUpdated}"
-
-                    val imageUrl = "https:${it.condition.icon}"
+            myData = myModel.getCurrentWeatherResponse()
+            myData.observe(this@MainActivity, Observer<CurrentWeatherResponse> {
+                if (it != null) {
+                    temp_c.text = it.currentWeatherEntry.tempC.toString()
+                    location.text = "${it.location.country},${it.location.name}"
+                    condition_text.text = it.currentWeatherEntry.condition.text
+                    feels_like.text = "ощущается как ${it.currentWeatherEntry.feelslikeC}"
+                    last_update.text = "последние обновление:${it.currentWeatherEntry.lastUpdated}"
+                    condndionIconUrl = "https:${it.currentWeatherEntry.condition.icon}"
                     Picasso.get()
-                        .load(imageUrl)
+                        .load(condndionIconUrl)
                         .fit()
                         .into(myImage)
                 }
+                update_btn.setOnClickListener{
+                    if(city_et != null)
+                        myModel.changeCity(city_et.text.toString())
+                }
             })
+
+
 
         }
 
