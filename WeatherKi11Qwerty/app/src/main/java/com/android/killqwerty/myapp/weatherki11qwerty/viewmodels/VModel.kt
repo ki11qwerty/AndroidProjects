@@ -4,11 +4,13 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.android.killqwerty.myapp.weatherki11qwerty.data.ApiWeather
 import com.android.killqwerty.myapp.weatherki11qwerty.data.response.CurrentWeatherResponse
+import com.android.killqwerty.myapp.weatherki11qwerty.data.response.ForecastResponse
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 
 class VModel : ViewModel() {
     private var responseData: MutableLiveData<CurrentWeatherResponse>? = null
+    private var forecastData: MutableLiveData<ForecastResponse>? = null
     var cityName: String = defaultCityName
 
     suspend fun getCurrentWeatherResponse()= when(responseData){
@@ -18,6 +20,13 @@ class VModel : ViewModel() {
             }
             else -> responseData!!
         }
+//    suspend fun getForecastResponse():MutableLiveData<ForecastResponse> =when(forecastData){
+//        null ->{
+//            loadForecastData()
+//            forecastData!!
+//        }
+//        else -> forecastData!!
+//    }
 
 
 
@@ -40,9 +49,14 @@ class VModel : ViewModel() {
                 in 500..590 ->{}
             }
         }
-
-
     }
+//    private suspend fun loadForecastData(){  а надо ли это мне? я ведь могу тупо в один метод оба запроса зафигачить... думаем
+//        if(forecastData == null)
+//            forecastData = MutableLiveData()
+//        try {
+//
+//        }
+//    }
 
     fun changeCity(newCityName : String){
         cityName = newCityName
