@@ -1,6 +1,7 @@
 package com.android.killqwerty.myapp.weatherki11qwerty.ui
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ class AdapterForList(var myList : List<Forecastday>,var c: Context) : BaseAdapte
             val imageUrl = "https:${myList[position].day.condition.icon}"
             myView = LayoutInflater.from(c).inflate(R.layout.forecast_item, null)
             myView.item_date_tv.text = myList[position].date
-            myView.item_temp.text = "${myList[position].day.maxtempC} / ${myList[position].day.mintempC}"
+            myView.item_temp.text = String.format("%.1f / %.1f",myList[position].day.maxtempC, myList[position].day.mintempC)
             Picasso.get()
                 .load(imageUrl)
                 .resize(74,74)

@@ -24,7 +24,6 @@
 
 package com.android.killqwerty.myapp.weatherki11qwerty.ui
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.*
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -61,19 +60,17 @@ class MainActivity : AppCompatActivity() {
         myImage = findViewById(R.id.condition_icon)
         init()
     }
-
-    @SuppressLint("SetTextI18n") // иду  на это осознанно так как наврятли я это приложение буду переводить на другие языки, и суть учебы на данный момент совсем в другом
-    fun init() {
+    private fun init() {
         GlobalScope.launch(Dispatchers.Main) {
             myModel = ViewModelProviders.of(this@MainActivity).get(VModel::class.java)
             currentData = myModel.getCurrentWeatherResponse()
             currentData.observe(this@MainActivity, Observer<CurrentWeatherResponse> {
                 if (it != null) {
                     temp_c.text = it.currentWeatherEntry.tempC.toString()
-                    location.text = "${it.location.country},${it.location.name}"
+                    location.text = String.format("%s,%s",it.location.country,it.location.name)
                     condition_text.text = it.currentWeatherEntry.condition.text
-                    feels_like.text = "ощущается как ${it.currentWeatherEntry.feelslikeC}"
-                    last_update.text = "последние обновление:${it.currentWeatherEntry.lastUpdated}"
+                    feels_like.text = String.format("ощущается как %.1f",it.currentWeatherEntry.feelslikeC)
+                    last_update.text = String.format("последние обновление: %s",it.currentWeatherEntry.lastUpdated)
                     conditionIconUrl = "https:${it.currentWeatherEntry.condition.icon}"
                     Picasso.get()
                         .load(conditionIconUrl)
