@@ -17,7 +17,7 @@ class AdapterForList(var myList : List<Forecastday>,var c: Context) : BaseAdapte
             val imageUrl = "https:${myList[position].day.condition.icon}"
             myView = LayoutInflater.from(c).inflate(R.layout.forecast_item, null)
             myView.item_date_tv.text = myList[position].date
-            myView.item_temp.text = "${myList[position].day.mintempC} / ${myList[position].day.maxtempC}"
+            myView.item_temp.text = "${myList[position].day.maxtempC} / ${myList[position].day.mintempC}"
             Picasso.get()
                 .load(imageUrl)
                 .resize(74,74)
