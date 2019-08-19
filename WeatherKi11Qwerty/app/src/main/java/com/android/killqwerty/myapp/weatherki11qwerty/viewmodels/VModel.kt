@@ -68,13 +68,12 @@ class VModel : ViewModel() {
             in 200..290 ->{}
             in 300..390 ->{}
             in 399..490 ->{  // сделаем вид что ошибка тут может быть только если ввели неверные город =)
-                // а так то сделать и нельзя,   ладно разберемся..   Toast.makeText(this,"$cityName - не найдено",Toast.LENGTH_SHORT)
                 if(cityName != defaultCityName) {
                     wrongCityName()
                 }
             }
             in 500..590 ->{
-                kotlinx.coroutines.delay(5000)
+                delay(5000)
                 changeCity(cityName)
             }
         }
