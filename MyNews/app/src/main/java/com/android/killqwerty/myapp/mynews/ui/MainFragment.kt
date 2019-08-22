@@ -18,12 +18,12 @@ import com.android.killqwerty.myapp.mynews.data.response.Response
 import com.android.killqwerty.myapp.mynews.viewmodels.NewsViewModel
 
 class MainFragment : Fragment(){
-  //  val iOnClickAdapterListener = IOnClickAdapterListener // todo: как ты это сука сделал
-    lateinit var myIOnClickAdapterListener: IOnClickAdapterListener
+    private lateinit var myIOnClickAdapterListener: IOnClickAdapterListener
     var mNewsViewModel : NewsViewModel? = null
     var myLiveDataResponse : MutableLiveData<Response>? = null
     var myLayoutManager : LinearLayoutManager? = null
     lateinit var recyclerView : RecyclerView
+    var myList : List<Article>? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.main_fragment,container,false)
         recyclerView = view.findViewById(R.id.recycler)
@@ -33,20 +33,21 @@ class MainFragment : Fragment(){
     fun init(){
         myIOnClickAdapterListener = object : IOnClickAdapterListener{  //todo:
             override fun onClick(position: Int) {
-                Toast.makeText(context,"$position это в ебаном фрагменте все? onClick Int",Toast.LENGTH_SHORT).show()
-            }
+                // myList!![position] обьект тут !
+             //   Toast.makeText(context,"${myList!![position].publishedAt}",Toast.LENGTH_SHORT).show()
+                //todo: я понял! тут же и так есть вьюмодель! так что от того что я добавлю туда одну лайвдату я и не просяду) , тут отправляем туды, во втором
+                //фрагменте принимаю! а в активити пошлю только онклик, чтобы запустить второй фрагмент, а тот уже подцепит инфу из вьюмодели... гениально!
+                (activity as? IShowArticle)?.showingArticle(myList!![position])
 
-            override fun onStringClick(str: String) {
-                Toast.makeText(context,str,Toast.LENGTH_SHORT).show()
             }
         }
      //   val iOnClickAdapterListener = IOnClickAdapterListener
         mNewsViewModel = ViewModelProviders.of(this).get(NewsViewModel::class.java)
         myLiveDataResponse = mNewsViewModel!!.getResponseData()
         myLiveDataResponse!!.observe(this, Observer<Response> {
-            val myList = it.articles
+            myList = it.articles
             myLayoutManager = LinearLayoutManager(this.context)
-            val myAdapter : RecyclerView.Adapter<*> = NewsListAdapter(myList,myIOnClickAdapterListener)
+            val myAdapter : RecyclerView.Adapter<*> = NewsListAdapter(myList!!,myIOnClickAdapterListener)
             recyclerView.apply {
                 setHasFixedSize(false)
                 layoutManager = myLayoutManager

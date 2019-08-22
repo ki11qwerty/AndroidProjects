@@ -67,8 +67,5 @@ class NewsListAdapter(val myList : List<Article>, val myListener: IOnClickAdapte
     override fun onClick(view: View?) {
 
         myListener.onClick( (view?.tag as Int))             // фича или хрень завтра разберусь..
-       // myListener.onStringClick("${view?.tag}")
-
-
     }
 }

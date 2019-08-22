@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -20,6 +21,6 @@ class MainActivity : AppCompatActivity(), IShowArticle {
     }
 
     override fun showingArticle(article: Article) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       Toast.makeText(this,"${article.source.name}",Toast.LENGTH_SHORT).show()
     }
 }
