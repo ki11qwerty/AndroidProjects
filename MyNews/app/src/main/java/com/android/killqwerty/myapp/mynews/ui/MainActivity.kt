@@ -1,26 +1,42 @@
 package com.android.killqwerty.myapp.mynews.ui
 
+
+/*
+todo: toolbar
+todo: webView
+todo: сохранение состояния во втором фрагменте
+todo: убрать обрезание дискрипшена (немного тупанул =) )
+todo: постепенная подгрузка списка
+todo: навести порядок в верстке
+ */
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import com.android.killqwerty.myapp.mynews.R
-import com.android.killqwerty.myapp.mynews.data.response.Article
-import kotlinx.android.synthetic.main.mainactivity.*
 
 class MainActivity : AppCompatActivity(), IShowArticle {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainactivity)
-        //FragmentManager.beginTransaction().add(R.id.fragment,MainFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.frame, MainFragment())
+            .commit()
+    }
+
+    override fun showingArticle() {
+        supportFragmentManager.beginTransaction().replace(R.id.frame, FullScreenNewsFragment())
+            .addToBackStack(null)
+            .commit()
 
     }
 
-    override fun showingArticle(article: Article) {
-       Toast.makeText(this,"${article.source.name}",Toast.LENGTH_SHORT).show()
+    override fun openUrl(url: String) {
+        Log.d("MYTAG",url)
+        val bundle = Bundle()
+        bundle.putString("url",url)
+        val fragment = WebViewFragment.getNewInstance(bundle)
+        supportFragmentManager.beginTransaction().replace(R.id.frame, fragment)
+            .commit()
     }
 }

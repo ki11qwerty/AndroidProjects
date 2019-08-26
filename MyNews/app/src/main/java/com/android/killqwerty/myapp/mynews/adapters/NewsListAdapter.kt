@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.ContentProvider
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,7 @@ class NewsListAdapter(val myList : List<Article>, val myListener: IOnClickAdapte
     override fun getItemCount() = myList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        var layout = LayoutInflater.from(parent.context).inflate(
+        val layout = LayoutInflater.from(parent.context).inflate(
             R.layout.news_item,
             parent,
             false
@@ -51,20 +52,10 @@ class NewsListAdapter(val myList : List<Article>, val myListener: IOnClickAdapte
 
 
           holder.itemView.tag = holder.adapterPosition  // а если вот так вот...
-      //  holder.itemView.setOnClickListener{holder.adapterPosition}//(this)
-
-
-//            setOnClickListener {
-//            // todo: мдеее после работы чет такое себе, голова ваще не варит уже, ладно тема дня - передать клик выше, и там уже из фрагмента дернуть интерфейс в активити и там уже передать
-//            //возможно что то делаю не так, утро вечера мудреннее
-//            myListener.onClick(holder.adapterPosition)
-//        }
-//       //     Toast.makeText(mContext,"${holder.adapterPosition},${holder.itemView.tag}",Toast.LENGTH_SHORT).show() }
-//    }
-
     }
 
     override fun onClick(view: View?) {
+        Log.d("MYTAG","адаптер клик")
 
         myListener.onClick( (view?.tag as Int))             // фича или хрень завтра разберусь..
     }

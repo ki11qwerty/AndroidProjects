@@ -19,7 +19,7 @@ const val api_key = "a22b05cb93b44860ae0d430583ef82ee"     // от таске 13
 interface NewsAPI {
     @GET("top-headlines")
     suspend fun getAllNews(
-        @Query("country") country : String = "ru"
+        @Query("country") country : String = "us"
     ) : Response
 
     @GET("sdf")

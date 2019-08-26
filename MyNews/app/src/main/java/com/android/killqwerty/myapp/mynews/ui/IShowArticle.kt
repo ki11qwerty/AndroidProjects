@@ -1,7 +1,6 @@
 package com.android.killqwerty.myapp.mynews.ui
 
-import com.android.killqwerty.myapp.mynews.data.response.Article
-
-interface IShowArticle { // todo: названия умнее просто не придумал XD
-    fun showingArticle(article: Article) //TODO: put one article class for send it in second fragment
+interface IShowArticle { // название умнее просто не придумал XD
+    fun showingArticle()
+    fun openUrl(url: String)
 }

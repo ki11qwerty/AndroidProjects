@@ -5,8 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,25 +22,17 @@ class MainFragment : Fragment(){
     var myLayoutManager : LinearLayoutManager? = null
     lateinit var recyclerView : RecyclerView
     var myList : List<Article>? = null
+    var myView : View? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.main_fragment,container,false)
-        recyclerView = view.findViewById(R.id.recycler)
-        init()
-        return view
+        if (myView == null) {
+            myView = inflater.inflate(R.layout.main_fragment, container, false)
+            recyclerView = myView!!.findViewById(R.id.recycler)
+            init()
+        }
+        return myView
     }
     fun init(){
-        myIOnClickAdapterListener = object : IOnClickAdapterListener{  //todo:
-            override fun onClick(position: Int) {
-                // myList!![position] обьект тут !
-             //   Toast.makeText(context,"${myList!![position].publishedAt}",Toast.LENGTH_SHORT).show()
-                //todo: я понял! тут же и так есть вьюмодель! так что от того что я добавлю туда одну лайвдату я и не просяду) , тут отправляем туды, во втором
-                //фрагменте принимаю! а в активити пошлю только онклик, чтобы запустить второй фрагмент, а тот уже подцепит инфу из вьюмодели... гениально!
-                (activity as? IShowArticle)?.showingArticle(myList!![position])
-
-            }
-        }
-     //   val iOnClickAdapterListener = IOnClickAdapterListener
-        mNewsViewModel = ViewModelProviders.of(this).get(NewsViewModel::class.java)
+        mNewsViewModel = ViewModelProviders.of(activity!!).get(NewsViewModel::class.java)
         myLiveDataResponse = mNewsViewModel!!.getResponseData()
         myLiveDataResponse!!.observe(this, Observer<Response> {
             myList = it.articles
@@ -54,7 +44,13 @@ class MainFragment : Fragment(){
                 adapter = myAdapter
             }
         })
+        myIOnClickAdapterListener = object : IOnClickAdapterListener{  //todo:
+            override fun onClick(position: Int) {
+                mNewsViewModel?.selectArticle(myList!![position])
+                Log.d("MYTAG","фрагмент клик в ананимном обьекте ${myList!![position].description}\n ${myList!![position].content.toString()}")
+                (activity as? IShowArticle)?.showingArticle()
 
-       // (activity as? IShowArticle).showingArticle()
+            }
+        }
     }
 }

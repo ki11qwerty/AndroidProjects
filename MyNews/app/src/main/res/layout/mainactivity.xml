@@ -4,9 +4,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <fragment
+    <FrameLayout
+            android:id="@+id/frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.android.killqwerty.myapp.mynews.ui.MainFragment"
-            android:id="@+id/fragment"/>
+            android:layout_height="match_parent">
+
+    </FrameLayout>
+    <!--> android:name="com.android.killqwerty.myapp.mynews.ui.MainFragment"
+    <-->
+
 </LinearLayout>
