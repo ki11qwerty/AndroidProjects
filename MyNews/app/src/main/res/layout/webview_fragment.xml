@@ -5,9 +5,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-    <TextView
-            android:id="@+id/web_view_tv"
+    <WebView
+            android:id="@+id/my_web_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="match_parent" />
 </LinearLayout>
