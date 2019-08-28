@@ -8,6 +8,16 @@
               android:id="@+id/ll"
               android:background="@color/colorPrimaryDark">
 
+    <TextView
+            android:id="@+id/false_conection_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No internet conection =("
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

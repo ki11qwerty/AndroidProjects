@@ -1,7 +1,6 @@
 package com.android.killqwerty.myapp.mynews.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,15 @@ import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.killqwerty.myapp.mynews.R
+
 import com.android.killqwerty.myapp.mynews.adapters.NewsListAdapter
 import com.android.killqwerty.myapp.mynews.data.response.Article
 import com.android.killqwerty.myapp.mynews.data.response.Response
 import com.android.killqwerty.myapp.mynews.viewmodels.NewsViewModel
+import kotlinx.android.synthetic.main.main_fragment.view.*
+
+
+
 
 class MainFragment : Fragment(){
     private lateinit var myIOnClickAdapterListener: IOnClickAdapterListener
@@ -27,7 +31,8 @@ class MainFragment : Fragment(){
         if (myView == null) {
             myView = inflater.inflate(R.layout.main_fragment, container, false)
             recyclerView = myView!!.findViewById(R.id.recycler)
-            init()
+            if(isNetworkAvailabel())
+                init()
         }
         return myView
     }
@@ -44,13 +49,23 @@ class MainFragment : Fragment(){
                 adapter = myAdapter
             }
         })
-        myIOnClickAdapterListener = object : IOnClickAdapterListener{  //todo:
+
+        myIOnClickAdapterListener = object : IOnClickAdapterListener{
             override fun onClick(position: Int) {
                 mNewsViewModel?.selectArticle(myList!![position])
-                Log.d("MYTAG","фрагмент клик в ананимном обьекте ${myList!![position].description}\n ${myList!![position].content.toString()}")
                 (activity as? IShowArticle)?.showingArticle()
 
             }
         }
     }
+    fun isNetworkAvailabel(): Boolean { ///todo: тут должна быть проверка подключения
+        if (true) {
+            return true
+        } else {
+            myView?.false_conection_tv?.visibility = View.VISIBLE
+            return false
+        }
+    }
+
+
 }

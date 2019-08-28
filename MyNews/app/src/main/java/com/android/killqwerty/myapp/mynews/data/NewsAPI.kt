@@ -16,15 +16,23 @@ const val api_key = "a22b05cb93b44860ae0d430583ef82ee"     // от таске 13
 //-d country=us \
 //-d apiKey=a22b05cb93b44860ae0d430583ef82ee
 //https://newsapi.org/v2/top-headlines?country=us&apikey=a22b05cb93b44860ae0d430583ef82ee
+
+
+//остался один день братан !!!
+    // https://newsapi.org/v2/everything?q=bitcoin&pagesize=2&page=10&from=2019-07-28&sortBy=publishedAt&apiKey=a22b05cb93b44860ae0d430583ef82ee вот в эту сторону рой
+// pagesize
+//paze
+//sortBy=publishedAt
+//
+//я думаю идея в том, чтобы делать кусковые запросы увеличивая номер страницы, потом получать ответ в список, добавлять список в твой список, дергать обнову ресаайклера
+    //завтра надо сдать харош уже
 interface NewsAPI {
+
     @GET("top-headlines")
     suspend fun getAllNews(
-        @Query("country") country : String = "us"
+        @Query("country") country : String = "us",
+        @Query("limit") limit : Int = 3
     ) : Response
-
-    @GET("sdf")
-    suspend fun getSomethinh()
-
 
     companion object {
         operator fun invoke(): NewsAPI {
@@ -32,7 +40,7 @@ interface NewsAPI {
                 val url = chain.request()
                     .url()
                     .newBuilder()
-                    .addQueryParameter("apikey", api_key)       //todo: Вангую беду, проверить после набросков
+                    .addQueryParameter("apikey", api_key)
                     .build()
                 val request = chain.request()
                     .newBuilder()
