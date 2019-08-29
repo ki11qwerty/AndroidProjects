@@ -1,8 +1,6 @@
 package com.android.killqwerty.myapp.mynews.data.response
 
 
-import com.google.gson.annotations.SerializedName
-
 data class Article(
     val author: String?,
     val content: String?,

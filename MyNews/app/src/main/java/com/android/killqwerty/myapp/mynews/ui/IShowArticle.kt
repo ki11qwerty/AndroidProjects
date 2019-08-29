@@ -1,6 +1,6 @@
 package com.android.killqwerty.myapp.mynews.ui
 
-interface IShowArticle { // название умнее просто не придумал XD
+interface IShowArticle {
     fun showingArticle()
     fun openUrl(url: String)
 }

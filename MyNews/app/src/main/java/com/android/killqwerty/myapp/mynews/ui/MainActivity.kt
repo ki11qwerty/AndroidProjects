@@ -1,22 +1,7 @@
 package com.android.killqwerty.myapp.mynews.ui
 
-
-/*
-готово! - webViewFragment с инстансом url
-готово! - вызвать метод в мейн через fragment
-нерешаемо - кризозябры в русских новостях в content
-
-todo: toolbar - почитать про бест практис поведения кнопки в тулбаре!
-todo: webView
-todo: сохранение состояния во втором фрагменте
-todo: убрать обрезание дискрипшена (немного тупанул =) )
-todo: постепенная подгрузка списка
-todo: навести порядок в верстке
- */
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.android.killqwerty.myapp.mynews.R
@@ -44,7 +29,6 @@ class MainActivity : AppCompatActivity(), IShowArticle {
     }
 
     override fun openUrl(url: String) {
-        Log.d("MYTAG",url)
         val bundle = Bundle()
         bundle.putString("url",url)
         val fragment = WebViewFragment.getNewInstance(bundle)

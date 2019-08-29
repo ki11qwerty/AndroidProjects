@@ -11,7 +11,7 @@ import com.android.killqwerty.myapp.mynews.ui.IonClickAndLoadListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.news_item.view.*
 
-class NewsListAdapter(val myList : List<Article>, val myListener: IonClickAndLoadListener) : RecyclerView.Adapter<NewsListAdapter.MyViewHolder>(), View.OnClickListener {
+class NewsListAdapter(private val myList : List<Article>,private val myListener: IonClickAndLoadListener) : RecyclerView.Adapter<NewsListAdapter.MyViewHolder>(), View.OnClickListener {
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     override fun getItemCount() = myList.size
@@ -34,15 +34,16 @@ class NewsListAdapter(val myList : List<Article>, val myListener: IonClickAndLoa
         if (descriptionText != null && descriptionText.length > 100)        // если длинна строки больше 100символов -> обрезаем -> ставим в конце три точки
             descriptionText = String.format("%s ...", descriptionText.substring(0, 100))
         holder.itemView.news_description.text = descriptionText
+
         if (myList[position].urlToImage?.length != 0) {
             Picasso.get()
                 .load(myList[position].urlToImage)
                 .resize(100, 100)
                 .into(holder.itemView.news_image)
         }
-          holder.itemView.tag = holder.adapterPosition
+          holder.itemView.tag = holder.adapterPosition        // онклик будет ловить по тэгу, возможно не самое умное решение, но в этом приложении будет работать
         if(holder.layoutPosition == itemCount - 1)
-            myListener.LoadMore(itemCount)
+            myListener.loadMore(itemCount)
     }
 
     override fun onClick(view: View?) {

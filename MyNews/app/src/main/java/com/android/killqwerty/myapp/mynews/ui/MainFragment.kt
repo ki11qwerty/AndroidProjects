@@ -13,36 +13,44 @@ import com.android.killqwerty.myapp.mynews.R
 import com.android.killqwerty.myapp.mynews.adapters.NewsListAdapter
 import com.android.killqwerty.myapp.mynews.data.response.Article
 import com.android.killqwerty.myapp.mynews.data.response.Response
+import com.android.killqwerty.myapp.mynews.utility.PAGE_SIZE
 import com.android.killqwerty.myapp.mynews.viewmodels.NewsViewModel
 import kotlinx.android.synthetic.main.main_fragment.view.*
 
 
-
-
-class MainFragment : Fragment(){
+class MainFragment : Fragment() {
     private lateinit var ionClickAndLoadListener: IonClickAndLoadListener
-    var mNewsViewModel : NewsViewModel? = null
-    var myLiveDataResponse : MutableLiveData<Response>? = null
-    var myLayoutManager : LinearLayoutManager? = null
-    lateinit var recyclerView : RecyclerView
-    var myList : MutableList<Article> = mutableListOf()
-    var myView : View? = null
-    lateinit var myAdapter : RecyclerView.Adapter<*>
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    lateinit var recyclerView: RecyclerView
+    lateinit var myAdapter: RecyclerView.Adapter<*>
+    var mNewsViewModel: NewsViewModel? = null
+    var myLiveDataResponse: MutableLiveData<Response>? = null
+    var myLayoutManager: LinearLayoutManager? = null
+    var myList: MutableList<Article> = mutableListOf()
+    var myView: View? = null
+    var totalPages: Int = 0
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         if (myView == null) {
             myView = inflater.inflate(R.layout.main_fragment, container, false)
             recyclerView = myView!!.findViewById(R.id.recycler)
-            if(isNetworkAvailabel())
+            if (isNetworkAvailabel())
                 init()
         }
         return myView
     }
-    fun init(){
+
+    private fun init() {
         mNewsViewModel = ViewModelProviders.of(activity!!).get(NewsViewModel::class.java)
-        myLiveDataResponse = mNewsViewModel!!.getNews()
-        myLiveDataResponse!!.observe(this, Observer<Response> {
-            if(myList.isEmpty()) {
-                myList.addAll(it.articles)// = it.articles
+        myLiveDataResponse = mNewsViewModel?.getNews()
+        myLiveDataResponse?.observe(this, Observer<Response> {
+            if (myList.isEmpty()) {
+                totalPages = it.totalResults / PAGE_SIZE // высчитываем максимальное колличество страниц
+                myList.addAll(it.articles)
                 myLayoutManager = LinearLayoutManager(this.context)
                 myAdapter = NewsListAdapter(myList, ionClickAndLoadListener)
                 recyclerView.apply {
@@ -50,27 +58,26 @@ class MainFragment : Fragment(){
                     layoutManager = myLayoutManager
                     adapter = myAdapter
                 }
-            }else{
+            } else {
                 myList.addAll(it.articles)
                 myAdapter.notifyDataSetChanged()
             }
         })
 
-        ionClickAndLoadListener = object : IonClickAndLoadListener{
+        ionClickAndLoadListener = object : IonClickAndLoadListener {
+
             override fun onClick(position: Int) {
-                mNewsViewModel?.selectArticle(myList!![position])
+                mNewsViewModel?.selectArticle(myList[position])
                 (activity as? IShowArticle)?.showingArticle()
             }
-            override fun LoadMore(position: Int) {
-                var nextPage = (position / 10) + 1
 
-                mNewsViewModel?.loadMore(nextPage)
+            override fun loadMore(position: Int) {
+                val nextPage = (position / PAGE_SIZE) + 1
+                if (nextPage <= totalPages)
+                    mNewsViewModel?.loadMore(nextPage)
             }
         }
     }
-
-
-
 
 
     fun isNetworkAvailabel(): Boolean { ///todo: тут должна быть проверка подключения

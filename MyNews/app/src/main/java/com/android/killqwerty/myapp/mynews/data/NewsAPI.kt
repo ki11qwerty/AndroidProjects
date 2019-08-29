@@ -8,24 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-//Your API key is: efecdc64f5ff451e89046c36fa09f152      tasuke34!
-//a22b05cb93b44860ae0d430583ef82ee               tasuke134!
-const val api_key = "a22b05cb93b44860ae0d430583ef82ee"     // от таске 134
 
-//curl https://newsapi.org/v2/top-headlines -G \
-//-d country=us \
-//-d apiKey=a22b05cb93b44860ae0d430583ef82ee
-//https://newsapi.org/v2/top-headlines?country=us&apikey=a22b05cb93b44860ae0d430583ef82ee
+const val api_key = "efecdc64f5ff451e89046c36fa09f152"
 
-
-//остался один день братан !!!
-    // https://newsapi.org/v2/everything?q=bitcoin&pagesize=2&page=10&from=2019-07-28&sortBy=publishedAt&apiKey=a22b05cb93b44860ae0d430583ef82ee вот в эту сторону рой
-// pagesize
-//paze
-//sortBy=publishedAt
-//
-//я думаю идея в том, чтобы делать кусковые запросы увеличивая номер страницы, потом получать ответ в список, добавлять список в твой список, дергать обнову ресаайклера
-    //завтра надо сдать харош уже
 interface NewsAPI {
 
     @GET("top-headlines")
@@ -37,7 +22,7 @@ interface NewsAPI {
     suspend fun getAllNews(
         @Query("q") q : String = "anything",
         @Query("sortBy") sortBy: String = "publishedAt",
-        @Query("from") from : String = "2019-07-29",
+        @Query("from") from : String = "2019-08-20", // Это для примера, по хорошему я бы дату генерировал в вьюмодели
         @Query("pagesize") pageSize : Int = 20,
         @Query("page") page : Int = 1
     ) : Response

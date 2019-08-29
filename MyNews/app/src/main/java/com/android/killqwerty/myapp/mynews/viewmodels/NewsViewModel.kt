@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.android.killqwerty.myapp.mynews.data.NewsAPI
 import com.android.killqwerty.myapp.mynews.data.response.Article
 import com.android.killqwerty.myapp.mynews.data.response.Response
+import com.android.killqwerty.myapp.mynews.utility.PAGE_SIZE
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 
@@ -30,22 +31,22 @@ class NewsViewModel : ViewModel() {
                 everythingNewsData?.postValue(
                     NewsAPI.invoke().getAllNews(
                         page = getPage,
-                        pageSize = 10
+                        pageSize = PAGE_SIZE
                     )
                 )
             }
         } catch (e: HttpException) {
-            when (e.code()) {     // тут будет отлов ошибок
-                in 200..300 -> {
+            when (e.code()) {     // тут будем ловить ошибки с сетью
+                in 200..299 -> {
                     Log.d("MYTAG", e.code().toString())
                 }
-                in 301..400 -> {
+                in 300..399 -> {
                     Log.d("MYTAG", e.code().toString())
                 }
-                in 401..499 -> {
+                in 404..499 -> {
                     Log.d("MYTAG", e.code().toString())
                 }
-                in 500..550 -> {
+                in 500..599 -> {
                     Log.d("MYTAG", e.code().toString())
                 }
             }
