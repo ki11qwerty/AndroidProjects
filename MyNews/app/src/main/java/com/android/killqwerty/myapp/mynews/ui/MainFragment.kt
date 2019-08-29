@@ -20,13 +20,14 @@ import kotlinx.android.synthetic.main.main_fragment.view.*
 
 
 class MainFragment : Fragment(){
-    private lateinit var myIOnClickAdapterListener: IOnClickAdapterListener
+    private lateinit var ionClickAndLoadListener: IonClickAndLoadListener
     var mNewsViewModel : NewsViewModel? = null
     var myLiveDataResponse : MutableLiveData<Response>? = null
     var myLayoutManager : LinearLayoutManager? = null
     lateinit var recyclerView : RecyclerView
-    var myList : List<Article>? = null
+    var myList : MutableList<Article> = mutableListOf()
     var myView : View? = null
+    lateinit var myAdapter : RecyclerView.Adapter<*>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (myView == null) {
             myView = inflater.inflate(R.layout.main_fragment, container, false)
@@ -38,26 +39,40 @@ class MainFragment : Fragment(){
     }
     fun init(){
         mNewsViewModel = ViewModelProviders.of(activity!!).get(NewsViewModel::class.java)
-        myLiveDataResponse = mNewsViewModel!!.getResponseData()
+        myLiveDataResponse = mNewsViewModel!!.getNews()
         myLiveDataResponse!!.observe(this, Observer<Response> {
-            myList = it.articles
-            myLayoutManager = LinearLayoutManager(this.context)
-            val myAdapter : RecyclerView.Adapter<*> = NewsListAdapter(myList!!,myIOnClickAdapterListener)
-            recyclerView.apply {
-                setHasFixedSize(false)
-                layoutManager = myLayoutManager
-                adapter = myAdapter
+            if(myList.isEmpty()) {
+                myList.addAll(it.articles)// = it.articles
+                myLayoutManager = LinearLayoutManager(this.context)
+                myAdapter = NewsListAdapter(myList, ionClickAndLoadListener)
+                recyclerView.apply {
+                    setHasFixedSize(false)
+                    layoutManager = myLayoutManager
+                    adapter = myAdapter
+                }
+            }else{
+                myList.addAll(it.articles)
+                myAdapter.notifyDataSetChanged()
             }
         })
 
-        myIOnClickAdapterListener = object : IOnClickAdapterListener{
+        ionClickAndLoadListener = object : IonClickAndLoadListener{
             override fun onClick(position: Int) {
                 mNewsViewModel?.selectArticle(myList!![position])
                 (activity as? IShowArticle)?.showingArticle()
+            }
+            override fun LoadMore(position: Int) {
+                var nextPage = (position / 10) + 1
 
+                mNewsViewModel?.loadMore(nextPage)
             }
         }
     }
+
+
+
+
+
     fun isNetworkAvailabel(): Boolean { ///todo: тут должна быть проверка подключения
         if (true) {
             return true

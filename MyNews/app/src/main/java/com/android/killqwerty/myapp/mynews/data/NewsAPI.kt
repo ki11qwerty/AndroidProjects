@@ -29,10 +29,19 @@ const val api_key = "a22b05cb93b44860ae0d430583ef82ee"     // от таске 13
 interface NewsAPI {
 
     @GET("top-headlines")
-    suspend fun getAllNews(
-        @Query("country") country : String = "us",
-        @Query("limit") limit : Int = 3
+    suspend fun getHeadLines(
+        @Query("country") country : String = "us"
     ) : Response
+
+    @GET("everything")
+    suspend fun getAllNews(
+        @Query("q") q : String = "anything",
+        @Query("sortBy") sortBy: String = "publishedAt",
+        @Query("from") from : String = "2019-07-29",
+        @Query("pagesize") pageSize : Int = 20,
+        @Query("page") page : Int = 1
+    ) : Response
+
 
     companion object {
         operator fun invoke(): NewsAPI {

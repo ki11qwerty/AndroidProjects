@@ -6,26 +6,34 @@ import androidx.lifecycle.ViewModel
 import com.android.killqwerty.myapp.mynews.data.NewsAPI
 import com.android.killqwerty.myapp.mynews.data.response.Article
 import com.android.killqwerty.myapp.mynews.data.response.Response
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.HttpException
 
 class NewsViewModel : ViewModel() {
-    private var responseData : MutableLiveData<Response>? = null
     private var selected : MutableLiveData<Article> = MutableLiveData()
+    private var everythingNewsData : MutableLiveData<Response>? = null
 
-    fun getResponseData() = when(responseData){
-        null -> {loadResponseData()}
-        else -> {responseData}
+    fun getNews() : MutableLiveData<Response>? = when(everythingNewsData){
+        null -> {
+            everythingNewsData = MutableLiveData()
+            loadNews(1)
+            everythingNewsData
+        }
+        else -> {
+            everythingNewsData
+        }
     }
 
-    private fun loadResponseData() : MutableLiveData<Response>? {
-        if (responseData == null)
-            responseData = MutableLiveData()
+    private fun loadNews(getPage: Int) {
         try {
-
-            CoroutineScope(Dispatchers.Default).launch { responseData?.postValue(NewsAPI.invoke().getAllNews()) }
+            CoroutineScope(Dispatchers.Default).launch {
+                everythingNewsData?.postValue(
+                    NewsAPI.invoke().getAllNews(
+                        page = getPage,
+                        pageSize = 10
+                    )
+                )
+            }
         } catch (e: HttpException) {
             when (e.code()) {     // тут будет отлов ошибок
                 in 200..300 -> {
@@ -42,12 +50,16 @@ class NewsViewModel : ViewModel() {
                 }
             }
         }
-        return responseData
     }
 
-    fun getSelectedArticle()= selected
+    fun getSelectedArticle() = selected
 
-    fun selectArticle(article: Article){
+    fun selectArticle(article: Article) {
         selected.value = article
+    }
+
+    fun loadMore(nextPage: Int) {
+        loadNews(nextPage)
+
     }
 }
